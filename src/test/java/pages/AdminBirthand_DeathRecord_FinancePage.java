@@ -3,9 +3,9 @@ package pages;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
 
-public class AppointmentPage {
+public class AdminBirthand_DeathRecord_FinancePage {
 
-    public AppointmentPage(){
+    public AdminBirthand_DeathRecord_FinancePage(){
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
 
