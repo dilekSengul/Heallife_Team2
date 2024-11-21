@@ -2,8 +2,15 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import utilities.DriverManager;
 
-public class Login {
+public class LoginPage {
+
+    public LoginPage(){
+        PageFactory.initElements(DriverManager.getDriver(), this);
+    }
+
     @FindBy(id = "email")
     public WebElement email;
 
@@ -15,4 +22,8 @@ public class Login {
 
     @FindBy (className = "btn")
     public WebElement signInButton;
+
+    @FindBy (xpath = "//*[text()='Login']")
+    public WebElement Login;
+
 }
