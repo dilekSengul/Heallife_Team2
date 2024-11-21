@@ -3,9 +3,9 @@ package pages;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
 
-public class AppointmentPage {
+public class AdminDashboardPage {
 
-    public AppointmentPage(){
+    public AdminDashboardPage(){
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
 
