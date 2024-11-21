@@ -1,12 +1,12 @@
-package pages;
+package StepDefinitions;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
 
-public class HomePage {
-    public HomePage(){
+public class HomePageStep {
+    public HomePageStep(){
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
 

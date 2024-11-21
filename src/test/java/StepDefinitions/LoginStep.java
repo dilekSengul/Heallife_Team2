@@ -1,9 +1,9 @@
-package pages;
+package StepDefinitions;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Login {
+public class LoginStep {
     @FindBy(id = "email")
     public WebElement email;
 
