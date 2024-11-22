@@ -41,7 +41,33 @@ public class HomePage {
     @FindBy (xpath = "(//*[text()='About Us '])[1]")
     public WebElement AboutUs;
 
+
+
     // [Footer] - [Social Media] bölümünün elementleri
+
+
+    @FindBy (xpath = "//*[@class='fa fa-facebook']")
+    public WebElement FacebookIkonu;
+
+    @FindBy (xpath = "//*[@href='https://twitter.com/login?lang=en']")
+    public WebElement TwitterIkonu;
+
+    @FindBy (xpath = "//*[@class='fa fa-youtube']")
+    public WebElement YouTubeIkonu;
+
+    @FindBy (xpath = "//*[@class='fa fa-google-plus']")
+    public WebElement GoogleIkonu;
+
+    @FindBy (xpath = "//*[@class='fa fa-linkedin']")
+    public WebElement LinkedinIkonu;
+
+    @FindBy (xpath = "//*[@class='fa fa-instagram']")
+    public WebElement InstagramIkonu;
+
+    @FindBy (xpath = "//*[@class='fa fa-pinterest']")
+    public WebElement PinterestIkonu;
+
+
 
     // [Footer] - [Communication] bölümünün elementleri
 
