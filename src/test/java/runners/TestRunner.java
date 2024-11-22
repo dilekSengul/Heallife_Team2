@@ -17,8 +17,11 @@ import org.junit.runner.RunWith;
 				"json:target/cucumber-reports/cucumber.json", // JSON raporu (Cucumber HTML için gerekli)
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" // Allure raporları için plugin
 		},
+
 		monochrome =false,                         // Konsol çıktısını daha okunabilir hale getirir
 		tags = "@test"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
+		                    
 )
 public class TestRunner {
 	private static final Logger logger = LogManager.getLogger(TestRunner.class);
