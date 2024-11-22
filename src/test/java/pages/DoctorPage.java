@@ -9,4 +9,5 @@ public class DoctorPage {
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
 
+
 }
