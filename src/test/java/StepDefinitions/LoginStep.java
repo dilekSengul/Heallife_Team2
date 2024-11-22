@@ -59,6 +59,48 @@ public class LoginStep {
         }
     }
 
+    @Then("username bolumune yanlis data girilir")
+    public void username_bolumune_yanlis_data_girilir() {
+        loginPage.email.sendKeys("damla@gmail.com");
+    }
+    @Then("password bolumune yanlis data girilir")
+    public void password_bolumune_yanlis_data_girilir() {
+        loginPage.password.sendKeys("123456");
+
+    }
+    @Then("sisteme giris yapilamadigi ve admin penceresinin gorunur oldugu dogrulanir.")
+    public void sisteme_giris_yapilamadigi_ve_admin_penceresinin_gorunur_oldugu_dogrulanir() {
+       Assert.assertTrue("Admin login penceresi görüntülenir, sisteme giriş yapilamadi",loginPage.adminLoginPenceresi.isDisplayed());
+    }
+
+    @Then("forgot password linkine tiklanir")
+    public void forgot_password_linkine_tiklanir() {
+    loginPage.adminForgotPassword.click();
+    }
+    @Then("email alanina dogru data girilir")
+    public void email_alanina_dogru_data_girilir() {
+    loginPage.adminForgotPasswordEmail.sendKeys("damla@gmail.com");
+    }
+    @Then("submit butonuna tiklanir")
+    public void submit_butonuna_tiklanir() {
+        loginPage.adminForgotPasswordSubmitButton.click();
+
+    }
+    @Then("textbox a girilen mail adresine sifre geldigi ustteki bilgi kutucugu ile dogrulanir")
+    public void textbox_a_girilen_mail_adresine_sifre_geldigi_ustteki_bilgi_kutucugu_ile_dogrulanir() {
+    Assert.assertTrue("Bilgi kutusu görüntülenir.",loginPage.forgotPasswordAlert.isDisplayed());
+    }
+
+    @Then("admin login linkine tiklanir")
+    public void admin_login_linkine_tiklanir() {
+        loginPage.adminLoginLink.click();
+    }
+    @Then("admin anasayfasinda oldugu dogrulanir")
+    public void admin_anasayfasinda_oldugu_dogrulanir() {
+      Assert.assertTrue("Anasayfaya geri dönüş sağlandi",loginPage.adminLoginPenceresi.isDisplayed());
+    }
+
+
 
 
 

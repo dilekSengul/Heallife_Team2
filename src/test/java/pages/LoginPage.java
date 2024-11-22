@@ -26,7 +26,7 @@ public class LoginPage {
     @FindBy (xpath = "//*[text()='Login']")
     public WebElement Login;
 
-    //Admin Login
+    //Admin Login Penceresi
     @FindBy(xpath = "//div[@class='form-bottom']")
     public WebElement adminLoginPenceresi;
 
@@ -47,5 +47,8 @@ public class LoginPage {
 
     @FindBy(xpath = "//span[@class='logo-lg']")
     public WebElement adminLogo;
+
+    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    public WebElement forgotPasswordAlert;
 
 }
