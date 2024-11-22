@@ -5,6 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomePage {
     public HomePage(){
         PageFactory.initElements(DriverManager.getDriver(), this);
@@ -49,6 +52,17 @@ public class HomePage {
 
     // [Home] - [Methods] buraya eklenecek
 
+    @FindBy (xpath = "//div[@class='team-member']/h4")
+    public List<WebElement> teamMembers;
 
 
+    public List<String> getDoctorNames() {
+        List<String> doctorNames = new ArrayList<>();
+        for (WebElement member : teamMembers) {
+            doctorNames.add(member.getText());
+        }
+
+        return doctorNames;
+
+    }
 }
