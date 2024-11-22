@@ -4,6 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
+import utilities.ReusableMethods;
+
+import java.util.List;
 
 public class HomePage {
     public HomePage(){
@@ -41,6 +44,9 @@ public class HomePage {
     @FindBy (xpath = "(//*[text()='About Us '])[1]")
     public WebElement AboutUs;
 
+
+    @FindBy (xpath = "//*[@class='col-md-4 col-sm-4'])[2])")
+    public List<WebElement> footerElementLists;
 
 
     // [Footer] - [Social Media] bölümünün elementleri

@@ -13,10 +13,9 @@ import utilities.DriverManager;
 import java.sql.Driver;
 
 public class HomePageStep {
-    public HomePageStep(){
-        PageFactory.initElements(DriverManager.getDriver(), this);
-    }
+
     private static final Logger logger = LogManager.getLogger(  HomePageStep.class);
+<<<<<<< HEAD
 
     // [Header] - [Home] bölümünün elementleri
 
@@ -139,6 +138,9 @@ public class HomePageStep {
     // [Footer] - [Copyright] bölümünün elementleri
 
     // [Home] - [Methods] buraya eklenecek
+=======
+/*asdf*/
+>>>>>>> main
 
 
 
