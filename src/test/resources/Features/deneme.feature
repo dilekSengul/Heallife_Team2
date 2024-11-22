@@ -1,4 +1,4 @@
-Feature: Bu bir deneme featuresi
+Feature: Bu bir deneme feature'i
   @test
   Scenario: TC01
 
