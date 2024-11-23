@@ -26,11 +26,11 @@ public class AboutUsStep {
         page.aboutUsButton.click();
         ReusableMethods.wait(4);
     }
+
     @Then("Kullanici asagidaki seceklerin alt About menusunde oldugunu dogrular")
     public void kullanici_asagidaki_seceklerin_alt_about_menusunde_oldugunu_dogrular(io.cucumber.datatable.DataTable dataTable) {
         // Verilen tabloyu listeye dönüştür
         List<String> expectedOptions = dataTable.asList();
-
 
 
         // About Us dropdown menüsündeki seçenekleri topla
@@ -49,7 +49,7 @@ public class AboutUsStep {
     }
     //Levent//
 
-
+    //US-12 TC1
     @When("Ana sayfanın üst kısmında {string} menüsünün üzerine gelir")
     public void ana_sayfanın_üst_kısmında_menüsünün_üzerine_gelir(String menuName) throws InterruptedException {
         Actions actions = new Actions(driver);
@@ -138,6 +138,7 @@ public class AboutUsStep {
         // URL kontrolü
         Assert.assertEquals("Kullanıcı Testimonials sayfasına yönlendirilemedi", expectedUrl, actualUrl);
     }
+    //US-12 TC2
 
     @Then("Some Words About Us başlığının sayfada göründüğünü doğrulayın")
     public void some_words_about_us_başlığının_sayfada_göründüğünü_doğrulayın() {
@@ -198,5 +199,82 @@ public class AboutUsStep {
         Assert.assertTrue("George Cyril'in ismi görünmüyor", doctor.findElement(By.xpath(".//h4[contains(text(), 'George Cyril')]")).isDisplayed());
         // Güncellenmiş unvan kontrolü
         Assert.assertTrue("George Cyril'in unvanı görünmüyor", doctor.findElement(By.xpath(".//p[contains(text(), 'Professor')]")).isDisplayed());
+    }
+
+    //US-12 TC3
+
+
+    @When("Kullanıcı doktorların uzmanlık alanlarına göre gruplandığı menüyü görür")
+    public void kullanıcı_doktorların_uzmanlık_alanlarına_göre_gruplandığı_menüyü_görür() {
+        Assert.assertTrue(page.uzmanlikAlanlariMenu.isDisplayed());
+
+    }
+
+    @When("Menüde aşağıdaki uzmanlık alanları olmalıdır:")
+    public void menüde_aşağıdaki_uzmanlık_alanları_olmalıdır(io.cucumber.datatable.DataTable dataTable) {
+        // Menu'deki uzmanlık alanlarının doğruluğunu kontrol et
+        List<String> expectedSpecializations = dataTable.asList(String.class);
+
+        // Her bir uzmanlık alanının menüde olup olmadığını kontrol ediyoruz
+        for (String specialization : expectedSpecializations) {
+            WebElement specializationElement = driver.findElement(By.xpath("//a[text()='" + specialization + "']"));
+            Assert.assertTrue("Menüde " + specialization + " bulunamadı", specializationElement.isDisplayed());
+        }
+    }
+
+    // Uzmanlik alanlarindaki doktor verilerini tek tek kontrol ediyoruz
+    @When("Kullanıcı General Practitioner uzmanlık alanına tıkladığında doktor isimlerini, unvanlarını ve resimlerini görür")
+    public void kullanıcı_general_practitioner_uzmanlık_alanına_tıkladığında_doktor_isimlerini_unvanlarını_ve_resimlerini_görür() {
+        page.generalPractitioner.click(); // General Practitioner'a tıklıyoruz
+        for (int i = 0; i < 3; i++) {
+            WebElement doctor = page.teamMembers.get(i); // İlk 3 doktoru alıyoruz
+            page.validateDoctorDetails(doctor);
+        }
+    }
+
+    @When("Kullanıcı Ophthalmologist uzmanlık alanına tıkladığında doktor isimlerini, unvanlarını ve resimlerini görür")
+    public void kullanıcı_ophthalmologist_uzmanlık_alanına_tıkladığında_doktor_isimlerini_unvanlarını_ve_resimlerini_görür() {
+        page.ophthalmologist.click(); // Ophthalmologist'e tıklıyoruz
+        for (int i = 3; i < 9; i++) {
+            WebElement doctor = page.teamMembers.get(i); // 4-9 arasındaki doktorları alıyoruz
+            page.validateDoctorDetails(doctor);
+        }
+    }
+
+    @When("Kullanıcı Paediatrician uzmanlık alanına tıkladığında doktor isimlerini, unvanlarını ve resimlerini görür")
+    public void kullanıcı_paediatrician_uzmanlık_alanına_tıkladığında_doktor_isimlerini_unvanlarını_ve_resimlerini_görür() {
+        page.paediatrician.click(); // Paediatrician'a tıklıyoruz
+        for (int i = 9; i < 12; i++) {
+            WebElement doctor = page.teamMembers.get(i); // 10-12 arasındaki doktorları alıyoruz
+            page.validateDoctorDetails(doctor);
+        }
+    }
+
+    @When("Kullanıcı Cardiologist uzmanlık alanına tıkladığında doktor isimlerini, unvanlarını ve resimlerini görür")
+    public void kullanıcı_cardiologist_uzmanlık_alanına_tıkladığında_doktor_isimlerini_unvanlarını_ve_resimlerini_görür() {
+        page.cardiologist.click(); // Cardiologist'e tıklıyoruz
+        for (int i = 12; i < 18; i++) {
+            WebElement doctor = page.teamMembers.get(i); // 13-18 arasındaki doktorları alıyoruz
+            page.validateDoctorDetails(doctor);
+        }
+    }
+
+    @When("Kullanıcı Gynaecologist uzmanlık alanına tıkladığında doktor isimlerini, unvanlarını ve resimlerini görür")
+    public void kullanıcı_gynaecologist_uzmanlık_alanına_tıkladığında_doktor_isimlerini_unvanlarını_ve_resimlerini_görür() {
+        page.gynaecologist.click(); // Gynaecologist'e tıklıyoruz
+        for (int i = 18; i < 22; i++) {
+            WebElement doctor = page.teamMembers.get(i); // 19-22 arasındaki doktorları alıyoruz
+            page.validateDoctorDetails(doctor);
+        }
+    }
+
+    @When("Kullanıcı Neurologist uzmanlık alanına tıkladığında doktor isimlerini, unvanlarını ve resimlerini görür    And sayfayı kapatır")
+    public void kullanıcı_neurologist_uzmanlık_alanına_tıkladığında_doktor_isimlerini_unvanlarını_ve_resimlerini_görür_and_sayfayı_kapatır() {
+        page.neurologist.click(); // Neurologist'e tıklıyoruz
+        for (int i = 22; i < 28; i++) {
+            WebElement doctor = page.teamMembers.get(i); // 23-28 arasındaki doktorları alıyoruz
+            page.validateDoctorDetails(doctor);
+        }
+
     }
 }
