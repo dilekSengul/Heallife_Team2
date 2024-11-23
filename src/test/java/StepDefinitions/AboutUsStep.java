@@ -47,8 +47,6 @@ public class AboutUsStep {
         // Beklenen seçeneklerle mevcut seçenekleri karşılaştır
         Assert.assertEquals(expectedOptions, actualOptions);
     }
-    }
-
     //Levent//
 
 
@@ -201,3 +199,4 @@ public class AboutUsStep {
         // Güncellenmiş unvan kontrolü
         Assert.assertTrue("George Cyril'in unvanı görünmüyor", doctor.findElement(By.xpath(".//p[contains(text(), 'Professor')]")).isDisplayed());
     }
+}
