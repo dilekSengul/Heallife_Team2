@@ -15,7 +15,7 @@ import utilities.ReusableMethods;
 import java.util.ArrayList;
 import java.util.List;
 
-public class 1AboutUsStep {
+public class AboutUsStep {
     WebDriver driver = Hooks.getDriver();
     private static final Logger logger = LogManager.getLogger(AboutUsStep.class);
     AboutUsPage page = new AboutUsPage();
