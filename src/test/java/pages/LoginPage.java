@@ -1,15 +1,23 @@
 package pages;
 
+import StepDefinitions.Hooks;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.ConfigReader;
 import utilities.DriverManager;
+import utilities.ReusableMethods;
+
 
 public class LoginPage {
 
     public LoginPage(){
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
+    WebDriver driver = Hooks.getDriver();
 
     @FindBy(id = "email")
     public WebElement email;
@@ -50,5 +58,33 @@ public class LoginPage {
 
     @FindBy(xpath = "//div[@class='alert alert-danger']")
     public WebElement forgotPasswordAlert;
+
+    public void verifySectionVisibilityAndPosition(String xpath, String sectionName, String expectedPosition) {
+        WebElement section = driver.findElement(By.xpath(xpath));
+
+        // Bölmenin görünürlüğünü kontrol et
+        if (!section.isDisplayed()) {
+            throw new AssertionError(sectionName + " görünmüyor!");
+        }
+
+        // Pencere genişliğini ve bölmenin X koordinatını al
+        int windowWidth = driver.manage().window().getSize().getWidth();
+        int elementX = section.getLocation().getX();
+
+        // Beklenen konuma göre bölmenin doğru yerde olup olmadığını doğrula
+        if ("sağ".equalsIgnoreCase(expectedPosition) && elementX <= windowWidth / 2) {
+            throw new AssertionError(sectionName + " sağ tarafta değil!");
+        } else if ("sol".equalsIgnoreCase(expectedPosition) && elementX >= windowWidth / 2) {
+            throw new AssertionError(sectionName + " sol tarafta değil!");
+        }
+    }
+    public static  void accesAdmin(String adminuserName,String adminpPassword){
+        LoginPage loginPage=new LoginPage();
+        DriverManager.getDriver().get(ConfigReader.getProperty("HLadminUrl"));
+        ReusableMethods.wait(2);
+        loginPage.email.sendKeys(ConfigReader.getProperty(adminuserName)+ Keys.TAB+ConfigReader.getProperty(adminpPassword));
+        loginPage.signInButton.click();
+
+    }
 
 }

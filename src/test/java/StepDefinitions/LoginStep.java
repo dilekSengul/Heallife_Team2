@@ -2,6 +2,7 @@ package StepDefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -99,6 +100,86 @@ public class LoginStep {
     public void admin_anasayfasinda_oldugu_dogrulanir() {
       Assert.assertTrue("Anasayfaya geri dönüş sağlandi",loginPage.adminLoginPenceresi.isDisplayed());
     }
+
+    @Given("Kullanici Heal Life {string}  girer")
+    public void kullanici_heal_life_girer(String adminUrlKey) {
+        String adminUrl=ConfigReader.getProperty(adminUrlKey);
+       driver.get(adminUrl);
+    }
+    @Then("Login sayfasinin sag tarafinda Admin Login penceresi görüntülendigini dogrular")
+    public void login_sayfasinin_sag_tarafinda_admin_login_penceresi_görüntülendigini_dogrular() {
+
+        loginPage.verifySectionVisibilityAndPosition("//div[@class='form-bottom']", "Admin Giriş bölümü", "sağ"
+        );
+
+    }
+    @Then("Login sayfasinin sol tarafinda Latest New penceresi görüntülendigini dogrular")
+    public void login_sayfasinin_sol_tarafinda_latest_new_penceresi_görüntülendigini_dogrular() {
+
+
+        loginPage.verifySectionVisibilityAndPosition("//div[@class='col-lg-6 col-sm-6 col-sm-6']", "Latest Nes", "sol");
+    }
+
+    @When("User Name Box tiklar")
+    public void user_name_box_tiklar() {
+
+        loginPage.email.click();
+    }
+    @Then("Gecerli User Name {string} Girer")
+    public void gecerli_user_name_girer(String  gecerliMail) {
+        loginPage.email.sendKeys(gecerliMail);
+    }
+    @Then("Password Box tiklar")
+    public void password_box_tiklar() {
+       loginPage.password.click();
+    }
+    @Then("Gecerli password {string} girer")
+    public void gecerli_password_girer(String gecerliPassword) {
+       loginPage.password.sendKeys(gecerliPassword);
+    }
+    @Then("Admin paneline yonlendirildigini dogrular")
+    public void admin_paneline_yonlendirildigini_dogrular() {
+       String expectedUrl=ConfigReader.getProperty("AdminDasboardUrl");
+       String actualUrl=driver.getCurrentUrl();
+       Assert.assertEquals(expectedUrl,actualUrl);
+    }
+    @Then("Admin paneline giris yapilamadigini dogrular")
+    public void admin_paneline_giris_yapilamadigini_dogrular() {
+
+        loginPage.forgotPasswordAlert.isDisplayed();
+    }
+    @Then("Forgot Password yazisinin gorunurlugunu dogrular")
+    public void forgot_password_yazisinin_gorunurlugunu_dogrular() {
+       Assert.assertTrue(loginPage.adminForgotPassword.isDisplayed());
+    }
+    @Then("Forgot Password'a tiklar")
+    public void forgot_password_a_tiklar() {
+
+        loginPage.adminForgotPassword.click();
+    }
+    @Then("Forgot Password sayfasina yonlendirildigini dogrular")
+    public void forgot_password_sayfasina_yonlendirildigini_dogrular() {
+
+        String actualUrl=driver.getCurrentUrl();
+        Assert.assertTrue(actualUrl.contains("forgotpassword"));
+    }
+
+    @Then("E mail box'ina {string} girer")
+    public void e_mail_box_ina_girer(String email) {
+        loginPage.adminForgotPasswordEmail.sendKeys(email);
+    }
+    @Then("Submit butonuna tıklar")
+    public void submit_butonuna_tıklar() {
+        loginPage.adminForgotPasswordSubmitButton.click();
+    }
+
+    @Then("Admin Login linkinin gorunurlugunu dogrular")
+    public void admin_login_linkinin_gorunurlugunu_dogrular() {
+       Assert.assertTrue(loginPage.adminLoginLink.isDisplayed());
+    }
+
+
+
 
 
 
