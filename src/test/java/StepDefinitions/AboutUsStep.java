@@ -140,6 +140,7 @@ public class AboutUsStep {
         // URL kontrolü
         Assert.assertEquals("Kullanıcı Testimonials sayfasına yönlendirilemedi", expectedUrl, actualUrl);
     }
+
     @Then("Some Words About Us başlığının sayfada göründüğünü doğrulayın")
     public void some_words_about_us_başlığının_sayfada_göründüğünü_doğrulayın() {
         // "Some Words About Us" başlığının sayfada görünüp görünmediğini kontrol et
@@ -159,5 +160,44 @@ public class AboutUsStep {
     }
 
 
+    @Then("Our Specialist başlığının sayfada göründüğünü doğrulayın")
+    public void our_specialist_başlığının_sayfada_göründüğünü_doğrulayın() {
+        Assert.assertTrue("Our Specialist başlığı sayfada görünmüyor", page.ourSpecialistHeading.isDisplayed());
 
+    }
 
+    @Then("Heidi Prather'in resmi, İsim ve Unvan'ının Our Specialist başlığı altında olduğunu doğrulayın")
+    public void heidi_prather_in_resmi_i̇sim_ve_unvan_ının_our_specialist_başlığı_altında_olduğunu_doğrulayın() {
+        WebElement doctor = page.doctorsList.get(0);  // Heidi Prather ilk sırada
+        Assert.assertTrue("Heidi Prather'in resmi görünmüyor", doctor.findElement(By.xpath(".//img")).isDisplayed());
+        Assert.assertTrue("Heidi Prather'in ismi görünmüyor", doctor.findElement(By.xpath(".//h4[contains(text(), 'Heidi Prather')]")).isDisplayed());
+        // Güncellenmiş unvan kontrolü
+        Assert.assertTrue("Heidi Prather'in unvanı görünmüyor", doctor.findElement(By.xpath(".//p[contains(text(), 'Professor')]")).isDisplayed());
+    }
+
+    @Then("Alexander M. Simotas'ın resmi, İsim ve Unvan'ının Our Specialist başlığı altında olduğunu doğrulayın")
+    public void alexander_m_simotas_ın_resmi_i̇sim_ve_unvan_ının_our_specialist_başlığı_altında_olduğunu_doğrulayın() {
+        WebElement doctor = page.doctorsList.get(1);  // Alexander M. Simotas ikinci sırada
+        Assert.assertTrue("Alexander M. Simotas'ın resmi görünmüyor", doctor.findElement(By.xpath(".//img")).isDisplayed());
+        Assert.assertTrue("Alexander M. Simotas'ın ismi görünmüyor", doctor.findElement(By.xpath(".//h4[contains(text(), 'Alexander C. Simotas')]")).isDisplayed());
+        // Güncellenmiş unvan kontrolü
+        Assert.assertTrue("Alexander M. Simotas'ın unvanı görünmüyor", doctor.findElement(By.xpath(".//p[contains(text(), 'Professor')]")).isDisplayed());
+    }
+
+    @Then("Jesse N. Charnoff'ın resmi, İsim ve Unvan'ının Our Specialist başlığı altında olduğunu doğrulayın")
+    public void jesse_n_charnoff_ın_resmi_i̇sim_ve_unvan_ının_our_specialist_başlığı_altında_olduğunu_doğrulayın() {
+        WebElement doctor = page.doctorsList.get(2);  // Jesse N. Charnoff üçüncü sırada
+        Assert.assertTrue("Jesse N. Charnoff'ın resmi görünmüyor", doctor.findElement(By.xpath(".//img")).isDisplayed());
+        Assert.assertTrue("Jesse N. Charnoff'ın ismi görünmüyor", doctor.findElement(By.xpath(".//h4[contains(text(), 'Jesse N. Charnoff')]")).isDisplayed());
+        // Güncellenmiş unvan kontrolü
+        Assert.assertTrue("Jesse N. Charnoff'ın unvanı görünmüyor", doctor.findElement(By.xpath(".//p[contains(text(), 'Professor')]")).isDisplayed());
+    }
+
+    @Then("George Cyril'in resmi, İsim ve Unvan'ının Our Specialist başlığı altında olduğunu doğrulayın")
+    public void george_cyril_in_resmi_i̇sim_ve_unvan_ının_our_specialist_başlığı_altında_olduğunu_doğrulayın() {
+        WebElement doctor = page.doctorsList.get(3);  // George Cyril dördüncü sırada
+        Assert.assertTrue("George Cyril'in resmi görünmüyor", doctor.findElement(By.xpath(".//img")).isDisplayed());
+        Assert.assertTrue("George Cyril'in ismi görünmüyor", doctor.findElement(By.xpath(".//h4[contains(text(), 'George Cyril')]")).isDisplayed());
+        // Güncellenmiş unvan kontrolü
+        Assert.assertTrue("George Cyril'in unvanı görünmüyor", doctor.findElement(By.xpath(".//p[contains(text(), 'Professor')]")).isDisplayed());
+    }

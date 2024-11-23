@@ -19,4 +19,9 @@ Feature: About Us Dropdown Menü Testi
     Then Some Words About Us başlığının sayfada göründüğünü doğrulayın
     And Our Mission başlığının sayfada göründüğünü doğrulayın
     And Opening Hours bilgisinin sayfada göründüğünü doğrulayın
+    And Our Specialist başlığının sayfada göründüğünü doğrulayın
+    And Heidi Prather'in resmi, İsim ve Unvan'ının Our Specialist başlığı altında olduğunu doğrulayın
+    And Alexander M. Simotas'ın resmi, İsim ve Unvan'ının Our Specialist başlığı altında olduğunu doğrulayın
+    And Jesse N. Charnoff'ın resmi, İsim ve Unvan'ının Our Specialist başlığı altında olduğunu doğrulayın
+    And George Cyril'in resmi, İsim ve Unvan'ının Our Specialist başlığı altında olduğunu doğrulayın
     And sayfayı kapatır

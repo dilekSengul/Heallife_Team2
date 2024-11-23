@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AboutUsPage {
 
-    public AboutUsPage(){
+    public AboutUsPage() {
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
 
@@ -22,6 +22,7 @@ public class AboutUsPage {
     @FindBy (xpath = "//ul[@class='dropdown-menu']/li/a")
     public List<WebElement> aboutUsMenuDMM2;
 
+    
     // Dropdown menüsü
     // Alt başlıklar
     @FindBy(xpath = "//*[@class='dropdown-toggle']")
@@ -59,8 +60,13 @@ public class AboutUsPage {
     @FindBy(xpath = "(//*[text()='Home'])[1]")
     public WebElement Home;
 
+    // "Our Specialist" başlığı
+    @FindBy(xpath = "//*[@class='mt0 text-center']")
+    public WebElement ourSpecialistHeading;
 
-
+    // Doktorların tümünü içeren WebElement listesi
+    @FindBy(xpath = "//*[@class='team-member']")
+    public List<WebElement> doctorsList;
 
 
 }
