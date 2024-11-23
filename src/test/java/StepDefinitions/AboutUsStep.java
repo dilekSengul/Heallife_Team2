@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import pages.AboutUsPage;
 import utilities.ReusableMethods;
 
@@ -51,5 +52,92 @@ public class AboutUsStep {
     //Levent//
 
 
+    @When("Ana sayfanın üst kısmında {string} menüsünün üzerine gelir")
+    public void ana_sayfanın_üst_kısmında_menüsünün_üzerine_gelir(String menuName) throws InterruptedException {
+        Actions actions = new Actions(driver);
+        WebElement aboutUsMenu = page.aboutUsDropdownMenu;
+        actions.moveToElement(aboutUsMenu).perform();
+        //aboutUsMenu.click();
+        logger.info(menuName + " menüsünün üzerine gelindi.");
+    }
 
+    @When("Kullanıcı About Hospitals başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular")
+    public void kullanıcı_about_hospitals_başlığına_tıkladığında_ilgili_sayfaya_yönlendirildiğini_doğrular() {
+        page.aboutHospitalsLink.click();
+        // Sayfa URL'sinin doğruluğunu kontrol et
+        String expectedUrl = "https://qa.heallifehospital.com/page/about-hospitals";
+        String actualUrl = driver.getCurrentUrl();
+
+        Assert.assertEquals("Kullanıcı About Hospitals sayfasına yönlendirilemedi", expectedUrl, actualUrl);
+    }
+
+    @When("Kullanıcı Meet Our Doctors başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular")
+    public void kullanıcı_meet_our_doctors_başlığına_tıkladığında_ilgili_sayfaya_yönlendirildiğini_doğrular() {
+        page.Home.click();
+        page.aboutUsDropdownMenu.click();
+        page.meetOurDoctorsLink.click();
+        // Sayfa URL'sinin doğruluğunu kontrol et
+        String expectedUrl = "https://qa.heallifehospital.com/page/meet-our-doctors";
+        String actualUrl = driver.getCurrentUrl();
+
+        // URL kontrolü
+        Assert.assertEquals("Kullanıcı Meet Our Doctors sayfasına yönlendirilemedi", expectedUrl, actualUrl);
+    }
+
+    @When("Kullanıcı FAQ's başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular")
+    public void kullanıcı_faq_s_başlığına_tıkladığında_ilgili_sayfaya_yönlendirildiğini_doğrular() {
+        // İlk olarak Home sayfasına tıklanır
+        page.Home.click();
+
+        // About Us dropdown menüsüne tıklanır
+        page.aboutUsDropdownMenu.click();
+
+        // FAQ's linkine tıklanır
+        page.faqsLink.click();
+
+        // Sayfa URL'sinin doğruluğunu kontrol et
+        String expectedUrl = "https://qa.heallifehospital.com/page/faq";  // FAQ's sayfasının URL'si
+        String actualUrl = driver.getCurrentUrl();
+
+        // URL kontrolü
+        Assert.assertEquals("Kullanıcı FAQ's sayfasına yönlendirilemedi", expectedUrl, actualUrl);
+    }
+
+    @When("Kullanıcı Departments başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular")
+    public void kullanıcı_departments_başlığına_tıkladığında_ilgili_sayfaya_yönlendirildiğini_doğrular() {
+        // İlk olarak Home sayfasına tıklanır
+        page.Home.click();
+
+        // About Us dropdown menüsüne tıklanır
+        page.aboutUsDropdownMenu.click();
+
+        // Departments linkine tıklanır
+        page.departmentsLink.click();
+
+        // Sayfa URL'sinin doğruluğunu kontrol et
+        String expectedUrl = "https://qa.heallifehospital.com/page/departments";  // Departments sayfasının URL'si
+        String actualUrl = driver.getCurrentUrl();
+
+        // URL kontrolü
+        Assert.assertEquals("Kullanıcı Departments sayfasına yönlendirilemedi", expectedUrl, actualUrl);
+    }
+
+    @When("Kullanıcı Testimonials başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular")
+    public void kullanıcı_testimonials_başlığına_tıkladığında_ilgili_sayfaya_yönlendirildiğini_doğrular() {
+        // İlk olarak Home sayfasına tıklanır
+        page.Home.click();
+
+        // About Us dropdown menüsüne tıklanır
+        page.aboutUsDropdownMenu.click();
+
+        // Testimonials linkine tıklanır
+        page.testimonialsLink.click();
+
+        // Sayfa URL'sinin doğruluğunu kontrol et
+        String expectedUrl = "https://qa.heallifehospital.com/page/testimonials";  // Testimonials sayfasının URL'si
+        String actualUrl = driver.getCurrentUrl();
+
+        // URL kontrolü
+        Assert.assertEquals("Kullanıcı Testimonials sayfasına yönlendirilemedi", expectedUrl, actualUrl);
+    }
 
