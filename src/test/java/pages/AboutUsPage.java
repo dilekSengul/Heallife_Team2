@@ -23,6 +23,7 @@ public class AboutUsPage {
     public List<WebElement> aboutUsMenuDMM2;
 
     // Dropdown menüsü
+    // Alt başlıklar
     @FindBy(xpath = "//*[@class='dropdown-toggle']")
     public WebElement aboutUsDropdownMenu;
 
@@ -42,24 +43,24 @@ public class AboutUsPage {
     @FindBy(linkText = "Testimonials")
     public WebElement testimonialsLink;
 
+    // About Hospitals
+    // "Some Words About Us" başlığını bulmak için WebElement
+    @FindBy(xpath = "(//*[@class='mt0'])[1]")
+    public WebElement someWordsAboutUsTitle;
+
+    // "Our Mission" başlığını bulmak için WebElement
+    @FindBy(xpath = "(//*[@class='mt0'])[2]")
+    public WebElement ourMissionTitle;
+
+    // "Opening Hours" bilgisini bulmak için WebElement
+    @FindBy(xpath = "//*[@class='opening-hours']")
+    public WebElement openingHoursInfo;
+
     @FindBy(xpath = "(//*[text()='Home'])[1]")
     public WebElement Home;
 
-    // Alt başlıklar
-//    @FindBy(xpath = "//*[@id='navbar-collapse-3']/ul/li[3]/ul/li[1]/a")
-//    public WebElement aboutHospitals;
-//
-//    @FindBy(xpath = "//*[@class='dropdown-menu']//a[text()='Meet Our Doctors']")
-//    public WebElement meetOurDoctors;
-//
-//    @FindBy(xpath = "//*[@class='dropdown-menu']//a[text()=\"FAQ's\"]")
-//    public WebElement faqs;
-//
-//    @FindBy(xpath = "//*[@class='dropdown-menu']//a[text()='Departments']")
-//    public WebElement departments;
-//
-//    @FindBy(xpath = "//*[@class='dropdown-menu']//a[text()='Testimonials']")
-//    public WebElement testimonials;
+
+
 
 
 }

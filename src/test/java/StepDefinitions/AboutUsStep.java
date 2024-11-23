@@ -140,4 +140,24 @@ public class AboutUsStep {
         // URL kontrolü
         Assert.assertEquals("Kullanıcı Testimonials sayfasına yönlendirilemedi", expectedUrl, actualUrl);
     }
+    @Then("Some Words About Us başlığının sayfada göründüğünü doğrulayın")
+    public void some_words_about_us_başlığının_sayfada_göründüğünü_doğrulayın() {
+        // "Some Words About Us" başlığının sayfada görünüp görünmediğini kontrol et
+        Assert.assertTrue("Some Words About Us başlığı sayfada görünmüyor", page.someWordsAboutUsTitle.isDisplayed());
+    }
+
+    @Then("Our Mission başlığının sayfada göründüğünü doğrulayın")
+    public void our_mission_başlığının_sayfada_göründüğünü_doğrulayın() {
+        // "Our Mission" başlığının sayfada görünüp görünmediğini kontrol et
+        Assert.assertTrue("Our Mission başlığı sayfada görünmüyor", page.ourMissionTitle.isDisplayed());
+    }
+
+    @Then("Opening Hours bilgisinin sayfada göründüğünü doğrulayın")
+    public void opening_hours_bilgisinin_sayfada_göründüğünü_doğrulayın() {
+        // "Opening Hours" bilgisinin sayfada görünüp görünmediğini kontrol et
+        Assert.assertTrue("OPENING HOURS bilgisi sayfada görünmüyor", page.openingHoursInfo.isDisplayed());
+    }
+
+
+
 
