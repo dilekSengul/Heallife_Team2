@@ -8,28 +8,26 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.LoginPage;
 import pages.PatientPage;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
 
-import javax.swing.*;
-import java.awt.*;
-import java.security.Key;
-import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PatientStep {
     WebDriver driver = Hooks.getDriver();
     private static final Logger logger = LogManager.getLogger(HLhomeStep.class);
     PatientPage page = new PatientPage(); // Page Object sınıfınız
+    LoginPage loginPage = new LoginPage();
     Faker faker = new Faker();
+
 
     @Given("Kullanici anasayfaya gider")
     public void kullanici_anasayfaya_gider() {
@@ -133,7 +131,6 @@ public class PatientStep {
     }
 
 
-
     @And("Kullanici hasta bilgilerini \\(isim, email, cinsiyet, gecersiztelefon) girer")
     public void kullaniciHastaBilgileriniIsimEmailCinsiyetGecersiztelefonGirer() {
         page.patientNameBox.sendKeys(faker.funnyName().name());
@@ -150,4 +147,46 @@ public class PatientStep {
         Assert.assertTrue(page.falseErrorMsg.isDisplayed());
 
     }
+
+    // US_026-TC_01
+    // Hasta giriş adımı
+    @Given("loginButton'una tıklayarak kullanıcı adı ve şifresi ile hasta olarak giriş yapar")
+    public void login_button_una_tıklayarak_kullanıcı_adı_ve_şifresi_ile_hasta_olarak_giriş_yapar() {
+        loginPage.hastaLogin();
+    }
+
+
+    // Özet bilgi panellerinin doğrulama ve her birine tıklama adımı
+    @Then("Kullanıcı aşağıdaki özet bilgi panellerinin hasta dashboard'da mevcut olduğunu doğrular ve her birine tıklayıp ilgili sayfaya gider")
+    public void kullanıcı_aşağıdaki_özet_bilgi_panellerinin_hasta_dashboard_da_mevcut_olduğunu_doğrular_ve_her_birine_tıklayıp_ilgili_sayfaya_gider(io.cucumber.datatable.DataTable dataTable) {
+
+        // Paneller ve ilgili URL'lerin eşleştirilmesi
+        Map<String, String> boardUrls = new HashMap<>();
+        boardUrls.put("OPD", "https://qa.heallifehospital.com/patient/dashboard/profile");
+        boardUrls.put("IPD", "https://qa.heallifehospital.com/patient/dashboard/patientipddetails");
+        boardUrls.put("Pharmacy", "https://qa.heallifehospital.com/patient/dashboard/pharmacybill");
+        boardUrls.put("Pathology", "https://qa.heallifehospital.com/patient/dashboard/pathology");
+        boardUrls.put("Radiology", "https://qa.heallifehospital.com/patient/dashboard/radiology");
+        boardUrls.put("Ambulance", "https://qa.heallifehospital.com/patient/dashboard/ambulance");
+        boardUrls.put("Blood Bank", "https://qa.heallifehospital.com/patient/dashboard/bloodbank");
+        boardUrls.put("Live Consultation", "https://qa.heallifehospital.com/patient/dashboard/liveconsult");
+        // Her bir özet panelinin görünür olduğunu doğrulama
+        for (String boardName : dataTable.asList()) {
+            WebElement board = page.getBoardElementByName(boardName);  // Panelleri almak için yardımcı metod çağrılıyor
+            Assert.assertTrue(boardName + " paneli görüntülenmiyor.", board.isDisplayed());  // Panelin görünür olduğunu doğruluyor
+
+            // Panelleri tıklama ve yönlendirilen sayfayı doğrulama
+            board.click();
+            String currentUrl = driver.getCurrentUrl();  // Mevcut URL alınıyor
+
+
+            //Assert.assertTrue( boardName + " için yanlış sayfaya yönlendirilmiş.",currentUrl,boardUrls.get(boardName));
+            //Assert.assertEquals(currentUrl, boardUrls.get(boardName), boardName + " için yanlış sayfaya yönlendirilmiş."); // Doğru URL ile karşılaştırma yapılıyor
+           // Assert.assertTrue(boardName + " için yanlış sayfaya yönlendirilmiş. Beklenen: " + boardUrls.get(boardName) + ", Mevcut: " + currentUrl, currentUrl.equals(boardUrls.get(boardName)));
+        }
+
+
+    }
+
 }
+

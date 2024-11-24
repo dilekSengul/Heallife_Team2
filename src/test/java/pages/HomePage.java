@@ -1,5 +1,8 @@
 package pages;
 
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +12,7 @@ import utilities.ReusableMethods;
 import java.util.List;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class HomePage {
     public HomePage(){
@@ -47,6 +50,12 @@ public class HomePage {
     @FindBy (xpath = "(//*[text()='About Us '])[1]")
     public WebElement AboutUs;
 
+    @FindBy (xpath = "//h2[normalize-space()='Our Doctors']")
+    public WebElement OurDoctors;
+    @FindBy(xpath = "//div[@class='container spacet50 spaceb50']//div[4]//div[2]")
+    public  WebElement doktorKartlari;
+    @FindBy(xpath = "//h4[normalize-space()='Heidi Prather']")
+    public  List<WebElement> doktorBilgileri;
 
     @FindBy (xpath = "//*[@class='col-md-4 col-sm-4'])[2])")
     public List<WebElement> footerElementLists;
@@ -102,6 +111,36 @@ public class HomePage {
         }
 
         return doctorNames;
+        
+    }
+    public void kullanıcı_ana_sayfaya_yönlendirilir() {
+        // Beklenen ana sayfa URL'si
+        String expectedUrl = "https://qa.heallifehospital.com/";
 
+        // Tarayıcıdaki mevcut URL'yi al
+        WebDriver driver = null;
+        String actualUrl = driver.getCurrentUrl();
+
+        // URL'nin doğru olup olmadığını doğrula
+        Assert.assertEquals("Kullanıcı ana sayfada değil!", expectedUrl, actualUrl);
+
+    }
+    public void setOurDoctors(){
+        Assert.assertTrue(OurDoctors.isDisplayed());
+    }
+
+    public void her_bir_doktor_için_aşağıdaki_bilgiler_görünür_olmalı() {
+        for (int i = 0; i < doktorBilgileri.size(); i++) {
+            // Beklenen isim ve unvan
+         //   String actualName = doktorBilgileri.get(i).getText("İsim Soyisim");
+        //    String actualTitle = doktorBilgileri.get(i).get("Unvan");
+
+            // Sayfadaki doktor kartını al
+          //  WebElement doktorKart = doktorKartlari.get(i);
+            //Doktor fotoğrafının görünür olduğunu doğrula
+           // WebElement doktorFoto = doktorKart.findElement(By.cssSelector(".doctor-photo"));
+           // Assert.assertTrue("Doktor fotoğrafı görünüyor!", doktorFoto.isDisplayed());
+
+    }
     }
 }

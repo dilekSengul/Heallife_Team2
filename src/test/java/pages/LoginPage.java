@@ -14,24 +14,25 @@ import utilities.ReusableMethods;
 
 public class LoginPage {
 
-    public LoginPage(){
+    public LoginPage() {
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
+
     WebDriver driver = Hooks.getDriver();
 
     @FindBy(id = "email")
     public WebElement email;
 
-    @FindBy (id = "password")
+    @FindBy(id = "password")
     public WebElement password;
 
-    @FindBy (xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//button[@type='submit']")
     public WebElement loginButton;
 
-    @FindBy (className = "btn")
+    @FindBy(className = "btn")
     public WebElement signInButton;
 
-    @FindBy (xpath = "//*[text()='Login']")
+    @FindBy(xpath = "//*[text()='Login']")
     public WebElement Login;
 
     //Admin Login Penceresi
@@ -78,13 +79,19 @@ public class LoginPage {
             throw new AssertionError(sectionName + " sol tarafta değil!");
         }
     }
-    public static  void accesAdmin(String adminuserName,String adminpPassword){
-        LoginPage loginPage=new LoginPage();
+
+    public static  void accesAdmin(String adminuserName,String adminPassword) {
+        LoginPage loginPage = new LoginPage();
         DriverManager.getDriver().get(ConfigReader.getProperty("HLadminUrl"));
         ReusableMethods.wait(2);
-        loginPage.email.sendKeys(ConfigReader.getProperty(adminuserName)+ Keys.TAB+ConfigReader.getProperty(adminpPassword));
-        loginPage.signInButton.click();
+        loginPage.email.sendKeys(ConfigReader.getProperty(adminuserName) + Keys.TAB + ConfigReader.getProperty(adminPassword));
+    }
 
+    public void hastaLogin() {
+        Login.click();  // Giriş butonuna tıklanıyor
+        email.sendKeys(ConfigReader.getProperty("HLusername")); // Kullanıcı adı giriliyor (test için örnek)
+        password.sendKeys(ConfigReader.getProperty("HLpassword")); // Şifre giriliyor (test için örnek)
+        signInButton.click();
     }
 
 }
