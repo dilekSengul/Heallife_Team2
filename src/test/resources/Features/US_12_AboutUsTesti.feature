@@ -1,3 +1,4 @@
+@hurrem
 Feature: About Us Dropdown Menu Testi
   Kullanıcı "About Us" dropdown menusunu doğrular.
 
@@ -74,7 +75,6 @@ Feature: About Us Dropdown Menu Testi
       | Discharge Lounge                           |
     And sayfayı kapatır
 
-  @hurrem
   Scenario: Testimonials sayfasındaki kişilerin yorumlarını ve resimlerini doğrulama
     Given Kullanıcı projectUrl adresini ziyaret eder
     When Ana sayfanın üst kısmında "About Us" menüsünün üzerine gelir

@@ -313,7 +313,8 @@ public class AboutUsStep {
             WebElement answer = page.allAnswers.get(i);
 
             // Cevabın görünür hale gelmesini bekle
-            ReusableMethods.waitForVisibility(answer,5);
+            ReusableMethods.waitForVisibility(answer,10);
+
 
             // Cevabın görünüp görünmediğini kontrol et
             Assert.assertTrue("Cevap görünür değil: " + answer.getText(), answer.isDisplayed());
