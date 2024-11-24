@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -179,9 +180,29 @@ public class LoginStep {
     }
 
 
+    //BAŞARILI PATIENT (USER) / ADMIN LOGIN STEPLERI
 
+        @Given("kullanici {string} adresine gider")
+        public void kullanici_adresine_gider(String url) {
+            driver.get(ConfigReader.getProperty(url));
+        }
 
+        @And("geçerli bir email adresi {string} ve sifre {string} girer")
+        public void gecerli_bir_email_adresi_ve_sifre_girer(String email, String sifre) {
+            loginPage.email.sendKeys(ConfigReader.getProperty(email));
+            loginPage.password.sendKeys(ConfigReader.getProperty(sifre));
+        }
 
+        @When("Sign In butonuna tıklar")
+        public void giris_butonuna_tiklar() {
+            loginPage.signInButton.click();
+        }
+        @Then("dashboard duzgun bir şekilde goruntulenir")
+        public void ana_sayfa_duzgun_bir_sekilde_goruntulenir() {
+            Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"));
+        }
+
+    //Bu stepleri farklı feature'larda userDash girişi için standard background olarak kullanabiliriz.
 
 
 
