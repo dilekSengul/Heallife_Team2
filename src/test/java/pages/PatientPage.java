@@ -5,7 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PatientPage {
 
@@ -74,7 +76,7 @@ public class PatientPage {
     @FindBy(xpath = "(//*[@class='treeview '])[2]")
     public WebElement myAppointmentsdBoard;
 
-    @FindBy(xpath = "//*[@class='treeview active']")
+    @FindBy(xpath = "//*[@class='fas fa-stethoscope']")
     public WebElement opdBoard;
 
     @FindBy(xpath = "(//*[@class='treeview '])[3]")
@@ -121,4 +123,57 @@ public class PatientPage {
                 throw new IllegalArgumentException("Bilinmeyen panel ismi: " + boardName);  // Geçersiz panel ismi durumunda hata verilir
         }
     }
+
+    public Map<String, String> getBoardUrls() {
+        Map<String, String> boardUrls = new HashMap<>();
+        boardUrls.put("OPD", "https://qa.heallifehospital.com/patient/dashboard/profile");
+        boardUrls.put("IPD", "https://qa.heallifehospital.com/patient/dashboard/patientipddetails");
+        boardUrls.put("Pharmacy", "https://qa.heallifehospital.com/patient/dashboard/pharmacybill");
+        boardUrls.put("Pathology", "https://qa.heallifehospital.com/patient/dashboard/pathology");
+        boardUrls.put("Radiology", "https://qa.heallifehospital.com/patient/dashboard/radiology");
+        boardUrls.put("Ambulance", "https://qa.heallifehospital.com/patient/dashboard/ambulance");
+        boardUrls.put("Blood Bank", "https://qa.heallifehospital.com/patient/dashboard/bloodbank");
+        boardUrls.put("Live Consultation", "https://qa.heallifehospital.com/patient/dashboard/liveconsult");
+        return boardUrls;
+    }
+
+    // Medical History grafiği element tanımı
+    @FindBy(id = "medical-history-chart")
+    public WebElement medicalHistoryGraph;
+    // OPD değeri
+    @FindBy(xpath = "//div[contains(@class, 'chart-info')]//div[contains(text(),'OPD')]")
+    public WebElement opdValue;
+
+    // IPD değeri
+    @FindBy(xpath = "//div[contains(@class, 'chart-info')]//div[contains(text(),'IPD')]")
+    public WebElement ipdValue;
+
+    // Pharmacy değeri
+    @FindBy(xpath = "//div[contains(@class, 'chart-info')]//div[contains(text(),'Pharmacy')]")
+    public WebElement pharmacyValue;
+
+    // Pathology değeri
+    @FindBy(xpath = "//div[contains(@class, 'chart-info')]//div[contains(text(),'Pathology')]")
+    public WebElement pathologyValue;
+
+    // Radiology değeri
+    @FindBy(xpath = "//div[contains(@class, 'chart-info')]//div[contains(text(),'Radiology')]")
+    public WebElement radiologyValue;
+
+    // Blood Bank değeri
+    @FindBy(xpath = "//div[contains(@class, 'chart-info')]//div[contains(text(),'Blood Bank')]")
+    public WebElement bloodBankValue;
+
+    // Ambulance değeri
+    @FindBy(xpath = "//div[contains(@class, 'chart-info')]//div[contains(text(),'Ambulance')]")
+    public WebElement ambulanceValue;
+
+    // Belirtiler için özet grafik
+    @FindBy(xpath = "(//div[@class='box-body'])[2]")
+    public WebElement belirtilerGrafik;
+
+    // Semptomlar için özet grafik
+    @FindBy(xpath = "(//div[@class='box-body'])[3]")
+    public WebElement semptomlarGrafik;
+
 }
