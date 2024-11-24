@@ -542,4 +542,12 @@ public class ReusableMethods {
         }
 
     }
+
+       // Sayfa kaydırma methodu
+    public static void scrollToFooter(WebDriver driver, WebElement element) {
+    Actions actions = new Actions(driver);
+
+    actions.moveToElement(element).perform();
+}
+
 }
