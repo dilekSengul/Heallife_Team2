@@ -3,21 +3,24 @@ package StepDefinitions;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.WebElement;
 import pages.PatientDashboardPage;
 import pages.PatientPharmacyPage;
+import utilities.JSUtilities;
+import utilities.ReusableMethods;
 
-import java.util.ArrayList;
+import javax.swing.text.Utilities;
 import java.util.List;
 
 
 public class PatientPharmacySteps {
 
     WebDriver driver = Hooks.getDriver();
-    PatientPharmacyPage patientPharmacyPage = new PatientPharmacyPage();
+    private List<WebElement> tableHeaders;
+    private List<WebElement> tableItems;
+    PatientPharmacyPage patientPharmacyPage = new PatientPharmacyPage(tableHeaders,tableItems);
     PatientDashboardPage patientDashboardPage = new PatientDashboardPage();
 
 
@@ -36,34 +39,48 @@ public class PatientPharmacySteps {
         List<String> actualHeaders = patientPharmacyPage.getColumnHeaders();
         Assertions.assertEquals(expectedHeaders, actualHeaders, "Column headers do not match!");
     }
-    /*
-    public void verifyColumnHeaders(List<String> expectedHeaders) {
 
-    }
-     */
-
-    @When("kullanici arama cubuguna bir ögenin ilk 3 harfini yazar")
+    @When("kullanici arama cubuguna bir ögenin ilk {int} harfini yazar")
     public void kullanici_arama_cubuguna_bir_ogenin_ilk_harfini_yazar(int harfSayisi) {
-        patientPharmacyPage.searchBox.sendKeys("kır".substring(0, harfSayisi)); // Example input
+        patientPharmacyPage.searchBar.sendKeys("toz".substring(0, harfSayisi)); // 3 karakterlik giriş.
+        ReusableMethods.bekle(2);
     }
 
     @Then("arama sonuçlarinin dogru bir sekilde goruntulendigini dogrular")
     public void arama_sonuclarinin_dogru_bir_sekilde_goruntulendigini_dogrular() {
-        Assert.assertTrue(patientPharmacyPage.searchBox.getText().contains("kır"));
+        Assert.assertTrue(patientPharmacyPage.getTableBodies().contains("toz"));
+
     }
 
-    @When("kullanici {string} sutunundaki {string} butonlarina tiklar")
-    public void kullanici_sutunundaki_butonlarina_tiklar(String sutun, String buton) {
-        if (buton.equals("View Payments")) {
+    @When("kullanici Actions sutunundaki View Payments butonuna tiklar")
+    public void kullanici_Actions_sutunundaki_View_Payments_butonuna_tiklar() {
+
             patientPharmacyPage.viewPaymentsButton.click();
-        } else if (buton.equals("Show")) {
-            patientPharmacyPage.showButton.click();
-        }
+ReusableMethods.waitForClickablility(patientPharmacyPage.viewPaymentsWindowTitle, 10);
+
+
+
+
     }
 
-    @Then("bu dugmelerin duzgun calistigini dogrular")
-    public void bu_dugmelerin_duzgun_calistigini_dogrular() {
-        // Implement logic to verify button functionality
+    @When("View Payments butonunun duzgun calistigini dogrular")
+    public void View_Payments_butonun_duzgun_calistigini_dogrular() {
+
+        Assertions.assertTrue(patientPharmacyPage.viewPaymentsWindowTitle.isDisplayed());
+        patientPharmacyPage.viewPaymentsXbutton.click();
+    }
+    @When("kullanici Actions sutunundaki Show butonlarina butonuna tiklar")
+    public void kullanici_Actions_sutunundaki_Show_butonuna_tiklar() {
+
+        patientPharmacyPage.showButton.click();
+        ReusableMethods.waitForClickablility(patientPharmacyPage.showWindowTitle, 10);
+    }
+
+    @When("Show butonunun duzgun calistigini dogrular")
+    public void show_butonun_duzgun_calistigini_dogrular() {
+
+        Assertions.assertTrue(patientPharmacyPage.showWindowTitle.isDisplayed());
+
     }
 
     @When("kullanici bir ogenin {string} dugmesine tiklar")

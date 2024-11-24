@@ -14,6 +14,7 @@ import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.DriverManager;
 import utilities.LoggerHelper;
+import utilities.ReusableMethods;
 
 import java.sql.Driver;
 
@@ -23,7 +24,7 @@ public class LoginStep {
     LoginPage loginPage=new LoginPage();
 
     @Given("Kullanıcı Heal Life sitesine giriş yapar")
-    public void kullanıcı_heal_life_sitesine_giriş_yapar() {
+    public void kullanici_heal_life_sitesine_giris_yapar() {
         DriverManager.getDriver().get(ConfigReader.getProperty("HLadminUrl"));
     }
     @Then("Login sayfasinin sag tarafinda Admin Login penceresi görüntülenmeli")

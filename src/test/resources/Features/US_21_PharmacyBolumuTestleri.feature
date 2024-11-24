@@ -28,12 +28,16 @@ Feature: Pharmacy Sayfasi Temel Ozellikleri ve Islevselligi
       | Action            |
 
   Scenario: Pharmacy sayfasindaki arama islevinin dogrulanmasi
-    When kullanici arama cubuguna bir ögenin ilk 3 harfini yazar
-    Then arama sonuçlarinin dogru bir sekilde goruntulendigini dogrular
+    When kullanici sol menuden Pharmacy secenegine tiklar
+    Then kullanici arama cubuguna bir ögenin ilk 3 harfini yazar
+    And arama sonuçlarinin dogru bir sekilde goruntulendigini dogrular
 
   Scenario: Verify actions buttons work correctly
-    When kullanici "Actions" sutunundaki "View Payments" ve "Show" butonlarina tiklar
-    Then bu dugmelerin duzgun calistigini dogrular
+    When kullanici sol menuden Pharmacy secenegine tiklar
+    Then kullanici Actions sutunundaki View Payments butonuna tiklar
+    And  View Payments butonunun duzgun calistigini dogrular
+    Then kullanici Actions sutunundaki Show butonlarina butonuna tiklar
+    And  Show butonunun duzgun calistigini dogrular
 
 
   @TC02

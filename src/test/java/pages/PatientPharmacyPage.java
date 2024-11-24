@@ -1,9 +1,9 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.DriverManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,19 +11,18 @@ import java.util.List;
 
 public class PatientPharmacyPage {
 
-    WebDriver driver;
 
-    public PatientPharmacyPage(List<WebElement> tableHeaders) {
+    public PatientPharmacyPage(List<WebElement> tableHeaders, List<WebElement> tableItems) {
         this.tableHeaders = tableHeaders;
+        this.tableBodies = tableItems;
 
-        PageFactory.initElements(driver, this);
+
+        PageFactory.initElements(DriverManager.getDriver(), this);
     }
 
-    @FindBy(id = "locate") // Pharmacy menu option
-    public WebElement pharmacyMenuOption;
 
     @FindBy(xpath = "//input[@type='search']") // Search input box
-    public WebElement searchBox;
+    public WebElement searchBar;
 
 
     ////////Pharmacy Sayfası Table grubu///////////////////
@@ -41,7 +40,24 @@ public class PatientPharmacyPage {
           return headers;
       }
 
-      //////////////////////////////////////////////////////
+    //TableBody Locator'ı
+    @FindBy(xpath = "//tbody/tr[@role='row']")
+    private List<WebElement> tableBodies; // Tüm <th> elementlerini listeler.
+
+    //Çağırma Metodu
+    public List<String> getTableBodies() {
+        List<String> tbody = new ArrayList<>();
+        for (WebElement body : tableBodies) {
+            tbody.add(body.getText().trim());
+        }
+
+        System.out.println(tbody);
+
+        return tbody;
+
+    }
+
+
 
     @FindBy(xpath = "//*[@id='DataTables_Table_0']/thead/tr/th[1]") // Bill No
     public WebElement thBillNo;
@@ -64,11 +80,34 @@ public class PatientPharmacyPage {
 
 
 
-    @FindBy(id = "locate") // View Payments button
+
+
+
+
+
+
+
+
+
+
+
+    @FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[9]/a[1]") // View Payments button
     public WebElement viewPaymentsButton;
 
-    @FindBy(id = "locate") // Show button
+    @FindBy(xpath = "//*[@id='allpayments']/div/div/div[1]/h4") //View Payments Window Title (Payments)
+    public WebElement viewPaymentsWindowTitle;
+
+    @FindBy(xpath = "//*[@id='allpayments']/div/div/div[1]/button") //View Payments Window "X" button
+    public WebElement viewPaymentsXbutton;
+
+    @FindBy(xpath = "//i[@class='fa fa-reorder'][1]") // Show button
     public WebElement showButton;
+
+    @FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[9]/a[2]") //show Window Title (Payments)
+    public WebElement showWindowTitle;
+
+    @FindBy(xpath = "//*[@id='viewModal']/div/div/div[1]/button") // Show Window "X" button
+    public WebElement showXbutton;
 
     @FindBy(id = "locate") // Pay button
     public WebElement payButton;
