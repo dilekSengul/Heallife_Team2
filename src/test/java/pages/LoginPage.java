@@ -78,11 +78,11 @@ public class LoginPage {
             throw new AssertionError(sectionName + " sol tarafta değil!");
         }
     }
-    public static  void accesAdmin(String adminuserName,String adminpPassword){
+    public static  void accesAdmin(String adminuserName,String adminPassword){
         LoginPage loginPage=new LoginPage();
         DriverManager.getDriver().get(ConfigReader.getProperty("HLadminUrl"));
         ReusableMethods.wait(2);
-        loginPage.email.sendKeys(ConfigReader.getProperty(adminuserName)+ Keys.TAB+ConfigReader.getProperty(adminpPassword));
+        loginPage.email.sendKeys(ConfigReader.getProperty(adminuserName)+ Keys.TAB+ConfigReader.getProperty(adminPassword));
         loginPage.signInButton.click();
 
     }
