@@ -315,7 +315,6 @@ public class AboutUsStep {
             // Cevabın görünür hale gelmesini bekle
             ReusableMethods.waitForVisibility(answer,10);
 
-
             // Cevabın görünüp görünmediğini kontrol et
             Assert.assertTrue("Cevap görünür değil: " + answer.getText(), answer.isDisplayed());
 

@@ -1,4 +1,3 @@
-@hurrem
 Feature: About Us Dropdown Menu Testi
   Kullanıcı "About Us" dropdown menusunu doğrular.
 
