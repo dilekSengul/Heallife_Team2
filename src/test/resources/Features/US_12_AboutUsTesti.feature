@@ -47,5 +47,17 @@ Feature: About Us Dropdown Menu Testi
 
   @hurrem
 
+  Scenario: Kullanıcı FAQ's sayfasını doğrular
+    Given Kullanıcı projectUrl adresini ziyaret eder
+    When Ana sayfanın üst kısmında "About Us" menüsünün üzerine gelir
+    And Kullanıcı FAQ's başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular
+    And Sayfada What Our Clients Say başlığının göründüğünü doğrulayın
+    And Sayfada What Our Doctor Say başlığının göründüğünü doğrulayın
+    And FAQ's sayfasinda 9 tane soru olduğunu doğrulayın
+    And Her bir soru üzerine tıklayın ve altlarında cevabın göründüğünü doğrulayın
+    And sayfayı kapatır
+
+
+
 
 

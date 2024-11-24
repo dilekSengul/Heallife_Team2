@@ -277,4 +277,49 @@ public class AboutUsStep {
         }
 
     }
+    //US-12 TC4
+
+
+    @When("Sayfada What Our Clients Say başlığının göründüğünü doğrulayın")
+    public void sayfada_what_our_clients_say_başlığının_göründüğünü_doğrulayın() {
+        // Başlığın görünüp görünmediğini doğrulamak için WebElement'i kullan
+        Assert.assertTrue("What Our Clients Say başlığı görünür değil", page.whatOurClientsSay.isDisplayed());
+    }
+
+    @When("Sayfada What Our Doctor Say başlığının göründüğünü doğrulayın")
+    public void sayfada_what_our_doctor_say_başlığının_göründüğünü_doğrulayın() {
+        // Başlığın görünüp görünmediğini doğrulamak için WebElement'i kullan
+        Assert.assertTrue("What Our Doctor Say başlığı görünür değil", page.whatOurDoctorsSay.isDisplayed());
+    }
+
+    @When("FAQ's sayfasinda {int} tane soru olduğunu doğrulayın")
+    public void what_our_clients_say_başlığı_altında_tane_soru_olduğunu_doğrulayın(Integer int1) {
+        // allQuestions listesinde soruların sayısını kontrol et
+        int actualCount = page.allQuestions.size();
+        int expectedCount = 9;
+        Assert.assertEquals("What Our Clients Say başlığı altında soru sayısı yanlış", expectedCount, actualCount);
+    }
+
+    @When("Her bir soru üzerine tıklayın ve altlarında cevabın göründüğünü doğrulayın")
+    public void her_bir_soru_üzerine_tıklayın_ve_altlarında_cevabın_göründüğünü_doğrulayın() {
+        ReusableMethods.wait(5);
+        for (int i = 0; i < page.allQuestions.size(); i++) {
+            WebElement question = page.allQuestions.get(i); // Her bir soruyu al
+            question.click(); // Soruyu tıkla
+
+            // İlgili cevabı al
+            WebElement answer = page.allAnswers.get(i);
+
+            // Cevabın görünür hale gelmesini bekle
+            ReusableMethods.waitForVisibility(answer,5);
+
+            // Cevabın görünüp görünmediğini kontrol et
+            Assert.assertTrue("Cevap görünür değil: " + answer.getText(), answer.isDisplayed());
+
+            // Konsola yazdır
+            System.out.println("Soru: " + question.getText());
+            System.out.println("Cevap: " + answer.getText());
+        }
+
+    }
 }

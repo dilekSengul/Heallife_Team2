@@ -70,7 +70,6 @@ public class AboutUsPage {
     public List<WebElement> doctorsList;
 
     // "Meet Our Doctors" sayfasi
-
     @FindBy(xpath = "//*[@class='nav nav-pills doctortap']")
     public WebElement uzmanlikAlanlariMenu;
 
@@ -92,7 +91,7 @@ public class AboutUsPage {
     @FindBy(xpath = "//a[@href='#neurologist']")
     public WebElement neurologist;
 
-    // Uzmanlik alanina tikladindiginda yanda cikan doktorlar
+    // "Meet Our Doctors" sayfasindaki uzmanlik alanina tikladindiginda yanda cikan doktorlar(toplam28 doktor)
     @FindBy(xpath = "//*[@class='team-member']")
     public List<WebElement> teamMembers;
 
@@ -113,6 +112,32 @@ public class AboutUsPage {
             throw new AssertionError("Doktor resmi görünmüyor");
         }
     }
+
+    // "FAQ" sayfasi
+    // "What Our Clients Say" ve "What Our Doctors Say" bölümleri için locater'lar
+    @FindBy(xpath = "//*[@class='col-md-6'][1]")
+    public WebElement whatOurClientsSay;
+
+    @FindBy(xpath = "//*[@class='col-md-6'][2]")
+    public WebElement whatOurDoctorsSay;
+
+    // Tüm soruları almak için locater
+    @FindBy(xpath = "(//*[@class='panel panel-default'])")
+    public List<WebElement> allQuestions;
+
+    // Cevaplar için locater
+    @FindBy(xpath = "//*[@class='panel-body pxlr-faq-body']")
+    public List<WebElement> allAnswers;
+
+   /* "What Our Clients Say (//*[@class='col-md-6'])[1]
+What Our Doctor Say (//*[@class='col-md-6'])[2]
+    And "What Our Clients Say" başlığı altında 5 tane soru olduğunu doğrulayın
+(//*[@class='panel panel-default'])[1]/(//*[@class='panel panel-default'])[5]
+    And "What Our Doctor Say" başlığı altında 4 tane soru olduğunu doğrulayın
+(//*[@class='panel panel-default'])[1]/(//*[@class='panel panel-default'])[6]/(//*[@class='panel panel-default'])[1]/(//*[@class='panel panel-default'])[9]
+
+sorulara tiklandiginda gelen cevabin locati <p>International Patient Coordinators speak different languages such as English, Arabic, Russian, and Georgian.</p>
+    */
 
 
 }
