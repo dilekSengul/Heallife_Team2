@@ -325,7 +325,7 @@ public class AboutUsStep {
 
     }
 
-    //US-12 TC-6
+    //US-12 TC-5
 
     @Then("Sayfada aşağıdaki departmanların başlık ve açıklama metinlerinin yer aldığını doğrulayın:")
     public void sayfada_aşağıdaki_departmanların_başlık_ve_açıklama_metinlerinin_yer_aldığını_doğrulayın(io.cucumber.datatable.DataTable dataTable) {
@@ -354,6 +354,46 @@ public class AboutUsStep {
 
             System.out.println("Başlık: " + actualTitle);
             System.out.println("Açıklama: " + actualDescription);
+        }
+    }
+
+    //US-12 TC-6
+
+    @Then("Sayfada aşağıdaki kişilerin yorumlarının, resimleri ile birlikte yer aldığını doğrulayın:")
+    public void sayfada_aşağıdaki_kişilerin_yorumlarının_resimleri_ile_birlikte_yer_aldığını_doğrulayın(io.cucumber.datatable.DataTable dataTable) {
+        // DataTable'dan kişilerin adlarını alıyoruz
+        List<String> expectedNames = dataTable.asList(String.class);
+
+        // Testimonial listesindeki her öğe için kontrol yapıyoruz
+        for (int i = 0; i < expectedNames.size(); i++) {
+            String expectedName = expectedNames.get(i);
+
+            // İlgili testimonial'ı al
+            WebElement testimonial = page.testimonialList.get(i);
+
+            // Testimonial içindeki isim
+            String testimonialName = page.testimonialNames.get(i).getText().trim();
+
+            // Testimonial içindeki yorum
+            String testimonialComment = page.testimonialComments.get(i).getText().trim();
+
+            // Testimonial içindeki resim (boş olup olmadığını kontrol ediyoruz)
+            WebElement testimonialImage = page.testimonialImages.get(i);
+
+            // İsimlerin eşleşip eşleşmediğini doğruluyoruz
+            Assert.assertEquals("İsim eşleşmiyor: " + testimonialName, expectedName, testimonialName);
+
+            // Yorumların düzgün göründüğünü doğruluyoruz
+            Assert.assertTrue("Yorum görünür değil: " + testimonialComment, testimonialComment.length() > 0);
+
+            // Resmin varlığını doğruluyoruz
+            Assert.assertTrue("Resim görünür değil: " + testimonialImage.getAttribute("src"), testimonialImage.isDisplayed());
+
+            // Testimonial'ı konsola yazdırmak isteyebilirsiniz (isteğe bağlı)
+            System.out.println("Testimonial " + (i+1) + ":");
+            System.out.println("Adı: " + testimonialName);
+            System.out.println("Yorum: " + testimonialComment);
+            System.out.println("Resim: " + testimonialImage.getAttribute("src"));
         }
     }
 }

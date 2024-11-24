@@ -137,5 +137,22 @@ public class AboutUsPage {
     @FindBy(xpath = "//div[@class='chooseus']//p")
     public List<WebElement> departmentDescriptions;
 
+
+    // Tüm testimonial öğelerini almak için locater
+    @FindBy(xpath = "//*[@class='user-testimonial']")
+    public List<WebElement> testimonialList;
+
+    // Testimonial içerisindeki isimleri almak için locater
+    @FindBy(xpath = "//*[@class='user-testimonial']//h3")
+    public List<WebElement> testimonialNames;
+
+    // Testimonial içerisindeki yorumları almak için locater
+    @FindBy(xpath = "//*[@class='user-testimonial']//p")
+    public List<WebElement> testimonialComments;
+
+    // Testimonial içerisindeki resimleri almak için locater
+    @FindBy(xpath = "//*[@class='user-testimonial']//img")
+    public List<WebElement> testimonialImages;
+
 }
 

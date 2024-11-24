@@ -54,7 +54,7 @@ Feature: About Us Dropdown Menu Testi
     And FAQ's sayfasinda 9 tane soru olduğunu doğrulayın
     And Her bir soru üzerine tıklayın ve altlarında cevabın göründüğünü doğrulayın
     And sayfayı kapatır
-@hurrem
+
   Scenario: Kullanıcı Departments sayfasındaki başlıkları ve açıklama metinlerini doğrular
     Given Kullanıcı projectUrl adresini ziyaret eder
     When Ana sayfanın üst kısmında "About Us" menüsünün üzerine gelir
@@ -66,7 +66,7 @@ Feature: About Us Dropdown Menu Testi
       | Breast Screening                           |
       | Burn Center (Burn Unit or Burns Unit)      |
       | Cardiology                                 |
-      | Central Sterile Services Department        |
+      | Central Sterile Services Department         |
       | Chaplaincy                                 |
       | Coronary Care Unit (CCU)                   |
       | Critical Care                              |
@@ -74,5 +74,17 @@ Feature: About Us Dropdown Menu Testi
       | Discharge Lounge                           |
     And sayfayı kapatır
 
-
+  @hurrem
+  Scenario: Testimonials sayfasındaki kişilerin yorumlarını ve resimlerini doğrulama
+    Given Kullanıcı projectUrl adresini ziyaret eder
+    When Ana sayfanın üst kısmında "About Us" menüsünün üzerine gelir
+    And Kullanıcı Testimonials başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular
+    Then Sayfada aşağıdaki kişilerin yorumlarının, resimleri ile birlikte yer aldığını doğrulayın:
+      | Robert   |
+      | Ganesh   |
+      | James    |
+      | Norman   |
+      | Jessica  |
+      | Nyisha   |
+    And sayfayı kapatır
 
