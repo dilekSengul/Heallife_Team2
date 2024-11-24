@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -169,9 +170,16 @@ public class HomePageStep {
 
 
 
+    @And("Kullanıcı ana sayfaya yönlendirilir")
+    public void kullanıcıAnaSayfayaYönlendirilir() {
+    }
 
+    @When("Kullanıcı sayfada {string} başlığını görür")
+    public void kullanıcıSayfadaBaşlığınıGörür(String arg0) {
 
+    }
 
-
-
+    @And("Her bir doktor için aşağıdaki bilgiler görünür olmalı:")
+    public void herBirDoktorIçinAşağıdakiBilgilerGörünürOlmalı() {
+    }
 }
