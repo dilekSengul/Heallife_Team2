@@ -61,28 +61,6 @@ public class AdminDashboardPage {
         }
     }
 
-    /*
-    public void yan_menu_linklerini_dogrula(List<String> expectedLinks) {
-        // Yan menü linklerini bul
-        List<WebElement> sidebarLinks = driver.findElements(By.cssSelector("li.treeview > a"));
-        ReusableMethods.getStringList(sidebarLinks);
-        Assert.assertFalse("Yan menü linkleri bulunamadı!", sidebarLinks.isEmpty());
-
-        // Her linkin metnini kontrol et
-        for (String expectedLink : expectedLinks) {
-            boolean linkFound = false; // Linkin bulunup bulunmadığını kontrol etmek için bir bayrak
-            for (WebElement link : sidebarLinks) {
-                if (link.getText().equalsIgnoreCase(expectedLink)) {
-                    linkFound = true;
-                    break;
-                }
-            }
-            Assert.assertTrue("Link bulunamadı: " + expectedLink, linkFound);
-        }
-    }
-
-     */
-
     public void validateMenuItems(WebDriver driver, List<String> expectedMenuItems) {
         // Gerçek menü başlıklarını bulun
         JSUtilities.scrollToElement(driver,setupIcon);
