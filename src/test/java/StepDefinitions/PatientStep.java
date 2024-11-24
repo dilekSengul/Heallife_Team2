@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class PatientStep {
     WebDriver driver = Hooks.getDriver();
-    private static final Logger logger = LogManager.getLogger(HLhomeStep.class);
+    private static final Logger logger = LogManager.getLogger(PatientStep.class);
     PatientPage page = new PatientPage(); // Page Object sınıfınız
     LoginPage loginPage = new LoginPage();
     Faker faker = new Faker();
