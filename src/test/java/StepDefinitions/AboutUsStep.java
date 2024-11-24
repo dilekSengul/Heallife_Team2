@@ -6,10 +6,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import pages.AboutUsPage;
+import utilities.JSUtilities;
 import utilities.ReusableMethods;
 
 import java.util.ArrayList;
@@ -321,5 +323,37 @@ public class AboutUsStep {
             System.out.println("Cevap: " + answer.getText());
         }
 
+    }
+
+    //US-12 TC-6
+
+    @Then("Sayfada aşağıdaki departmanların başlık ve açıklama metinlerinin yer aldığını doğrulayın:")
+    public void sayfada_aşağıdaki_departmanların_başlık_ve_açıklama_metinlerinin_yer_aldığını_doğrulayın(io.cucumber.datatable.DataTable dataTable) {
+        // Verilen departman listesi
+        List<String> expectedDepartments = dataTable.asList(String.class);
+
+        // Başlıkların ve açıklamaların eşleştiğinden emin ol
+        for (int i = 0; i < expectedDepartments.size(); i++) {
+            String expectedDepartment = expectedDepartments.get(i);
+
+            // Departman başlığını ve açıklamasını sayfadan al
+            WebElement titleElement = page.departmentTitles.get(i);
+            WebElement descriptionElement = page.departmentDescriptions.get(i);
+
+            // Scroll yap ve elementi görünür hale getir
+            JSUtilities.scrollToElement(driver,titleElement);
+
+            // Departman başlık ve açıklama metinlerini kontrol et
+
+            String actualTitle = titleElement.getText();
+            String actualDescription = descriptionElement.getText();
+
+            // Beklenen başlık ve açıklama ile karşılaştır
+            Assert.assertTrue("Başlık eşleşmiyor: " + actualTitle, actualTitle.equalsIgnoreCase(expectedDepartment));
+            Assert.assertFalse("Açıklama metni boş: " + actualTitle, actualDescription.isEmpty());
+
+            System.out.println("Başlık: " + actualTitle);
+            System.out.println("Açıklama: " + actualDescription);
+        }
     }
 }

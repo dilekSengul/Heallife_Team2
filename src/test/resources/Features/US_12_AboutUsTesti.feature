@@ -45,8 +45,6 @@ Feature: About Us Dropdown Menu Testi
     And Kullanıcı Neurologist uzmanlık alanına tıkladığında doktor isimlerini, unvanlarını ve resimlerini görür    And sayfayı kapatır
     And sayfayı kapatır
 
-  @hurrem
-
   Scenario: Kullanıcı FAQ's sayfasını doğrular
     Given Kullanıcı projectUrl adresini ziyaret eder
     When Ana sayfanın üst kısmında "About Us" menüsünün üzerine gelir
@@ -56,8 +54,25 @@ Feature: About Us Dropdown Menu Testi
     And FAQ's sayfasinda 9 tane soru olduğunu doğrulayın
     And Her bir soru üzerine tıklayın ve altlarında cevabın göründüğünü doğrulayın
     And sayfayı kapatır
-
-
+@hurrem
+  Scenario: Kullanıcı Departments sayfasındaki başlıkları ve açıklama metinlerini doğrular
+    Given Kullanıcı projectUrl adresini ziyaret eder
+    When Ana sayfanın üst kısmında "About Us" menüsünün üzerine gelir
+    And Kullanıcı Departments başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular
+    And Sayfada aşağıdaki departmanların başlık ve açıklama metinlerinin yer aldığını doğrulayın:
+      | Accident and Emergency (A&E)               |
+      | Admissions                                 |
+      | Anesthetics                                |
+      | Breast Screening                           |
+      | Burn Center (Burn Unit or Burns Unit)      |
+      | Cardiology                                 |
+      | Central Sterile Services Department        |
+      | Chaplaincy                                 |
+      | Coronary Care Unit (CCU)                   |
+      | Critical Care                              |
+      | Diagnostic Imaging                         |
+      | Discharge Lounge                           |
+    And sayfayı kapatır
 
 
 
