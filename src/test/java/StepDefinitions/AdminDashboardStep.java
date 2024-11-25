@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
@@ -11,11 +12,8 @@ import org.openqa.selenium.WebElement;
 import pages.AdminDashboardPage;
 import pages.LoginPage;
 import utilities.ConfigReader;
-import utilities.JSUtilities;
-import utilities.ReusableMethods;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -23,34 +21,39 @@ import static org.junit.Assert.assertEquals;
 public class AdminDashboardStep {
     WebDriver driver = Hooks.getDriver();
     private static final Logger logger = LogManager.getLogger(AdminDashboardStep.class);
-     LoginPage loginPage =new LoginPage();
-     AdminDashboardPage adminDashboardPage=new AdminDashboardPage();
+    LoginPage loginPage = new LoginPage();
+    AdminDashboardPage adminDashboardPage = new AdminDashboardPage();
 
     @When("Admin mail {string}  ve password {string} ile sign in olur")
     public void admin_mail_ve_password_ile_sign_in_olur(String userName, String password) {
-       loginPage.accesAdmin(userName,password);
+        loginPage.accesAdmin(userName, password);
 
     }
+
     @Then("Heal Life Hospital & Research yazisinin solundaki sidebar iconuna tiklar")
     public void heal_life_hospital_research_yazisinin_solundaki_sidebar_iconuna_tiklar() {
-       adminDashboardPage.clickSidebarIconIfDashboardNotVisible();
+        adminDashboardPage.clickSidebarIconIfDashboardNotVisible();
     }
+
     @Then("Sidbarda {string} yazisini gorunurlugunu dogrular")
     public void sidbarda_yazisini_gorunurlugunu_dogrular(String string) {
         Assert.assertTrue(adminDashboardPage.dashboardText.isDisplayed());
     }
+
     @Then("Dashboard yazisina tiklar")
     public void dashboard_yazisina_tiklar() {
-       adminDashboardPage.dashboardText.click();
+        adminDashboardPage.dashboardText.click();
     }
+
     @Then("Sayfanin yenilendigini dogrular")
     public void sayfanin_yenilendigini_dogrular() {
 
-       String actualUrl=ConfigReader.getProperty("AdminDasboardUrl");
+        String actualUrl = ConfigReader.getProperty("AdminDasboardUrl");
         //  driver.navigate().refresh();
         String newUrl = driver.getCurrentUrl();
         assertEquals("Sayfa yenilendikten sonra Url ayni kalmali", actualUrl, newUrl);
     }
+
     @Then("Yan menude asagidaki basliklarin mevcut oldugunu dogrular:")
     public void yan_menüde_aşağıdaki_linklerin_mevcut_olduğunu_doğrula(io.cucumber.datatable.DataTable dataTable) {
 
@@ -58,7 +61,7 @@ public class AdminDashboardStep {
         List<String> expectedMenuItems = dataTable.asList();
 
         // Menü doğrulama metodunu çağır
-       adminDashboardPage.validateMenuItems(driver, expectedMenuItems);
+        adminDashboardPage.validateMenuItems(driver, expectedMenuItems);
 
 
 
@@ -73,6 +76,7 @@ public class AdminDashboardStep {
         }
 */
     }
+
     @Then("Her linkin tiklanabilir oldugunu ve dogru sayfaya yönlendirildigini dogrular")
     public void her_linkin_tıklanabilir_olduğunu_ve_doğru_sayfaya_yönlendirildiğini_doğrula() {
         // Tüm <a href> linklerini almak
@@ -94,6 +98,23 @@ public class AdminDashboardStep {
 
     }
 
+    //US_041 TC_1-Hurrem
+    @Given("Admin kullanıcısı olarak giriş yapar")
+    public void admin_kullanıcısı_olarak_giriş_yapar() {
+        LoginPage.accesAdmin("AdminMailHurrem", "Passwords");
+    }
 
+    @When("Dashboard yan menüsünden {string} bağlantısını tıkla")
+    public void dashboard_yan_menüsünden_bağlantısını_tıkla(String string) {
+        // TPA Management linkine tıklama
+        adminDashboardPage.tpaManagementLink.click();
+    }
 
+    @Then("TPA Management sayfasına yönlendirildiğini doğrular")
+    public void tpa_management_sayfasına_yönlendirildiğini_doğrular() {
+
+        // Sayfanın doğru şekilde yönlendirildiğini doğrulamak için sayfa başlığını kontrol et
+        boolean isPageRedirected = adminDashboardPage.tpaManagementPageTitle.isDisplayed();
+        assert isPageRedirected : "TPA Management sayfasına yönlendirilmedi!";
+    }
 }

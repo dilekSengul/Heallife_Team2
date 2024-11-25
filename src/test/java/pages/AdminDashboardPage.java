@@ -1,29 +1,22 @@
 package pages;
 
-import StepDefinitions.AdminDashboardStep;
 import StepDefinitions.Hooks;
-import com.google.j2objc.annotations.Weak;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.DriverManager;
 import utilities.JSUtilities;
-import utilities.ReusableMethods;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class AdminDashboardPage {
@@ -45,6 +38,14 @@ public class AdminDashboardPage {
     @FindBy(xpath = "//i [@class='fas fa-cogs']")
     public WebElement setupIcon;
 
+    // Dashboardaki TPA Management Link
+    @FindBy(xpath = "(//*[@class='treeview '])[13]")
+    public WebElement tpaManagementLink;
+
+    // TPA Management Page Baslık
+    @FindBy(xpath = " //*[@class='box-title titlefix']")
+    public WebElement tpaManagementPageTitle;
+
     public void clickSidebarIconIfDashboardNotVisible() {
         driver = DriverManager.getDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -63,7 +64,7 @@ public class AdminDashboardPage {
 
     public void validateMenuItems(WebDriver driver, List<String> expectedMenuItems) {
         // Gerçek menü başlıklarını bulun
-        JSUtilities.scrollToElement(driver,setupIcon);
+        JSUtilities.scrollToElement(driver, setupIcon);
         List<WebElement> menuItems = driver.findElements(By.cssSelector(".sidebar-menu li a span"));
         List<String> actualMenuItems = new ArrayList<>();
 

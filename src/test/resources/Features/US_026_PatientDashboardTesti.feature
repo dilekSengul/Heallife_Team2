@@ -29,9 +29,6 @@ Feature: Dashboard Sayfasındaki Özet Bilgi Panellerini Doğrulama
       | Ambulance  |
     And sayfayı kapatır
 
-
-  @hurrem
-
   Scenario: Kullanıcı belirtiler ve semptomlar için özet grafiklerin sayfada mevcut olduğunu doğrular
     Given Kullanıcı projectUrl adresini ziyaret eder
     And loginButton'una tıklayarak kullanıcı adı ve şifresi ile hasta olarak giriş yapar
