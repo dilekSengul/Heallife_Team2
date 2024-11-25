@@ -47,45 +47,33 @@ public class PatientPharmacySteps {
     @Then("arama sonuçlarinin dogru bir sekilde goruntulendigini dogrular")
     public void arama_sonuclarinin_dogru_bir_sekilde_goruntulendigini_dogrular() {
         Assert.assertTrue(patientPharmacyPage.getTableBodies().contains("PAT"));
-
     }
 
     @When("kullanici Actions sutunundaki View Payments butonuna tiklar")
     public void kullanici_Actions_sutunundaki_View_Payments_butonuna_tiklar() {
-
             patientPharmacyPage.viewPaymentsButton.click();
-ReusableMethods.waitForClickablility(patientPharmacyPage.viewPaymentsWindowTitle, 10);
-
-
-
-
+            ReusableMethods.waitForClickablility(patientPharmacyPage.viewPaymentsWindowTitle, 10);
     }
 
     @When("View Payments butonunun duzgun calistigini dogrular")
     public void View_Payments_butonun_duzgun_calistigini_dogrular() {
-
         Assertions.assertTrue(patientPharmacyPage.viewPaymentsWindowTitle.isDisplayed());
         patientPharmacyPage.viewPaymentsXbutton.click();
     }
     @When("kullanici Actions sutunundaki Show butonlarina butonuna tiklar")
     public void kullanici_Actions_sutunundaki_Show_butonuna_tiklar() {
-
         patientPharmacyPage.showButton.click();
         ReusableMethods.waitForClickablility(patientPharmacyPage.showWindowTitle, 10);
     }
 
     @When("Show butonunun duzgun calistigini dogrular")
     public void show_butonun_duzgun_calistigini_dogrular() {
-
         Assertions.assertTrue(patientPharmacyPage.showWindowTitle.isDisplayed());
-
     }
 
     @When("kullanici bir ogenin Pay dugmesine tiklar")
     public void kullanici_bir_ogenin_dugmesine_tiklar() {
-
             patientPharmacyPage.firstPayButton.click();
-
     }
 
     @And("odeme penceresine negatif bir miktar girer ve Add dugmesine tiklar")
