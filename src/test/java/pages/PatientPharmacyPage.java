@@ -28,7 +28,7 @@ public class PatientPharmacyPage {
     ////////Pharmacy Sayfası Table grubu///////////////////
 
         //TableHead Locator'ı
-      @FindBy(xpath = "//tr[@class='white-space-nowrap']/th")
+      @FindBy(xpath = "//thead/tr/th")
       private List<WebElement> tableHeaders; // Tüm <th> elementlerini listeler.
 
         //Çağırma Metodu

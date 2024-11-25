@@ -38,15 +38,15 @@ public class PatientPharmacySteps {
         Assertions.assertEquals(expectedHeaders, actualHeaders, "Column headers do not match!");
     }
 
-    @When("kullanici arama cubuguna bir ögenin ilk {int} harfini yazar")
-    public void kullanici_arama_cubuguna_bir_ogenin_ilk_harfini_yazar(int harfSayisi) {
-        patientPharmacyPage.searchBar.sendKeys("toz".substring(0, harfSayisi)); // 3 karakterlik giriş.
+    @When("kullanici arama cubuguna bir ogenin iceriginin ilk 3 harfini yazar")
+    public void kullanici_arama_cubuguna_bir_ogenin_ilk_harfini_yazar() {
+        patientPharmacyPage.searchBar.sendKeys("PAT");
         ReusableMethods.bekle(2);
     }
 
     @Then("arama sonuçlarinin dogru bir sekilde goruntulendigini dogrular")
     public void arama_sonuclarinin_dogru_bir_sekilde_goruntulendigini_dogrular() {
-        Assert.assertTrue(patientPharmacyPage.getTableBodies().contains("toz"));
+        Assert.assertTrue(patientPharmacyPage.getTableBodies().contains("PAT"));
 
     }
 

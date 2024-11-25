@@ -29,10 +29,10 @@ Feature: Pharmacy Sayfasi Temel Ozellikleri ve Islevselligi
 
   Scenario: Pharmacy sayfasindaki arama islevinin dogrulanmasi
     When kullanici sol menuden Pharmacy secenegine tiklar
-    Then kullanici arama cubuguna bir ögenin ilk 3 harfini yazar
+    Then kullanici arama cubuguna bir ogenin iceriginin ilk 3 harfini yazar
     And arama sonuçlarinin dogru bir sekilde goruntulendigini dogrular
 
-  Scenario: Verify actions buttons work correctly
+  Scenario: Actions butonlarının çalıştığını doğrulama
     When kullanici sol menuden Pharmacy secenegine tiklar
     Then kullanici Actions sutunundaki View Payments butonuna tiklar
     And  View Payments butonunun duzgun calistigini dogrular
