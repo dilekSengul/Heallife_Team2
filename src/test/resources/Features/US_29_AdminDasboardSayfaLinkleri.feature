@@ -31,6 +31,10 @@ Feature: Bir yönetici (admin) olarak Admin panelinde menulerin yer aldigi bir d
       | Front Office   |
       |  Birth & Death Record|
       | Human Resource |
+      |TPA Management  |
+    | Messsaging     |
+    |Live Consultation|
+    |Setup            |
 
     And Her linkin tiklanabilir oldugunu ve dogru sayfaya yönlendirildigini dogrular
 
