@@ -18,8 +18,10 @@ import org.junit.runner.RunWith;
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" // Allure raporları için plugin
 		},
 
-		monochrome =true,                         // Konsol çıktısını daha okunabilir hale getirir
-		tags ="@hurrem"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+		monochrome =false,                         // Konsol çıktısını daha okunabilir hale getirir
+
+		tags =" @test"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
 
 		                    
 )
