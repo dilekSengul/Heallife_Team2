@@ -80,6 +80,13 @@ public class HomePage {
 
     // [Footer] - [Communication] bölümünün elementleri
 
+    @FindBy(xpath = "(//a[@class='content-title'])[1]")
+    public  WebElement Contact;
+    @FindBy(xpath = "(//a[@class='content-title'])[2]")
+    public  WebElement Email;
+    @FindBy(xpath = "(//a[@class='content-title'])[3]")
+    public  WebElement Adress;
+
     // [Footer] - [Copyright] bölümünün elementleri
 
     // [Home] - [Methods] buraya eklenecek
