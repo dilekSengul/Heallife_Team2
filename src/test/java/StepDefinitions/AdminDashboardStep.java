@@ -55,11 +55,11 @@ public class AdminDashboardStep {
     public void yan_menüde_aşağıdaki_linklerin_mevcut_olduğunu_doğrula(io.cucumber.datatable.DataTable dataTable) {
 
         // Feature dosyasından gelen menü başlıklarını alın
-        List<String> expectedMenuItems = dataTable.asList();
+       // List<String> expectedMenuItems = dataTable.asList();
 
         // Menü doğrulama metodunu çağır
-       adminDashboardPage.validateMenuItems(driver, expectedMenuItems);
-
+       //adminDashboardPage.validateMenuItems(driver, expectedMenuItems);
+      adminDashboardPage.kullanıcı_tüm_menü_başlıklarını_kontrol_eder();
 
 
 

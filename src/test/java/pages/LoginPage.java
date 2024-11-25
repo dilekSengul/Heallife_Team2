@@ -85,6 +85,7 @@ public class LoginPage {
         DriverManager.getDriver().get(ConfigReader.getProperty("HLadminUrl"));
         ReusableMethods.wait(2);
         loginPage.email.sendKeys(ConfigReader.getProperty(adminuserName) + Keys.TAB + ConfigReader.getProperty(adminPassword));
+      loginPage.signInButton.click();
     }
 
     public void hastaLogin() {

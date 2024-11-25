@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -61,27 +62,31 @@ public class AdminDashboardPage {
         }
     }
 
-    public void validateMenuItems(WebDriver driver, List<String> expectedMenuItems) {
-        // Gerçek menü başlıklarını bulun
-        JSUtilities.scrollToElement(driver,setupIcon);
-        List<WebElement> menuItems = driver.findElements(By.cssSelector(".sidebar-menu li a span"));
-        List<String> actualMenuItems = new ArrayList<>();
 
-        // Menü öğelerini toplama
+    public void kullanıcı_tüm_menü_başlıklarını_kontrol_eder() {
+        // Menü başlıklarını toplamak için liste
+        List<String> visibleMenuItems = new ArrayList<>();
+
+        // Sol sidebar'daki menüyü bul
+        WebElement sidebar = driver.findElement(By.cssSelector("ul.sidebar-menu.verttop")); // Sidebar'ın CSS selector'ü
+
+        // Görünür tüm başlıkları topla
+        List<WebElement> menuItems = driver.findElements(By.cssSelector(".sidebar-menu li a span")); // Menü başlıklarının selector'ü
+
+
         for (WebElement item : menuItems) {
-            String menuText = item.getText().trim();
-            if (!menuText.isEmpty()) {
-                actualMenuItems.add(menuText);
-                // Başlıkları konsola yazdır
-                System.out.println("- " + menuText);
-            }
+            visibleMenuItems.add(item.getText().trim());
         }
 
-        // Beklenen başlıkların gerçek başlıklarda mevcut olduğunu doğrula
-        for (String expected : expectedMenuItems) {
-            assertTrue("Başlık bulunamadı: " + expected, actualMenuItems.contains(expected));
-        }
+        // Beklenen başlıklar
+        List<String> expectedMenuItems = List.of(
+                "Dashboard", "Billing", "OPD", "IPD", "Pharmacy",
+                "Pathology", "Radiology", "Blood Bank", "Ambulance",
+                "Birth & Death Record", "Human Resource", "TPA Management",
+                "Messaging", "Live Consultation", "Setup"
+        );
 
-        System.out.println("Tüm menü başlıkları başarıyla doğrulandı.");
+        // Başlıkları kontrol et
+        Assert.assertEquals("Menü başlıkları eşleşmiyor!", expectedMenuItems, visibleMenuItems);
     }
 }
