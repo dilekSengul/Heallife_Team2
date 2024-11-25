@@ -34,7 +34,7 @@ public class PatientPharmacySteps {
 
     @Then("kullanici aşagidaki tablo basliklarinin goruntulendigini dogrular:")
     public void kullanici_asagidaki_tablo_basliklarinin_goruntulendigini_dogrular(List<String> expectedHeaders) {
-        List<String> actualHeaders = patientPharmacyPage.getColumnHeaders();
+        List<String> actualHeaders = patientPharmacyPage.getTableHeaders();
         Assertions.assertEquals(expectedHeaders, actualHeaders, "Column headers do not match!");
     }
 

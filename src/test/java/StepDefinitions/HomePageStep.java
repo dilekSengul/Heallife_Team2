@@ -7,9 +7,8 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -22,6 +21,7 @@ import utilities.JSUtilities;
 import utilities.ReusableMethods;
 
 import java.sql.Driver;
+import java.util.List;
 
 
 public class HomePageStep {
@@ -363,7 +363,95 @@ public class HomePageStep {
 
         }
     }
+
+
+    @Then("Latest News bilgisinin ust barda kayan bir yazi olarak gorunur oldugunu dogrular")
+    public void latest_news_kayan_yazi_oldugunu_dogrular() {
+        WebElement latestNewsElement = homePage.lastestNewsKayanYaziIcerik;
+
+        // Elementin görünür olduğunu kontrol et
+        Assert.assertTrue(latestNewsElement.isDisplayed());
+
+        // Elementin pozisyonunun zaman içinde değişip değişmediğini kontrol et
+        Point initialLocation = latestNewsElement.getLocation(); //başlangıç pozunu kaydeder.
+        try {
+            Thread.sleep(3000); // Yazının kaymasını bekle
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Point newLocation = latestNewsElement.getLocation(); //guncel poz.
+        
+        Assert.assertNotEquals(initialLocation, newLocation); //pointler eşleşmezse bar hareket ediyor demek.
+    }
+
+    @And("sitenin logosunun ust barda gorundugunu dogrular")
+    public void siteninLogosununUstBardaGorundugunuDogrular() {
+        homePage.HLlogo.isDisplayed();
+    }
+
+    @And("ust barda asagidaki menu ogelerinin gorundugunu dogrular:")
+    public void ustBardaAsagidakiMenuOgelerininGorundugunuDogrular(List<String> expectedNavbarElements) {
+        List<String> actualNavbarElements = homePage.getNavbarElements();
+        Assertions.assertEquals(expectedNavbarElements, actualNavbarElements, "Items do not match!");
+    }
+
+    @When("kullanici site logosuna tiklar")
+    public void kullaniciSiteLogosunaTiklar() {
+        homePage.HLlogo.click();
+    }
+
+    @Then("ana sayfanin yenilendigini ve URL’nin degismedigini dogrular")
+    public void anaSayfaninYenilendiginiVeURLNinDegismediginiDogrular() {
+        Assert.assertEquals("https://qa.heallifehospital.com/", driver.getCurrentUrl());
+    }
+
+    @Then("Home secenegine tikladiginda ana sayfaya yonlendigini dogrular")
+    public void homeSecenegineTikladigindaAnaSayfayaYonlendiginiDogrular() {
+        homePage.Home.click();
+        String expectedUrl = ConfigReader.getProperty("HomeButtonUrl");
+        Assert.assertEquals("Ana sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
+    }
+
+    @And("Appointment secenegine tikladiginda Appointment sayfasina yonlendigini dogrular")
+    public void appointmentSecenegineTikladigindaAppointmentSayfasinaYonlendiginiDogrular() {
+        homePage.Appointment.click();
+        String expectedUrl = ConfigReader.getProperty("AppointmentButtonUrl");
+        Assert.assertEquals("Appointment sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
+    }
+
+
+
+    /*Element yok (Events) - bug sebebi - US02 Scenario: Menu navigasyon islev testi
+    @And("Events secenegine tikladiginda Events sayfasina yonlendigini dogrular")
+
+    public void eventsSecenegineTikladigindaEventsSayfasinaYonlendiginiDogrular() {
+        homePage.Events.click();
+        String expectedUrl = ConfigReader.getProperty("EventsButtonUrl");
+        Assert.assertEquals("Appointment sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
+    }*/
+
+    @And("About Us secenegine tikladiginda About Us sayfasina yonlendigini dogrular")
+    public void aboutUsSecenegineTikladigindaAboutUsSayfasinaYonlendiginiDogrular() {
+        homePage.AboutUs.click();
+        String expectedUrl = ConfigReader.getProperty("AboutUsButtonUrl");
+        Assert.assertEquals("About Us sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
+    }
+
+    @And("Gallery secenegine tikladiginda Gallery sayfasina yonlendigini dogrular")
+    public void gallerySecenegineTikladigindaGallerySayfasinaYonlendiginiDogrular() {
+        homePage.Gallery.click();
+        String expectedUrl = ConfigReader.getProperty("GalleryButtonUrl");
+        Assert.assertEquals("Gallery sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
+    }
+
+    @And("Contact Us secenegine tikladiginda Contact Us sayfasina yonlendigini dogrular")
+    public void contactUsSecenegineTikladigindaContactUsSayfasinaYonlendiginiDogrular() {
+        homePage.ContactUs.click();
+        String expectedUrl = ConfigReader.getProperty("ContactUsButtonUrl");
+        Assert.assertEquals("Contact Us sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
+    }
 }
+
 
 
 

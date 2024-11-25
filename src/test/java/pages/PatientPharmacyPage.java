@@ -32,7 +32,7 @@ public class PatientPharmacyPage {
       private List<WebElement> tableHeaders; // Tüm <th> elementlerini listeler.
 
         //Çağırma Metodu
-      public List<String> getColumnHeaders() {
+      public List<String> getTableHeaders() {
           List<String> headers = new ArrayList<>();
           for (WebElement header : tableHeaders) {
               headers.add(header.getText().trim());

@@ -1,13 +1,11 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
-import utilities.ReusableMethods;
 
 import java.util.List;
 
@@ -18,6 +16,28 @@ public class HomePage {
     public HomePage() {
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
+
+
+
+    // [Header] - Lastest News - Kayan Yazı
+    @FindBy(xpath = "//marquee/ul/li[1]/a/div")
+    public WebElement lastestNewsKayanYaziIcerik;
+
+    // [Header] - Header-Navbar elementleri
+        //Locator
+    @FindBy(xpath = "//*[@id='navbar-collapse-3']/ul/li")
+    public List<WebElement> navbarElements; // Tüm <li> elementlerini listeler.
+
+        //String Çağırma Metodu
+    public List<String> getNavbarElements() {
+        List<String> navbarLi = new ArrayList<>();
+        for (WebElement header : navbarElements) {
+            navbarLi.add(header.getText().trim());
+        }
+        return navbarLi;
+    }
+
+
 
     // [Header] - [Home] bölümünün elementleri
 
