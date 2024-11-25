@@ -360,7 +360,6 @@ public class HomePageStep {
                 logger.info("Kullanıcı Gallery sayfasının Title'i " + homePage.GallerySubTitle6.getText() + " oldu.");
                 DriverManager.getDriver().navigate().back();
             }
-
         }
     }
 
