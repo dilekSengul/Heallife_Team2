@@ -188,5 +188,175 @@ public class PatientStep {
 
     }
 
+    @Given("kullanici URL'i acar")
+    public void kullanici_url_i_acar() {
+
+    }
+
+    @Given("kullanıcı {string} ve {string} ile giriş yapar")
+    public void kullanıcı_ve_ile_giriş_yapar(String string, String string2) {
+
+    }
+
+    @When("Kullanici \\(hasta) {string} menu secenegine tiklar")
+    public void kullanici_hasta_menu_secenegine_tiklar(String string) {
+
+    }
+
+    @Then("{string} sayfasinşn goruntulendigini dogrular")
+    public void sayfasinin_goruntulendigini_dogrular(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Given("hasta Radyology Test Reports List sayfasına gider")
+    public void hasta_radyology_test_reports_list_sayfasına_gider() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("asagidaki baslıklarin gorunur oldugunu dogrular")
+    public void asagidaki_baslıklarin_gorunur_oldugunu_dogrular(io.cucumber.datatable.DataTable dataTable) {
+        // Write code here that turns the phrase above into concrete actions
+        // For automatic transformation, change DataTable to one of
+        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+        // Double, Byte, Short, Long, BigInteger or BigDecimal.
+        //
+        // For other transformations you can register a DataTableType.
+        throw new io.cucumber.java.PendingException();
+    }
+
+
+    // Patient Radiology Sayfası
+    @Given("hasta Radyology Test Reports Listesi sayfasina gider")
+    public void hasta_radyology_test_reports_listesi_sayfasina_gider() {
+        loginPage.hastaLogin();
+    }
+
+    @When("hasta bir arama terimi girer")
+    public void hasta_bir_arama_terimi_girer() {
+
+    }
+
+    @Then("sonuclarin girilen arama terimiyle eslesen sekilde goruntulendigini dogrular")
+    public void sonuclarin_girilen_arama_terimiyle_eslesen_sekilde_goruntulendigini_dogrular() {
+
+    }
+
+    @Given("hasta Radyology Test Reports sayfasina gider")
+    public void hasta_radyology_test_reports_sayfasina_gider() {
+
+    }
+
+    @When("hasta bir baslık uzerine tiklar")
+    public void hasta_bir_baslık_uzerine_tiklar() {
+
+    }
+
+    @Then("liste artan sirada siralanmalidir")
+    public void liste_artan_sirada_siralanmalidir() {
+
+    }
+
+    @When("hasta aynı başlık uzerine tekrar tiklar")
+    public void hasta_aynı_başlık_uzerine_tekrar_tiklar() {
+
+    }
+
+    @Then("listenin azalan sirada siralandigini dogrular")
+    public void listenin_azalan_sirada_siralandigini_dogrular() {
+
+    }
+
+    @Given("Radyology Test Reports sayfasına gider")
+    public void radyology_test_reports_sayfasına_gider() {
+
+    }
+
+    @Then("{string} baglantisinin her rapor icin mevcut oldugunu dogrular")
+    public void baglantisinin_her_rapor_icin_mevcut_oldugunu_dogrular(String string) {
+
+    }
+    @When("hasta {string} baglantısına tıklar")
+    public void hasta_baglantısına_tıklar(String string) {
+
+    }
+
+    @Then("bir modal pencere ödeme detaylarıyla acilir")
+    public void bir_modal_pencere_ödeme_detaylarıyla_acilir() {
+
+    }
+
+    @Then("modal penceresinin {string} butonunu icerdigini dogrular")
+    public void modal_penceresinin_butonunu_icerdigini_dogrular(String string) {
+
+    }
+
+    @When("hasta {string} butonuna tiklar")
+    public void hasta_butonuna_tiklar(String string) {
+
+    }
+
+    @Then("sistem ödeme islemini yapmali ve rapor durumu guncellenmeli veya onay mesaji göstermelidir")
+    public void sistem_ödeme_islemini_yapmali_ve_rapor_durumu_guncellenmeli_veya_onay_mesaji_göstermelidir() {
+
+    }
+
+    @Then("{string} baglantisi her rapor için mevcut olmalidir")
+    public void baglantisi_her_rapor_için_mevcut_olmalidir(String string) {
+
+    }
+
+    @When("hasta {string} bağlantısına tiklar")
+    public void hasta_bağlantısına_tiklar(String string) {
+
+    }
+
+    @Then("bir modal pencere rapor detaylarıyla açılmalidir")
+    public void bir_modal_pencere_rapor_detaylarıyla_açılmalidir() {
+
+    }
+
+    @Then("modal pencere {string} butonunu icermelidir")
+    public void modal_pencere_butonunu_icermelidir(String string) {
+
+    }
+
+    @Then("yazdırma penceresinin acıldigi dogrulanir")
+    public void yazdırma_penceresinin_acıldigi_dogrulanir() {
+
+    }
+
+    @Then("{string} baglantısı her rapor için mevcut olmalidir")
+    public void baglantısı_her_rapor_için_mevcut_olmalidir(String string) {
+
+    }
+
+    @When("hasta {string} baglantısına tiklar")
+    public void hasta_baglantısına_tiklar(String string) {
+
+    }
+
+    @Then("bir modal pencere acilir")
+    public void bir_modal_pencere_acilir() {
+
+    }
+
+    @Then("modal pencerenin {string} butonunu icerdigi dogrulanir")
+    public void modal_pencerenin_butonunu_icerdigi_dogrulanir(String string) {
+
+    }
+
+    @When("hasta modal pencereyi kapatmak için {string} butonuna tiklar")
+    public void hasta_modal_pencereyi_kapatmak_için_butonuna_tiklar(String string) {
+
+    }
+
+    @Then("modal pencere kapanir ve kullanici Radiology Test List sayfasina geri dondugu dogrulanir.")
+    public void modal_pencere_kapanir_ve_kullanici_radiology_test_list_sayfasina_geri_dondugu_dogrulanir() {
+
+    }
+
 }
 
