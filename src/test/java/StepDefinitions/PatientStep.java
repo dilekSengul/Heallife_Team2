@@ -14,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pages.LoginPage;
+import pages.PatientDashboardPage;
 import pages.PatientPage;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
@@ -27,7 +28,7 @@ public class PatientStep {
     PatientPage page = new PatientPage(); // Page Object sınıfınız
     LoginPage loginPage = new LoginPage();
     Faker faker = new Faker();
-
+    PatientDashboardPage patientDashboardPage=new PatientDashboardPage();
 
     @Given("Kullanici anasayfaya gider")
     public void kullanici_anasayfaya_gider() {
@@ -163,7 +164,7 @@ public class PatientStep {
 
         // Her bir özet panelinin görünür olduğunu doğrulama
         for (String boardName : dataTable.asList()) {
-            WebElement board = page.getBoardElementByName(boardName);  // Panelleri almak için yardımcı metod çağrılıyor
+            WebElement board = patientDashboardPage.getBoardElementByName(boardName);  // Panelleri almak için yardımcı metod çağrılıyor
             Assert.assertTrue(boardName + " paneli görüntülenmiyor.", board.isDisplayed());  // Panelin görünür olduğunu doğruluyor
 
             // Panelleri tıklama ve yönlendirilen sayfayı doğrulama
@@ -172,8 +173,8 @@ public class PatientStep {
             String currentUrl = driver.getCurrentUrl();  // Mevcut URL alınıyor
             // Mevcut URL'nin beklenen URL ile eşleştiğini doğrulama
             Assert.assertTrue(
-                boardName + " için yanlış sayfaya yönlendirilmiş. Beklenen: " + page.getBoardUrls().get(boardName) + ", Mevcut: " + currentUrl, // Hata mesajı
-                currentUrl.equals(page.getBoardUrls().get(boardName)));
+                boardName + " için yanlış sayfaya yönlendirilmiş. Beklenen: " + patientDashboardPage.getBoardUrls().get(boardName) + ", Mevcut: " + currentUrl, // Hata mesajı
+                currentUrl.equals(patientDashboardPage.getBoardUrls().get(boardName)));
 
 
             // Dashboard sayfasına geri dön
@@ -186,7 +187,7 @@ public class PatientStep {
     // HATA VAR US_026-TC_02-Medical History grafiğinin görünürlüğünü ve değerlerini doğrula HATA VAR
     @Then("Dashboard sayfasının gövdesinde {string} başlıklı bir grafik bulunduğunu doğrular")
     public void dashboard_sayfasının_gövdesinde_başlıklı_bir_grafik_bulunduğunu_doğrular(String string) {
-        page.medicalHistoryGraph.isDisplayed();
+        patientDashboardPage.medicalHistoryGraph.isDisplayed();
     }
 
     @Then("Aşağıdaki değerlerin grafikte yer aldığını kontrol eder:")
@@ -206,19 +207,19 @@ public class PatientStep {
     public WebElement getValueElementByName(String value) {
         switch (value) {
             case "OPD":
-                return page.opdValue;
+                return patientDashboardPage.opdValue;
             case "IPD":
-                return page.ipdValue;
+                return patientDashboardPage.ipdValue;
             case "Pharmacy":
-                return page.pharmacyValue;
+                return patientDashboardPage.pharmacyValue;
             case "Pathology":
-                return page.pathologyValue;
+                return patientDashboardPage.pathologyValue;
             case "Radiology":
-                return page.radiologyValue;
+                return patientDashboardPage.radiologyValue;
             case "Blood Bank":
-                return page.bloodBankValue;
+                return patientDashboardPage.bloodBankValue;
             case "Ambulance":
-                return page.ambulanceValue;
+                return patientDashboardPage.ambulanceValue;
             default:
                 throw new NoSuchElementException("Değer için element bulunamadı: " + value);
         }
@@ -228,12 +229,12 @@ public class PatientStep {
 
     @When("Belirtiler  için özet grafiklerin sayfada mevcut olduğunu doğrular")
     public void belirtiler_için_özet_grafiklerin_sayfada_mevcut_olduğunu_doğrular() {
-        Assert.assertTrue("Belirtiler için özet grafik sayfada mevcut değil!", page.belirtilerGrafik.isDisplayed());
+        Assert.assertTrue("Belirtiler için özet grafik sayfada mevcut değil!", patientDashboardPage.belirtilerGrafik.isDisplayed());
     }
 
     @Then("Semptomlar için özet grafiklerin sayfada mevcut olduğunu doğrular")
     public void semptomlar_için_özet_grafiklerin_sayfada_mevcut_olduğunu_doğrular() {
-        Assert.assertTrue("Semptomlar için özet grafik sayfada mevcut değil!", page.semptomlarGrafik.isDisplayed());
+        Assert.assertTrue("Semptomlar için özet grafik sayfada mevcut değil!", patientDashboardPage.semptomlarGrafik.isDisplayed());
 
     }
 
