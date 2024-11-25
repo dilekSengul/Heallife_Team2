@@ -546,6 +546,13 @@ ReusableMethods {
 
     }
 
+
+       // Sayfa kaydırma methodu
+    public static void scrollToFooter(WebDriver driver, WebElement element) {
+    Actions actions = new Actions(driver);
+
+    actions.moveToElement(element).perform();
+}
     public static void FooterAccessibility(String sayfa, Logger logger) {
         Actions action = new Actions(DriverManager.getDriver());
         action.sendKeys(Keys.PAGE_DOWN).perform();
@@ -595,5 +602,6 @@ ReusableMethods {
                 logger.error("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşmiyor!");
         }
     }
+
 
 }
