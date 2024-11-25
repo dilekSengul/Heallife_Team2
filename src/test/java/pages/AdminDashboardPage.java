@@ -233,4 +233,7 @@ public class AdminDashboardPage {
     @FindBy (xpath = "//a[@role='button']")
     public WebElement HamburgerMenu;
 
+    @FindBy (xpath = "//*[@class='fas fa-microscope']")
+    public WebElement radiologyButton;
+
 }
