@@ -85,6 +85,7 @@ public class LoginPage {
         DriverManager.getDriver().get(ConfigReader.getProperty("HLadminUrl"));
         ReusableMethods.wait(2);
         loginPage.email.sendKeys(ConfigReader.getProperty(adminuserName) + Keys.TAB + ConfigReader.getProperty(adminPassword));
+      loginPage.signInButton.click();
     }
 
     public void hastaLogin() {
@@ -92,6 +93,13 @@ public class LoginPage {
         email.sendKeys(ConfigReader.getProperty("HLusername")); // Kullanıcı adı giriliyor (test için örnek)
         password.sendKeys(ConfigReader.getProperty("HLpassword")); // Şifre giriliyor (test için örnek)
         signInButton.click();
+    }
+
+    public void AdminLogin(String email, String password) {
+        LoginPage loginPage = new LoginPage();
+        loginPage.email.sendKeys(email);
+        loginPage.password.sendKeys(password);
+        loginPage.signInButton.click();
     }
 
 }
