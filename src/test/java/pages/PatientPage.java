@@ -5,7 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PatientPage {
 
@@ -69,56 +71,5 @@ public class PatientPage {
     @FindBy(xpath = "//*[@class='col-md-4 col-sm-4'])[2])")
     public List<String> footerElementLists;
 
-    // Patient dashboard-hurrem
 
-    @FindBy(xpath = "(//*[@class='treeview '])[2]")
-    public WebElement myAppointmentsdBoard;
-
-    @FindBy(xpath = "//*[@class='treeview active']")
-    public WebElement opdBoard;
-
-    @FindBy(xpath = "(//*[@class='treeview '])[3]")
-    public WebElement ipdBoard;
-
-    @FindBy(xpath = "(//*[@class='treeview '])[4]")
-    public WebElement pharmacyBoard;
-
-    @FindBy(xpath = "(//*[@class='treeview '])[5]")
-    public WebElement pathologyBoard;
-
-    @FindBy(xpath = "(//*[@class='treeview '])[6]")
-    public WebElement radiologyBoard;
-
-    @FindBy(xpath = "(//*[@class='treeview '])[7]")
-    public WebElement ambulanceBoard;
-
-    @FindBy(xpath = "(//*[@class='treeview '])[8]")
-    public WebElement bloodBankBoard;
-
-    @FindBy(xpath = "(//*[@class='treeview '])[9]")
-    public WebElement  liveConsultation;
-
-    // Yardımcı metod: Board ismine göre ilgili WebElement'i döndürüyor
-    public  WebElement getBoardElementByName(String boardName) {
-        switch (boardName) {
-            case "OPD":
-                return opdBoard;
-            case "IPD":
-                return ipdBoard;
-            case "Pharmacy":
-                return pharmacyBoard;
-            case "Pathology":
-                return pathologyBoard;
-            case "Radiology":
-                return radiologyBoard;
-            case "Blood Bank":
-                return bloodBankBoard;
-            case "Ambulance":
-                return ambulanceBoard;
-            case "Live Consultation":
-                return liveConsultation;
-            default:
-                throw new IllegalArgumentException("Bilinmeyen panel ismi: " + boardName);  // Geçersiz panel ismi durumunda hata verilir
-        }
-    }
 }

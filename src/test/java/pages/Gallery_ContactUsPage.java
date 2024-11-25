@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -23,7 +22,8 @@ public class Gallery_ContactUsPage {
     // ? Bu elementler AboutUsPage classında tekrar yazmamıza gerek var mı?
 
     // [Header] - [Gallery] bölümünün elementleri
-
+    @FindBy (xpath = "//*[text()='Contact Us']")
+    public WebElement contactUsTabElementi;
     // Galeri menüsü locater'ı
     @FindBy(xpath = "(//a[text()='Gallery'])[1]")
     public WebElement galleryLink;

@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
@@ -11,11 +12,9 @@ import org.openqa.selenium.WebElement;
 import pages.AdminDashboardPage;
 import pages.LoginPage;
 import utilities.ConfigReader;
-import utilities.JSUtilities;
 import utilities.ReusableMethods;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -95,5 +94,28 @@ public class AdminDashboardStep {
     }
 
 
+    @And("Kullanici admin sayfasinda oldugunu dogrular")
+    public void kullaniciAdminSayfasindaOldugunuDogrular() {
+        ReusableMethods.wait(2);
+        String expectedUrl= "https://qa.heallifehospital.com/admin/admin/dashboard";
+        String actualUrl=driver.getCurrentUrl();
 
+        Assert.assertEquals(actualUrl,expectedUrl);
+    }
+
+    @And("Kullanici side navigation yer alan Radiology tab'ine tiklar")
+    public void kullaniciSideNavigationYerAlanRadiologyTabIneTiklar() {
+        adminDashboardPage.radiologyButton.click();
+
+    }
+
+    @And("Kullanici Radiology sayfasinin acildigini dogrular")
+    public void kullaniciRadiologySayfasininAcildiginiDogrular() {
+        ReusableMethods.wait(2);
+        String expectedUrl="https://qa.heallifehospital.com/admin/radio/gettestreportbatch";
+        String actualUrl=driver.getCurrentUrl();
+
+        Assert.assertEquals(actualUrl,expectedUrl);
+
+    }
 }
