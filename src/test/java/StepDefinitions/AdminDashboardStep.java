@@ -7,11 +7,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.AdminDashboardPage;
 import pages.LoginPage;
 import utilities.ConfigReader;
+import utilities.JSUtilities;
 import utilities.ReusableMethods;
 
 import java.util.ArrayList;
@@ -53,45 +55,30 @@ public class AdminDashboardStep {
     @Then("Yan menude asagidaki basliklarin mevcut oldugunu dogrular:")
     public void yan_menüde_aşağıdaki_linklerin_mevcut_olduğunu_doğrula(io.cucumber.datatable.DataTable dataTable) {
 
-        // Feature dosyasından gelen menü başlıklarını alın
-       // List<String> expectedMenuItems = dataTable.asList();
+        // Feature dosyasından gelen menü başlıkları
+        List<String> expectedMenuItems = dataTable.asList();
 
-        // Menü doğrulama metodunu çağır
-       //adminDashboardPage.validateMenuItems(driver, expectedMenuItems);
-      adminDashboardPage.kullanıcı_tüm_menü_başlıklarını_kontrol_eder();
+       // List<WebElement> menuItems = driver.findElements(By.cssSelector(".sidebar-menu li a span"));
 
+        List<WebElement> menuItems = new ArrayList<>();
+        menuItems.add(adminDashboardPage.DashboardMenu);
+        menuItems.add(adminDashboardPage.BillingMenu);
+        menuItems.add(adminDashboardPage.AppointmentMenu);
+        menuItems.add(adminDashboardPage.OPDMenu);
+        menuItems.add(adminDashboardPage.IPDMenu);
+        menuItems.add(adminDashboardPage.PharmacyMenu);
+        menuItems.add(adminDashboardPage.PathologyMenu);
+        menuItems.add(adminDashboardPage.RadiologyMenu);
+        menuItems.add(adminDashboardPage.BloodBankMenu);
+        menuItems.add(adminDashboardPage.AmbulanceMenu);
+        menuItems.add(adminDashboardPage.BirthDeathRecordMenu);
+        menuItems.add(adminDashboardPage.HumanResourceMenu);
+         List<String> menuString= ReusableMethods.getStringList(menuItems);
 
-
-
-        /*List<WebElement> menuItems = driver.findElements(By.cssSelector(".sidebar-menu li a span"));
-
-        // Menü başlıklarını konsola yazdır
-        System.out.println("Sol Menü Başlıkları:");
-        for (WebElement menuItem : menuItems) {
-            System.out.println("- " + menuItem.getText().trim());
-        }
-*/
-    }
-    @Then("Her linkin tiklanabilir oldugunu ve dogru sayfaya yönlendirildigini dogrular")
-    public void her_linkin_tıklanabilir_olduğunu_ve_doğru_sayfaya_yönlendirildiğini_doğrula() {
-        // Tüm <a href> linklerini almak
-        List<WebElement> links = driver.findElements(By.cssSelector("li.treeview > a"));
-
-        // Linklerin href değerlerini bir listeye ekleme
-        List<String> hrefList = new ArrayList<>();
-        for (WebElement link : links) {
-            String href = link.getAttribute("href"); // href değerini al
-            hrefList.add(href); // Listeye ekle
-        }
-
-        // Listeyi yazdır
-        System.out.println("Bulunan Linkler:");
-        for (String href : hrefList) {
-            System.out.println(href);
-        }
-
+        Assert.assertEquals(expectedMenuItems,menuString);
 
     }
+
 
 
     @And("Kullanici admin sayfasinda oldugunu dogrular")
@@ -118,4 +105,33 @@ public class AdminDashboardStep {
         Assert.assertEquals(actualUrl,expectedUrl);
 
     }
+
+    @Then("sayfayi Setup a kadar kaydirir ve yan menude asagidaki basliklarin mevcut oldugunu dogrular:")
+    public void sayfayiSetupAKadarKaydirirVeYanMenudeAsagidakiBasliklarinMevcutOldugunuDogrular(io.cucumber.datatable.DataTable dataTable) {
+        JSUtilities.scrollToElement(driver,adminDashboardPage.SetupMenu);
+        // Feature dosyasından gelen menü başlıkları
+        List<String> expectedMenuItems = dataTable.asList();
+        List<WebElement> menuItems = new ArrayList<>();
+        menuItems.add(adminDashboardPage.TPAManagementMenu);
+        menuItems.add(adminDashboardPage.MessagingMenu);
+        menuItems.add(adminDashboardPage.LiveConsultationMenu);
+        menuItems.add(adminDashboardPage.SetupMenu);
+        List<String> menuString= ReusableMethods.getStringList(menuItems);
+
+        Assert.assertEquals(expectedMenuItems,menuString);
+    }@Then("{string} basligina tikladigimda")
+    public void basligina_tikladigimda(String menuItem) {
+        WebElement menuElement =  driver.findElement(By.xpath("//span[normalize-space()='" + menuItem + "']"));
+       // menuElement.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", menuElement);
+
+    }
+    @Then("{string} basligina yonlendirilmeliyim")
+    public void basligina_yonlendirilmeliyim(String ExpectedPageUrl) {
+        String actualUrl = driver.getCurrentUrl();
+        Assert.assertTrue(actualUrl.contains(ExpectedPageUrl));
+    }
+
+
 }
