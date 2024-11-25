@@ -19,7 +19,9 @@ import org.junit.runner.RunWith;
 		},
 
 		monochrome =false,                         // Konsol çıktısını daha okunabilir hale getirir
-		tags ="@hurrem"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
+		tags =" @test"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
 
 		                    
 )
