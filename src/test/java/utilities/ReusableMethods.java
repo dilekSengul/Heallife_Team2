@@ -1,10 +1,12 @@
 package utilities;
 
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
+import pages.HomePage;
 import utilities.DriverManager;
 import org.apache.commons.io.FileUtils;
 
@@ -17,7 +19,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Function;
 
-public class ReusableMethods {
+public class
+ReusableMethods {
 
     public static String getScreenshot(String name) throws IOException {
         // naming the screenshot with the current date to avoid duplication
@@ -542,4 +545,55 @@ public class ReusableMethods {
         }
 
     }
+
+    public static void FooterAccessibility(String sayfa, Logger logger) {
+        Actions action = new Actions(DriverManager.getDriver());
+        action.sendKeys(Keys.PAGE_DOWN).perform();
+        HomePage homePage = new HomePage();
+        switch (sayfa) {
+            case "Gallery":
+                homePage.FooterGallery.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            case "About":
+                homePage.FooterAboutUs.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            case "Contact":
+                homePage.FooterContactUs.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            case "Academics":
+                homePage.FooterAcademics.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            default:
+                logger.error("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşmiyor!");
+        }
+    }
+
+    public static void HeaderAccessibility(String sayfa,Logger logger) {
+        HomePage homePage=new HomePage();
+        switch (sayfa) {
+            case "Gallery":
+                homePage.Gallery.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            case "About":
+                homePage.AboutUs.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            case "Contact":
+                homePage.ContactUs.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            case "Login":
+                homePage.Login.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            default:
+                logger.error("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşmiyor!");
+        }
+    }
+
 }

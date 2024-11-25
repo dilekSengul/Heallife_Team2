@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -7,14 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.DriverManager;
-import utilities.LoggerHelper;
-
-import java.sql.Driver;
 
 public class LoginStep {
     WebDriver driver = Hooks.getDriver();
@@ -22,7 +18,7 @@ public class LoginStep {
     LoginPage loginPage=new LoginPage();
 
     @Given("Kullanıcı Heal Life sitesine giriş yapar")
-    public void kullanıcı_heal_life_sitesine_giriş_yapar() {
+    public void kullanici_heal_life_sitesine_giris_yapar() {
         DriverManager.getDriver().get(ConfigReader.getProperty("HLadminUrl"));
     }
     @Then("Login sayfasinin sag tarafinda Admin Login penceresi görüntülenmeli")
@@ -179,9 +175,50 @@ public class LoginStep {
     }
 
 
+    //BAŞARILI PATIENT (USER) / ADMIN LOGIN STEPLERI
 
+        @Given("kullanici {string} adresine gider")
+        public void kullanici_adresine_gider(String url) {
+            driver.get(ConfigReader.getProperty(url));
+        }
 
+        @And("geçerli bir email adresi {string} ve sifre {string} girer")
+        public void gecerli_bir_email_adresi_ve_sifre_girer(String email, String sifre) {
+            loginPage.email.sendKeys(ConfigReader.getProperty(email));
+            loginPage.password.sendKeys(ConfigReader.getProperty(sifre));
+        }
 
+        @When("Sign In butonuna tıklar")
+        public void giris_butonuna_tiklar() {
+            loginPage.signInButton.click();
+        }
+        @Then("dashboard duzgun bir şekilde goruntulenir")
+        public void ana_sayfa_duzgun_bir_sekilde_goruntulenir() {
+            Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"));
+        }
+
+    @Then("Kullanıcı Heal Life sitesine giris yapar")
+    public void kullanıcıHealLifeSitesineGirisYapar() {
+        driver.manage().deleteAllCookies();
+        driver.get("https://qa.heallifehospital.com/site/login");
+    }
+
+    @And("Kulllanci Username bax icine admin adini giris yapar")
+    public void kulllanciUsernameBaxIcineAdminAdiniGirisYapar() {
+        loginPage.email.sendKeys(ConfigReader.getProperty("AdminMailLevent"));
+    }
+
+    @And("Kullanici password bolumune admin password girsi yapar")
+    public void kullaniciPasswordBolumuneAdminPasswordGirsiYapar() {
+        loginPage.password.sendKeys(ConfigReader.getProperty("Passwords"));
+    }
+
+    @And("Kullanici Signin Buttonu tiklar")
+    public void kullaniciSigninButtonuTiklar() {
+        loginPage.signInButton.click();
+    }
+
+    //Bu stepleri farklı feature'larda userDash girişi için standard background olarak kullanabiliriz.
 
 
 
