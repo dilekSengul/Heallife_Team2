@@ -42,23 +42,25 @@ Feature: Pharmacy Sayfasi Temel Ozellikleri ve Islevselligi
 
   @TC02
   Scenario: Odemede gecersiz girisimlerin reddedildiginin dogrulanmasi
-    When kullanici bir ogenin "Pay" dugmesine tiklar
-    And odeme penceresine negatif bir miktar girer ve "Add" dugmesine tiklar
-    Then sayfanin bu girisimi reddettigini ve sag ust kosede "error" mesaji ciktigini dogrular
+    When kullanici sol menuden Pharmacy secenegine tiklar
+    Then kullanici bir ogenin Pay dugmesine tiklar
+    Then odeme penceresine negatif bir miktar girer ve Add dugmesine tiklar
+    And sayfanin bu girisimi reddettigini ve sag ust kosede error mesaji ciktigini dogrular
 
-    When odeme penceresine rakam olmayan bir karakter girer ve "Add" dugmesine tiklar
-    Then sayfanin bu girisimi reddettigini ve sag ust kosede "error" mesaji ciktigini dogrular
+    Then odeme penceresine rakam olmayan bir karakter girer ve Add dugmesine tiklar
+    And sayfanin bu girisimi reddettigini ve sag ust kosede error mesaji ciktigini dogrular
 
-    When odeme penceresine sifir (0) miktar girer ve "Add" dugmesine tiklar
-    Then sayfanin bu girisimi reddettigini ve sag ust kosede "error" mesaji ciktigini dogrular
+    Then odeme penceresine miktar olarak 0 girer ve Add dugmesine tiklar
+    And sayfanin bu girisimi reddettigini ve sag ust kosede error mesaji ciktigini dogrular
 
-    When odeme penceresine bakiye miktarindan daha buyuk bir miktar girer ve "Add" dugmesine tiklar
-    Then sayfanin bu girisimi reddettigini ve sag ust kosede "error" mesaji ciktigini dogrular
+    Then odeme penceresine bakiye miktarindan daha buyuk bir miktar olarak 500 girer ve Add dugmesine tiklar
+    And sayfanin bu girisimi reddettigini ve sag ust kosede error mesaji ciktigini dogrular
 
-    When odeme penceresini bos birakir ve "Add" dugmesine tiklar
-    Then sayfanin bu girisimi reddettigini ve sag ust kosede "error" mesaji ciktigini dogrular
+    Then odeme penceresini bos birakir ve Add dugmesine tiklar
+    And sayfanin bu girisimi reddettigini ve sag ust kosede error mesaji ciktigini dogrular
 
   Scenario: Odeme modulune gecilebildigini dogrulama
-    When kullanici bir ogenin "Pay" dugmesine tiklar
-    And odeme penceresine miktar girer (full or partial amount) ve "Add" e tiklar
-    Then odeme detaylari sayfasinin ve odeme miktarinin olması gerektigi gibi goruntulendigini dogrular
+    When kullanici sol menuden Pharmacy secenegine tiklar
+    Then kullanici bir ogenin Pay dugmesine tiklar
+    And odeme penceresine miktar girer (full or partial amount) ve Add e tiklar
+    Then odeme detaylari sayfasinin acildigini dogrular

@@ -109,18 +109,16 @@ public class PatientPharmacyPage {
     @FindBy(xpath = "//*[@id='viewModal']/div/div/div[1]/button") // Show Window "X" button
     public WebElement showXbutton;
 
-    @FindBy(id = "locate") // Pay button
-    public WebElement payButton;
+    @FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[4]/td[9]/button") // Pay button
+    public WebElement firstPayButton;
 
-    @FindBy(id = "locate") // Payment input field
+    @FindBy(xpath = "//*[@id='amount_total_paid']") // Payment input field
     public WebElement paymentInput;
 
-    @FindBy(id = "locate") // Add button
+    @FindBy(xpath = "//*[@id='pay_button']") // Add button
     public WebElement addButton;
 
-    @FindBy(id = "locate") // Error message
+    @FindBy(xpath = "//*[@id='toast-container']/div/div") // Error message
     public WebElement errorMessage;
 
-    @FindBy(id = "locate") // Payment details confirmation
-    public WebElement paymentDetailsConfirmation;
 }

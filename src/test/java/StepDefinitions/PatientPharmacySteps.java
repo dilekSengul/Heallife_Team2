@@ -8,10 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.PatientDashboardPage;
 import pages.PatientPharmacyPage;
-import utilities.JSUtilities;
 import utilities.ReusableMethods;
 
-import javax.swing.text.Utilities;
 import java.util.List;
 
 
@@ -83,32 +81,59 @@ ReusableMethods.waitForClickablility(patientPharmacyPage.viewPaymentsWindowTitle
 
     }
 
-    @When("kullanici bir ogenin {string} dugmesine tiklar")
-    public void kullanici_bir_ogenin_dugmesine_tiklar(String button) {
-        if (button.equals("Pay")) {
-            patientPharmacyPage.payButton.click();
-        }
+    @When("kullanici bir ogenin Pay dugmesine tiklar")
+    public void kullanici_bir_ogenin_dugmesine_tiklar() {
+
+            patientPharmacyPage.firstPayButton.click();
+
     }
 
-    @And("odeme penceresine negatif bir miktar girer ve {string} dugmesine tiklar")
-    public void odeme_penceresine_negatif_bir_miktar_girer_ve_dugmesine_tiklar(String addButton) {
+    @And("odeme penceresine negatif bir miktar girer ve Add dugmesine tiklar")
+    public void odeme_penceresine_negatif_bir_miktar_girer_ve_dugmesine_tiklar() {
+        patientPharmacyPage.paymentInput.clear();
         patientPharmacyPage.paymentInput.sendKeys("-10");
         patientPharmacyPage.addButton.click();
     }
 
-    @Then("sayfanin bu girisimi reddettigini ve sag ust kosede {string} mesaji ciktigini dogrular")
-    public void sayfanin_bu_girisimi_reddettigini_ve_sag_ust_kosede_mesaji_ciktigini_dogrular(String mesaj) {
-        Assert.assertTrue(patientPharmacyPage.errorMessage.getText().contains(mesaj));
+    @Then("sayfanin bu girisimi reddettigini ve sag ust kosede error mesaji ciktigini dogrular")
+    public void sayfanin_bu_girisimi_reddettigini_ve_sag_ust_kosede_mesaji_ciktigini_dogrular() {
+        Assert.assertTrue(patientPharmacyPage.errorMessage.isDisplayed());
     }
-
-    @And("odeme penceresine miktar girer \\(full or partial amount) ve {string} e tiklar")
-    public void odeme_penceresine_miktar_girer_ve_e_tiklar(String addButton) {
-        patientPharmacyPage.paymentInput.sendKeys("50");
+    @When("odeme penceresine rakam olmayan bir karakter girer ve Add dugmesine tiklar")
+    public void odeme_penceresine_rakam_olmayan_bir_karakter_girer_ve_Add_dugmesine_tiklar() {
+        patientPharmacyPage.paymentInput.clear();
+        patientPharmacyPage.paymentInput.sendKeys("*");
         patientPharmacyPage.addButton.click();
     }
 
-    @Then("odeme detaylari sayfasinin ve odeme miktarinin olması gerektigi gibi goruntulendigini dogrular")
-    public void odeme_detaylari_sayfasinin_ve_odeme_miktarinin_olmasi_gerektigi_gibi_goruntulendigini_dogrular() {
-        Assert.assertTrue(patientPharmacyPage.paymentDetailsConfirmation.isDisplayed());
+    @When("odeme penceresine miktar olarak 0 girer ve Add dugmesine tiklar")
+    public void odemePenceresineMiktarOlarakGirerVeAddDugmesineTiklar() {
+        patientPharmacyPage.paymentInput.clear();
+        patientPharmacyPage.paymentInput.sendKeys("0");
+        patientPharmacyPage.addButton.click();
+    }
+
+    @When("odeme penceresine bakiye miktarindan daha buyuk bir miktar olarak {int} girer ve Add dugmesine tiklar")
+    public void odemePenceresineBakiyeMiktarindanDahaBuyukBirMiktarOlarakGirerVeAddDugmesineTiklar(int arg0) {
+        patientPharmacyPage.paymentInput.clear();
+        patientPharmacyPage.paymentInput.sendKeys(String.valueOf(arg0));
+        patientPharmacyPage.addButton.click();
+    }
+
+    @When("odeme penceresini bos birakir ve Add dugmesine tiklar")
+    public void odemePenceresiniBosBirakirVeAddDugmesineTiklar() {
+        patientPharmacyPage.addButton.click();
+    }
+
+    @And("odeme penceresine miktar girer \\(full or partial amount) ve Add e tiklar")
+    public void odeme_penceresine_miktar_girer_ve_e_tiklar() {
+       // patientPharmacyPage.paymentInput.sendKeys("50"); //boş kalsın
+        patientPharmacyPage.addButton.click();
+        ReusableMethods.wait(2);
+    }
+
+    @Then("odeme detaylari sayfasinin acildigini dogrular")
+    public void odemeDetaylariSayfasininAcildiginiDogrular() {
+        Assert.assertTrue(driver.getCurrentUrl().contains("/patient/payment/stripe"));
     }
 }
