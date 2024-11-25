@@ -29,3 +29,8 @@ Feature: Doktor paneli Ana sayfası özellikleri
 
 
 
+
+
+
+
+

@@ -24,6 +24,8 @@ public class DoctorStep {
     public void doktor_geçerli_url_ile_giriş_yapar() {
         DriverManager.getDriver().get(ConfigReader.getProperty("HLadminUrl"));
 
+
+
     }
     @Then("Gecerli User Name girer")
     public void gecerli_user_name_girer() {
