@@ -14,12 +14,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pages.LoginPage;
+import pages.PatientDashboardPage;
 import pages.PatientPage;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class PatientStep {
     WebDriver driver = Hooks.getDriver();
@@ -27,7 +28,7 @@ public class PatientStep {
     PatientPage page = new PatientPage(); // Page Object sınıfınız
     LoginPage loginPage = new LoginPage();
     Faker faker = new Faker();
-
+    PatientDashboardPage patientDashboardPage=new PatientDashboardPage();
 
     @Given("Kullanici anasayfaya gider")
     public void kullanici_anasayfaya_gider() {
@@ -149,7 +150,7 @@ public class PatientStep {
     }
 
     // US_026-TC_01
-    // Hasta giriş adımı
+    // Hasta giriş adımı-Özet bilgi panellerinin görünürlüğünü ve işlevselliğini doğrulama
     @Given("loginButton'una tıklayarak kullanıcı adı ve şifresi ile hasta olarak giriş yapar")
     public void login_button_una_tıklayarak_kullanıcı_adı_ve_şifresi_ile_hasta_olarak_giriş_yapar() {
         loginPage.hastaLogin();
@@ -160,33 +161,83 @@ public class PatientStep {
     @Then("Kullanıcı aşağıdaki özet bilgi panellerinin hasta dashboard'da mevcut olduğunu doğrular ve her birine tıklayıp ilgili sayfaya gider")
     public void kullanıcı_aşağıdaki_özet_bilgi_panellerinin_hasta_dashboard_da_mevcut_olduğunu_doğrular_ve_her_birine_tıklayıp_ilgili_sayfaya_gider(io.cucumber.datatable.DataTable dataTable) {
 
-        // Paneller ve ilgili URL'lerin eşleştirilmesi
-        Map<String, String> boardUrls = new HashMap<>();
-        boardUrls.put("OPD", "https://qa.heallifehospital.com/patient/dashboard/profile");
-        boardUrls.put("IPD", "https://qa.heallifehospital.com/patient/dashboard/patientipddetails");
-        boardUrls.put("Pharmacy", "https://qa.heallifehospital.com/patient/dashboard/pharmacybill");
-        boardUrls.put("Pathology", "https://qa.heallifehospital.com/patient/dashboard/pathology");
-        boardUrls.put("Radiology", "https://qa.heallifehospital.com/patient/dashboard/radiology");
-        boardUrls.put("Ambulance", "https://qa.heallifehospital.com/patient/dashboard/ambulance");
-        boardUrls.put("Blood Bank", "https://qa.heallifehospital.com/patient/dashboard/bloodbank");
-        boardUrls.put("Live Consultation", "https://qa.heallifehospital.com/patient/dashboard/liveconsult");
+
         // Her bir özet panelinin görünür olduğunu doğrulama
         for (String boardName : dataTable.asList()) {
-            WebElement board = page.getBoardElementByName(boardName);  // Panelleri almak için yardımcı metod çağrılıyor
+            WebElement board = patientDashboardPage.getBoardElementByName(boardName);  // Panelleri almak için yardımcı metod çağrılıyor
             Assert.assertTrue(boardName + " paneli görüntülenmiyor.", board.isDisplayed());  // Panelin görünür olduğunu doğruluyor
 
             // Panelleri tıklama ve yönlendirilen sayfayı doğrulama
             board.click();
+            ReusableMethods.wait(1);
             String currentUrl = driver.getCurrentUrl();  // Mevcut URL alınıyor
+            // Mevcut URL'nin beklenen URL ile eşleştiğini doğrulama
+            Assert.assertTrue(
+                boardName + " için yanlış sayfaya yönlendirilmiş. Beklenen: " + patientDashboardPage.getBoardUrls().get(boardName) + ", Mevcut: " + currentUrl, // Hata mesajı
+                currentUrl.equals(patientDashboardPage.getBoardUrls().get(boardName)));
 
 
-            //Assert.assertTrue( boardName + " için yanlış sayfaya yönlendirilmiş.",currentUrl,boardUrls.get(boardName));
-            //Assert.assertEquals(currentUrl, boardUrls.get(boardName), boardName + " için yanlış sayfaya yönlendirilmiş."); // Doğru URL ile karşılaştırma yapılıyor
-           // Assert.assertTrue(boardName + " için yanlış sayfaya yönlendirilmiş. Beklenen: " + boardUrls.get(boardName) + ", Mevcut: " + currentUrl, currentUrl.equals(boardUrls.get(boardName)));
+            // Dashboard sayfasına geri dön
+            driver.navigate().back();
+
+
         }
+    }
 
+    // HATA VAR US_026-TC_02-Medical History grafiğinin görünürlüğünü ve değerlerini doğrula HATA VAR
+    @Then("Dashboard sayfasının gövdesinde {string} başlıklı bir grafik bulunduğunu doğrular")
+    public void dashboard_sayfasının_gövdesinde_başlıklı_bir_grafik_bulunduğunu_doğrular(String string) {
+        patientDashboardPage.medicalHistoryGraph.isDisplayed();
+    }
+
+    @Then("Aşağıdaki değerlerin grafikte yer aldığını kontrol eder:")
+    public void aşağıdaki_değerlerin_grafikte_yer_aldığını_kontrol_eder(io.cucumber.datatable.DataTable dataTable) {
+        // Değerleri liste olarak al
+        List<String> expectedValues = dataTable.asList();
+
+        for (String value : expectedValues) {
+            WebElement valueElement = getValueElementByName(value);  // Helper method to return the correct element based on value
+            Assert.assertTrue(value + " değeri grafikte yer almıyor.", valueElement.isDisplayed());
+
+
+        }
+    }
+
+    // Yardımcı metod, doğru elementi seçer
+    public WebElement getValueElementByName(String value) {
+        switch (value) {
+            case "OPD":
+                return patientDashboardPage.opdValue;
+            case "IPD":
+                return patientDashboardPage.ipdValue;
+            case "Pharmacy":
+                return patientDashboardPage.pharmacyValue;
+            case "Pathology":
+                return patientDashboardPage.pathologyValue;
+            case "Radiology":
+                return patientDashboardPage.radiologyValue;
+            case "Blood Bank":
+                return patientDashboardPage.bloodBankValue;
+            case "Ambulance":
+                return patientDashboardPage.ambulanceValue;
+            default:
+                throw new NoSuchElementException("Değer için element bulunamadı: " + value);
+        }
+    }
+
+    // US_026-TC_03
+
+    @When("Belirtiler  için özet grafiklerin sayfada mevcut olduğunu doğrular")
+    public void belirtiler_için_özet_grafiklerin_sayfada_mevcut_olduğunu_doğrular() {
+        Assert.assertTrue("Belirtiler için özet grafik sayfada mevcut değil!", patientDashboardPage.belirtilerGrafik.isDisplayed());
+    }
+
+    @Then("Semptomlar için özet grafiklerin sayfada mevcut olduğunu doğrular")
+    public void semptomlar_için_özet_grafiklerin_sayfada_mevcut_olduğunu_doğrular() {
+        Assert.assertTrue("Semptomlar için özet grafik sayfada mevcut değil!", patientDashboardPage.semptomlarGrafik.isDisplayed());
 
     }
+
 
 }
 
