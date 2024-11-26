@@ -7,14 +7,17 @@ Feature: Verify footer and social media links functionality
     And Kullanıcı ana sayfanın footer bölümüne kaydırır
     And Kullanıcı sosyal medya ikonu Facebook'un görünür olduğunu doğrular
 
+
   Scenario: TC_02 Sosyal medya ikonlarının ilgili hesaplara yönlendirdiğinin doğrulanması testi
     Given Kullanıcı HLurl adresini ziyaret eder
     And Kullanıcı ana sayfanın footer bölümüne kaydırır
-    Then Facebook ikonuna tıklar
+    And Facebook ikonuna tıklar
     And Twitter ikonuna tıklar
     And YouTube ikonuna tıklar
     And Google ikonuna tıklar
     And LinkedIn ikonuna tıklar
     And Kullanıcı Instagram ikonuna tıklar
     And Kullanıcı Pinterest ikonuna tıklar
+
+
 
