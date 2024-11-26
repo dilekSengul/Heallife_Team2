@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class
 ReusableMethods {
@@ -602,6 +603,38 @@ ReusableMethods {
                 logger.error("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşmiyor!");
         }
     }
+    public static boolean isSortedAscending(List<WebElement> elements) {
+        try {
+            List<String> actualList = elements.stream()
+                    .map(WebElement::getText)
+                    .map(String::trim)
+                    .collect(Collectors.toList());
 
+            List<String> sortedList = new ArrayList<>(actualList);
+            Collections.sort(sortedList);
+
+            return actualList.equals(sortedList); // Artan sırayı kontrol eder
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean isSortedDescending(List<WebElement> elements) {
+        try {
+            List<String> actualList = elements.stream()
+                    .map(WebElement::getText)
+                    .map(String::trim)
+                    .collect(Collectors.toList());
+
+            List<String> sortedList = new ArrayList<>(actualList);
+            sortedList.sort(Collections.reverseOrder());
+
+            return actualList.equals(sortedList); // Azalan sırayı kontrol eder
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

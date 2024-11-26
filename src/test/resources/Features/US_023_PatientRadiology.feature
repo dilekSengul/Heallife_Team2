@@ -1,16 +1,21 @@
 Feature: Radiology Test Reports Page
 
-Scenario: Kullanıcı(hasta) https://heallifehospital.com adresine username ve password ile giris yapabilmelidir.
+#Scenario: Kullanıcı(hasta) https://heallifehospital.com adresine username ve password ile giris yapabilmelidir.
 
+  Background: Kullanici sisteme giris yapar.
   Given kullanici URL'i acar
   And kullanıcı "{string}" ve "{string}" ile giriş yapar
+  When Sign In butonuna tıklanır
+
+  Then dashboard duzgun bir şekilde goruntuler
 
 
-Scenario: Radyoloji menüusunun Radyology Test Reports List sayfasina yonlendirdigi doğrulanmalidir.
-  When Kullanici (hasta) "Radyoloji" menu secenegine tiklar
-  Then "Radiolagy Test Reports List" sayfasinşn goruntulendigini dogrular
+Scenario: Radyoloji menusunun Radiology Test Reports List sayfasina yonlendirdigi doğrulanmalidir.
+ # When Kullanici (hasta) "Radiology" menu secenegine tiklar
+  When kullanici sol menuden Radiology secenegine tiklar
+  Then "Radiolagy Test Reports List" sayfasinin goruntulendigini dogrular
 
-  Scenario: Radyology Test Reports List sayfasinda gerekli baslıkların goruntulendigi dogrulanmalidir
+  Scenario: Radyology Test Reports List ,sayfasinda gerekli baslıkların goruntulendigi dogrulanmalidir
     Given hasta Radyology Test Reports List sayfasına gider
     Then asagidaki baslıklarin gorunur oldugunu dogrular
 
