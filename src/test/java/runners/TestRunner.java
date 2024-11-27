@@ -20,13 +20,12 @@ import org.junit.runner.RunWith;
 
 		monochrome =false,                         // Konsol çıktısını daha okunabilir hale getirir
 
-		tags ="@hurrem"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
+		tags =" @test"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
+	                         // Yalnızca belirtilen etiketli senaryolar çalıştırılır
 
 
-
-
-
-		                    
 )
 public class TestRunner {
 	private static final Logger logger = LogManager.getLogger(TestRunner.class);

@@ -18,17 +18,16 @@ public class HomePage {
     }
 
 
-
     // [Header] - Lastest News - Kayan Yazı
     @FindBy(xpath = "//marquee/ul/li[1]/a/div")
     public WebElement lastestNewsKayanYaziIcerik;
 
     // [Header] - Header-Navbar elementleri
-        //Locator
+    //Locator
     @FindBy(xpath = "//*[@id='navbar-collapse-3']/ul/li")
     public List<WebElement> navbarElements; // Tüm <li> elementlerini listeler.
 
-        //String Çağırma Metodu
+    //String Çağırma Metodu
     public List<String> getNavbarElements() {
         List<String> navbarLi = new ArrayList<>();
         for (WebElement header : navbarElements) {
@@ -36,7 +35,6 @@ public class HomePage {
         }
         return navbarLi;
     }
-
 
 
     // [Header] - [Home] bölümünün elementleri
@@ -168,28 +166,28 @@ public class HomePage {
 
     // [Header] - [Gallery] bölümünün elementleri
 
-    @FindBy (xpath = "(//a[normalize-space()='Gallery'])[1]")
+    @FindBy(xpath = "(//a[normalize-space()='Gallery'])[1]")
     public WebElement Gallery;
 
-    @FindBy (xpath = "//h2[normalize-space()='Gallery']")
+    @FindBy(xpath = "//h2[normalize-space()='Gallery']")
     public WebElement GalleryTitle;
 
-    @FindBy (xpath = "//h1[normalize-space()='Health & Wellness']")
+    @FindBy(xpath = "//h1[normalize-space()='Health & Wellness']")
     public WebElement GallerySubTitle1;
 
-    @FindBy (xpath = "//h1[normalize-space()='Hospitals and Directions']")
+    @FindBy(xpath = "//h1[normalize-space()='Hospitals and Directions']")
     public WebElement GallerySubTitle2;
 
-    @FindBy (xpath = "//h1[normalize-space()='Specialities']")
+    @FindBy(xpath = "//h1[normalize-space()='Specialities']")
     public WebElement GallerySubTitle3;
 
-    @FindBy (xpath = "//h1[normalize-space()='Recreation Centre']")
+    @FindBy(xpath = "//h1[normalize-space()='Recreation Centre']")
     public WebElement GallerySubTitle4;
 
-    @FindBy (xpath = "//h1[normalize-space()='Your Health']")
+    @FindBy(xpath = "//h1[normalize-space()='Your Health']")
     public WebElement GallerySubTitle5;
 
-    @FindBy (xpath = "//h1[normalize-space()='Surgery']")
+    @FindBy(xpath = "//h1[normalize-space()='Surgery']")
     public WebElement GallerySubTitle6;
 
     // [Header] - [Login] bölümünün elementleri
@@ -200,13 +198,13 @@ public class HomePage {
 
     // [Footer] - [Copyright] bölümünün elementleri
 
-    @FindBy (xpath = "(//*[text()='Contact Us'])[2]")
+    @FindBy(xpath = "(//*[text()='Contact Us'])[2]")
     public WebElement FooterContactUs;
 
-    @FindBy (xpath = "(//*[text()='About'])[1]")
+    @FindBy(xpath = "(//*[text()='About'])[1]")
     public WebElement FooterAboutUs;
 
-    @FindBy (xpath = "(//a[normalize-space()='Gallery'])[2]")
+    @FindBy(xpath = "(//a[normalize-space()='Gallery'])[2]")
     public WebElement FooterGallery;
 
     @FindBy(xpath = "(//*[text()='Home'])[2]")
@@ -215,10 +213,60 @@ public class HomePage {
     @FindBy(xpath = "(//*[text()='Academics'])[1]")
     public WebElement FooterAcademics;
 
-    @FindBy (xpath = "//*[@class='eventbox']")
+    @FindBy(xpath = "//*[@class='eventbox']")
     public List<WebElement> GalleryResimler;
 
-    @FindBy (xpath = "//*[@class='evcontentfix']")
+    @FindBy(xpath = "//*[@class='evcontentfix']")
     public List<WebElement> GalleryBasliklar;
+
+
+
+    // [Body] - [Bilgi Boardları] bölümünün elementleri
+
+    @FindBy (xpath = "//*[@class='featurebox1']")
+    public WebElement InsurancePlans;
+
+    @FindBy (xpath = "(//*[@class='morebtn'])[1]")
+    public WebElement ReadMoreInsurancePlans;
+
+    @FindBy (xpath = "(//*[text()='Insurance Plans'])[2]")
+    public WebElement BaslikInsurancePlans;
+
+    @FindBy (xpath = "//*[@class='featurebox2']")
+    public WebElement PediatricServices;
+
+    @FindBy (xpath = "(//*[@class='morebtn'])[2]")
+    public WebElement ReadMorePediatricServices;
+
+    @FindBy (xpath = "//*[text()='Our Pediatric Services:']")
+    public WebElement BaslikPediatricServices;
+
+    @FindBy (xpath = "//*[@class='featurebox3']")
+    public WebElement LabTesting;
+
+    @FindBy (xpath = "(//*[@class='morebtn'])[3]")
+    public WebElement ReadMoreLabTesting;
+
+    @FindBy (xpath = "//*[text()='Lab Testing Services:']")
+    public WebElement BaslikLabTesting;
+
+
+    // [Body] - [Featured Services] bölümünün elementleri
+
+    @FindBy (xpath = "//*[text()='Featured Services']")
+    public WebElement FeaturedServicesYazisi;
+
+    @FindBy (xpath = "//*[text()='Nurse-to-Resident Ratio']")
+    public WebElement FSbirinciBaslik;
+
+    @FindBy (xpath = "//*[text()='Emergency Help']")
+    public WebElement FSikinciBaslik;
+
+    @FindBy (xpath = "//*[text()='Onsite Medical Staff']")
+    public WebElement FSucuncuBaslik;
+
+    @FindBy (xpath = "//*[text()='Communication All Parties']")
+    public WebElement FSdorduncuBaslik;
+
 
 }

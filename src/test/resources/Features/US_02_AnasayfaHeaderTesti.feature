@@ -1,6 +1,6 @@
 @US02
 
-Feature: Homepage Top Bar Functionality
+Feature: Anasayfa Header Testleri
 
   @TC01
   Scenario: Header'daki elementlerin gorunurlugunu dogrulama
