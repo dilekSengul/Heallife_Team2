@@ -18,7 +18,11 @@ import org.openqa.selenium.WebElement;
 import pages.AdminDashboardPage;
 import utilities.JSUtilities;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
 
 
 public class DoctorStep {
@@ -45,7 +49,7 @@ public class DoctorStep {
     }
     @Then("navbar altinda post mesajlari bölümü oldugu dogrulanir")
     public void navbar_altinda_post_mesajlari_bölümü_oldugu_dogrulanir() {
-        Assert.assertTrue("Doktor paneli mesaj bölümü görüntülenir",doctorPage.mesajBolumu.isDisplayed());
+        assertTrue("Doktor paneli mesaj bölümü görüntülenir",doctorPage.mesajBolumu.isDisplayed());
     }
 
     @Then("takvim bolumune gelinir")
@@ -241,6 +245,85 @@ public class DoctorStep {
     public void doktor_sayfasında_dashboard_side_bar_daki_menüler_dogru_sayfaya_ulmaşmalı() {
 
     }
+
+
+    @Then("calisan sayisi bolumune gelinir")
+    public void calisan_sayisi_bolumune_gelinir() {
+        Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+
+    }
+    @Then("accountant in {int} oldugu dogrulanir")
+    public void accountant_in_oldugu_dogrulanir(Integer int1) {
+        String actualNumberText=doctorPage.accountantNumber.getText();
+        Integer actualNumber=Integer.parseInt(actualNumberText);
+        Assert.assertEquals("Accountant sayisi dogru",int1,actualNumber);
+
+
+    }
+    @Then("doctor un {int} oldugu dogrulanir")
+    public void doctor_un_oldugu_dogrulanir(Integer int1) {
+
+        String actualNumberText=doctorPage.doctorNumber.getText();
+        Integer actualNumber=Integer.parseInt(actualNumberText);
+        Assert.assertEquals("Doctor sayisi dogru",int1,actualNumber);
+    }
+    @Then("pharmacist in {int} oldugu dogrulanir")
+    public void pharmacist_in_oldugu_dogrulanir(Integer int1) {
+
+        String actualNumberText=doctorPage.pharmacistNumber.getText();
+        Integer actualNumber=Integer.parseInt(actualNumberText);
+        Assert.assertEquals("Phamacist sayisi dogru",int1,actualNumber);
+    }
+    @Then("pathologist in {int} oldugu dogrulanir")
+    public void pathologist_in_oldugu_dogrulanir(Integer int1) {
+        String actualNumberText=doctorPage.pathologistNumber.getText();
+        Integer actualNumber=Integer.parseInt(actualNumberText);
+        Assert.assertEquals("Pathologist sayisi dogru",int1,actualNumber);
+    }
+    @Then("radiologist in {int} oldugu dogrulanir")
+    public void radiologist_in_oldugu_dogrulanir(Integer int1) {
+        String actualNumberText=doctorPage.radiologistNumber.getText();
+        Integer actualNumber=Integer.parseInt(actualNumberText);
+        Assert.assertEquals("Radiologist sayisi dogru",int1,actualNumber);
+    }
+    @Then("super admin in {int} oldugu dogrulanir")
+    public void super_admin_in_oldugu_dogrulanir(Integer int1) {
+        String actualNumberText=doctorPage.superAdminNumber.getText();
+        Integer actualNumber=Integer.parseInt(actualNumberText);
+        Assert.assertEquals("Super Admin sayisi dogru",int1,actualNumber);
+    }
+    @Then("receptionist in {int} oldugu dogrulanir")
+    public void receptionist_in_oldugu_dogrulanir(Integer int1) {
+        String actualNumberText=doctorPage.receptionistNumber.getText();
+        Integer actualNumber=Integer.parseInt(actualNumberText);
+        Assert.assertEquals("Receptionist sayisi dogru",int1,actualNumber);
+    }
+    @Then("Nurse in {int} oldugu dogrulanir")
+    public void nurse_in_oldugu_dogrulanir(Integer int1) {
+        String actualNumberText=doctorPage.nurseNumber.getText();
+        Integer actualNumber=Integer.parseInt(actualNumberText);
+        Assert.assertEquals("Nurse sayisi dogru",int1,actualNumber);
+        logger.info("çalışan sayilari dogrulandi");
+    }
+    @Then("kullanici doctor a tiklar")
+    public void kullanici_doctor_a_tiklar() {
+        doctorPage.doctorText.click();
+    }
+    @Then("human resources sayfasina yönlendirdigi test edilir")
+    public void human_resources_sayfasina_yönlendirdigi_test_edilir() {
+        String currentURL=driver.getCurrentUrl();
+
+        if (currentURL.contains("staff")) {
+            logger.info("Yönlendirme başarılı. Mevcut URL: " + currentURL);
+        } else {
+            logger.error("Yönlendirme başarısız! Mevcut URL: " + currentURL);
+        }
+
+        // Human Resources sayfasına yönlendirme başarılı mı?
+        assertTrue("Human Resources sayfasına yönlendirilmedi!", currentURL.contains("staff"));
+    }
+
 
 
 }
