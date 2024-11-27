@@ -20,7 +20,11 @@ import org.junit.runner.RunWith;
 
 		monochrome =false,                         // Konsol çıktısını daha okunabilir hale getirir
 
-		tags ="@test"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
+		tags =" @test"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
+	                         // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
 
 )
 public class TestRunner {

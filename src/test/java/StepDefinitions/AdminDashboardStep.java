@@ -126,7 +126,6 @@ public class AdminDashboardStep {
     @Then("{string} basligina tikladigimda")
     public void basligina_tikladigimda(String menuItem) {
         WebElement menuElement = driver.findElement(By.xpath("//span[normalize-space()='" + menuItem + "']"));
-        // menuElement.click();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", menuElement);
 
