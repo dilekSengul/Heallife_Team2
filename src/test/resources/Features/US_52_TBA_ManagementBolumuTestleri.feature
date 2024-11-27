@@ -1,4 +1,4 @@
-@us52
+@US52
 
 Feature: TPA Management Sayfası Temel Özellikleri ve İşlevselliği
 
