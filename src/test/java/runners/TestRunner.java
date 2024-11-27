@@ -21,8 +21,8 @@ import org.junit.runner.RunWith;
                                     // Konsol çıktısını daha okunabilir hale getirir
 		                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
 
-		monochrome =true,                         // Konsol çıktısını daha okunabilir hale getirir
-		tags ="@hurrem"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+		monochrome =false,                         // Konsol çıktısını daha okunabilir hale getirir
+		tags ="@test"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
 
 
 		                    
