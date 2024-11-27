@@ -142,5 +142,10 @@ public class HomePage {
            // Assert.assertTrue("Doktor fotoğrafı görünüyor!", doktorFoto.isDisplayed());
 
     }
+
     }
+
+    @FindBy(xpath = "//img[@src='https://qa.heallifehospital.com/uploads/gallery/media/slider2.jpg']")
+    public WebElement anaSayfaSliderImage;
+
 }

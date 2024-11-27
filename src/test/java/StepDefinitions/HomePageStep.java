@@ -182,4 +182,30 @@ public class HomePageStep {
     @And("Her bir doktor için aşağıdaki bilgiler görünür olmalı:")
     public void herBirDoktorIçinAşağıdakiBilgilerGörünürOlmalı() {
     }
+
+    @Given("Kullanici websitesi URL'ini kullanarak ana sayfaya gider")
+    public void kullanici_websitesi_url_ini_kullanarak_ana_sayfaya_gider() {
+
+        driver.get(ConfigReader.getProperty("HLurl"));
+
+    }
+    @When("Kullanıcı ana sayfadaki slider'i göruntuler")
+    public void kullanıcı_ana_sayfadaki_slider_i_göruntuler() {
+        Assert.assertTrue(homePage.anaSayfaSliderImage.isDisplayed());
+
+    }
+
+    @And("Kullanici ana sayfada slider'da otomatik olarak degisen resimleri goruntuler")
+    public void kullaniciAnaSayfadaSliderDaOtomatikOlarakDegisenResimleriGoruntuler() {
+        
+    }
+
+    @When("Kullanici ana sayfada slider gecis ikonuna tiklar")
+    public void kullaniciAnaSayfadaSliderGecisIkonunaTiklar() {
+        
+    }
+
+    @And("Kullanici bu ikona tiklayarak tum gorselleri manuel olarak degistigini gozlemler")
+    public void kullaniciBuIkonaTiklayarakTumGorselleriManuelOlarakDegistiginiGozlemler() {
+    }
 }

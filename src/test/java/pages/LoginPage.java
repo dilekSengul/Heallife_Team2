@@ -94,4 +94,13 @@ public class LoginPage {
         signInButton.click();
     }
 
+
+
+    public void ugurAdminLogin(){
+
+
+
+
+    }
+
 }
