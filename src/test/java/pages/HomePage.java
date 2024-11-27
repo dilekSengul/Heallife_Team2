@@ -219,5 +219,11 @@ public class HomePage {
     @FindBy(xpath = "//*[@class='evcontentfix']")
     public List<WebElement> GalleryBasliklar;
 
+    @FindBy(xpath = "//*[@id='bootstrap-touch-slider']/div/div/img")
+    public List<WebElement> sliderImageList;
+
+    @FindBy(xpath = "//*[@id='bootstrap-touch-slider']/a[2]")
+    public WebElement sliderForwardButton;
+
 
 }

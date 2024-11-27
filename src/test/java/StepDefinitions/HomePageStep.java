@@ -207,17 +207,22 @@ public class HomePageStep {
 
     @And("Kullanici ana sayfada slider'da otomatik olarak degisen resimleri goruntuler")
     public void kullaniciAnaSayfadaSliderDaOtomatikOlarakDegisenResimleriGoruntuler() {
-        
-    }
 
-    @When("Kullanici ana sayfada slider gecis ikonuna tiklar")
-    public void kullaniciAnaSayfadaSliderGecisIkonunaTiklar() {
-        
+        for (WebElement image : homePage.sliderImageList) {
+                Assert.assertTrue(image.isDisplayed());
+                ReusableMethods.wait(10);
+            }
+
     }
 
     @And("Kullanici bu ikona tiklayarak tum gorselleri manuel olarak degistigini gozlemler")
     public void kullaniciBuIkonaTiklayarakTumGorselleriManuelOlarakDegistiginiGozlemler() {
 
+        for (WebElement image : homePage.sliderImageList) {
+            ReusableMethods.waitForVisibility(image,10);
+            Assert.assertTrue(image.isDisplayed());
+            homePage.sliderForwardButton.click();
+        }
     }
 
     @Given("Kullanıcı {string} sitesine gider")
@@ -478,6 +483,8 @@ public class HomePageStep {
         Assert.assertEquals("Contact Us sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
 
     }
+
+
 }
 
 
