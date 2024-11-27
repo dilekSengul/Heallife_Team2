@@ -8,4 +8,6 @@ public class DoctorOPDStep {
     WebDriver driver = Hooks.getDriver();
     private static final Logger logger = LogManager.getLogger(DoctorOPDStep.class);
 
+
+
 }
