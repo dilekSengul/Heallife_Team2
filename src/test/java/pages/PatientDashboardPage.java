@@ -24,6 +24,7 @@ public class PatientDashboardPage {
     @FindBy(xpath = "(//*[@class='treeview '])[2]")
     public WebElement myAppointmentsdBoard;
 
+
     @FindBy(xpath = "//*[@class='fas fa-stethoscope']")
     public WebElement opdBoard;
 

@@ -72,4 +72,83 @@ public class PatientPage {
     public List<String> footerElementLists;
 
 
+   //// Patient Radiology Sayfası  ////
+
+    // Patient Dashboard'da Radiology Butonu
+    @FindBy(xpath = "//*[@class='fas fa-microscope']")
+    public WebElement PatientDashboardRadiologyButton;
+
+    // Patient Dashboard'da Ambulance Butonu
+    @FindBy(xpath = "https://qa.heallifehospital.com/patient/dashboard/ambulance'])[1]")
+    public WebElement PatientAmbulanceButton;
+
+    // Patient Radiology Test Report Yazısı
+    @FindBy(xpath = "*[@class='box-title titlefix']")
+    public WebElement RadiologyTestReportText;
+
+    // Bill No Başlığı
+    @FindBy(xpath = "*[@class='sorting'])[1]")
+    public WebElement BillNo;
+
+    // Case ID Başlığı
+    @FindBy(xpath = "*[@class='sorting'])[2]")
+    public WebElement CaseID;
+
+    // Reporting Date Baslığı
+    @FindBy(xpath = "*[@class='sorting'])[3]")
+    public WebElement ReportingDate;
+
+    // Referance Doctor Başlığı
+    @FindBy(xpath = "*[@class='sorting'])[4]")
+    public WebElement ReferanceDoctor;
+
+    // Not Başlığı
+    @FindBy(xpath = "*[@class='sorting'])[5]")
+    public WebElement NotHeader;
+
+    // Amount Başlığı
+    @FindBy(xpath = "*[@class='text-right sorting'])[1]")
+    public WebElement AmountHeader;
+
+    // Paid Amounts Başlığı
+    @FindBy(xpath = "*[@class='text-right sorting'])[2] ")
+    public WebElement PaidAmountHeader;
+
+    // Balance Amounts Başlığı
+    @FindBy(xpath = "*[@class='text-right sorting'])[3] ")
+    public WebElement BalanceAmountHeader;
+
+    // Action Başlığı
+    @FindBy(xpath = "*[@class='text-right noExport sorting' ")
+    public WebElement ActionHeader;
+
+    // Action Başlığı Altında View Payments Butonu
+    @FindBy(xpath = "*[@class='fa fa-money'")
+    public WebElement ViewPaymentsButton;
+
+    // Action Başlığı Altında View Reports Butonu
+    @FindBy(xpath = "*[@class='btn btn-default btn-xs view_detail'])[1]")
+    public WebElement ViewReportsButton;
+
+    // Action Başlığı Altında Pay Butonu
+    @FindBy(xpath = "*[@class='btn btn-primary btn-xs'])[1]")
+    public WebElement PayButton;
+
+    // Action Başlığı Altında  Search Butonu
+    @FindBy(xpath = "*[@type='search']")
+    public WebElement SearchButton;
+
+    // Radyolojy Test Raport listelenen kayıt sayısı texti
+    @FindBy(xpath = "*[@class='dataTables_info']")
+    public WebElement ListelenenKAyitSayisiText;
+
+
+    // Dashboard texti
+    @FindBy(xpath = "*[text()=' Dashboard']")
+    public WebElement DashboardText;
+
+
+
+
+
 }

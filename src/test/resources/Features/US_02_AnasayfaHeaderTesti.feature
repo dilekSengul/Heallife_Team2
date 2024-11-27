@@ -1,11 +1,11 @@
 @US02
 
-Feature: Homepage Top Bar Functionality
+Feature: Anasayfa Header Testleri
 
   @TC01
-  Scenario: Verify visibility of elements in the top bar
-    Given kullanici ana sayfayi acar
-    Then "Latest News" bilgisinin ust barda kayan bir yazi olarak gorunur oldugunu dogrular
+  Scenario: Header'daki elementlerin gorunurlugunu dogrulama
+    Given Kullanıcı "HLurl" sitesine gider
+    Then Latest News bilgisinin ust barda kayan bir yazi olarak gorunur oldugunu dogrular
     And sitenin logosunun ust barda gorundugunu dogrular
     And ust barda asagidaki menu ogelerinin gorundugunu dogrular:
       | Home        |
@@ -15,17 +15,15 @@ Feature: Homepage Top Bar Functionality
       | Gallery     |
       | Contact Us  |
 
-  Scenario: Verify site logo functionality
-    Given kullanici ana sayfayi acar
+  Scenario: Website logosunun islev testi
+    Given Kullanıcı "HLurl" sitesine gider
     When kullanici site logosuna tiklar
     Then ana sayfanin yenilendigini ve URL’nin degismedigini dogrular
 
-  Scenario: Verify menu navigation functionality
-    Given kullanici ana sayfayi acar
-    When kullanici ust bardaki menu ogelerine tek tek tiklar
-    Then "Home" secenegine tikladiginda ana sayfaya yonlendigini dogrular
-    And "Appointment" secenegine tikladiginda Appointment sayfasina yonlendigini dogrular
-    And "Events" secenegine tikladiginda Events sayfasina yonlendigini dogrular
-    And "About Us" secenegine tikladiginda About Us sayfasina yonlendigini dogrular
-    And "Gallery" secenegine tikladiginda Gallery sayfasina yonlendigini dogrular
-    And "Contact Us" secenegine tikladiginda Contact Us sayfasina yonlendigini dogrular
+  Scenario: Menu navigasyon islev testi
+    Given Kullanıcı "HLurl" sitesine gider
+    Then Home secenegine tikladiginda ana sayfaya yonlendigini dogrular
+    And Appointment secenegine tikladiginda Appointment sayfasina yonlendigini dogrular
+    And About Us secenegine tikladiginda About Us sayfasina yonlendigini dogrular
+    And Gallery secenegine tikladiginda Gallery sayfasina yonlendigini dogrular
+    And Contact Us secenegine tikladiginda Contact Us sayfasina yonlendigini dogrular

@@ -1,13 +1,11 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
-import utilities.ReusableMethods;
 
 import java.util.List;
 
@@ -18,6 +16,26 @@ public class HomePage {
     public HomePage() {
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
+
+
+    // [Header] - Lastest News - Kayan Yazı
+    @FindBy(xpath = "//marquee/ul/li[1]/a/div")
+    public WebElement lastestNewsKayanYaziIcerik;
+
+    // [Header] - Header-Navbar elementleri
+    //Locator
+    @FindBy(xpath = "//*[@id='navbar-collapse-3']/ul/li")
+    public List<WebElement> navbarElements; // Tüm <li> elementlerini listeler.
+
+    //String Çağırma Metodu
+    public List<String> getNavbarElements() {
+        List<String> navbarLi = new ArrayList<>();
+        for (WebElement header : navbarElements) {
+            navbarLi.add(header.getText().trim());
+        }
+        return navbarLi;
+    }
+
 
     // [Header] - [Home] bölümünün elementleri
 
@@ -148,28 +166,28 @@ public class HomePage {
 
     // [Header] - [Gallery] bölümünün elementleri
 
-    @FindBy (xpath = "(//a[normalize-space()='Gallery'])[1]")
+    @FindBy(xpath = "(//a[normalize-space()='Gallery'])[1]")
     public WebElement Gallery;
 
-    @FindBy (xpath = "//h2[normalize-space()='Gallery']")
+    @FindBy(xpath = "//h2[normalize-space()='Gallery']")
     public WebElement GalleryTitle;
 
-    @FindBy (xpath = "//h1[normalize-space()='Health & Wellness']")
+    @FindBy(xpath = "//h1[normalize-space()='Health & Wellness']")
     public WebElement GallerySubTitle1;
 
-    @FindBy (xpath = "//h1[normalize-space()='Hospitals and Directions']")
+    @FindBy(xpath = "//h1[normalize-space()='Hospitals and Directions']")
     public WebElement GallerySubTitle2;
 
-    @FindBy (xpath = "//h1[normalize-space()='Specialities']")
+    @FindBy(xpath = "//h1[normalize-space()='Specialities']")
     public WebElement GallerySubTitle3;
 
-    @FindBy (xpath = "//h1[normalize-space()='Recreation Centre']")
+    @FindBy(xpath = "//h1[normalize-space()='Recreation Centre']")
     public WebElement GallerySubTitle4;
 
-    @FindBy (xpath = "//h1[normalize-space()='Your Health']")
+    @FindBy(xpath = "//h1[normalize-space()='Your Health']")
     public WebElement GallerySubTitle5;
 
-    @FindBy (xpath = "//h1[normalize-space()='Surgery']")
+    @FindBy(xpath = "//h1[normalize-space()='Surgery']")
     public WebElement GallerySubTitle6;
 
     // [Header] - [Login] bölümünün elementleri
@@ -180,13 +198,13 @@ public class HomePage {
 
     // [Footer] - [Copyright] bölümünün elementleri
 
-    @FindBy (xpath = "(//*[text()='Contact Us'])[2]")
+    @FindBy(xpath = "(//*[text()='Contact Us'])[2]")
     public WebElement FooterContactUs;
 
-    @FindBy (xpath = "(//*[text()='About'])[1]")
+    @FindBy(xpath = "(//*[text()='About'])[1]")
     public WebElement FooterAboutUs;
 
-    @FindBy (xpath = "(//a[normalize-space()='Gallery'])[2]")
+    @FindBy(xpath = "(//a[normalize-space()='Gallery'])[2]")
     public WebElement FooterGallery;
 
     @FindBy(xpath = "(//*[text()='Home'])[2]")
@@ -195,11 +213,12 @@ public class HomePage {
     @FindBy(xpath = "(//*[text()='Academics'])[1]")
     public WebElement FooterAcademics;
 
-    @FindBy (xpath = "//*[@class='eventbox']")
+    @FindBy(xpath = "//*[@class='eventbox']")
     public List<WebElement> GalleryResimler;
 
-    @FindBy (xpath = "//*[@class='evcontentfix']")
+    @FindBy(xpath = "//*[@class='evcontentfix']")
     public List<WebElement> GalleryBasliklar;
+
 
 
     // [Body] - [Bilgi Boardları] bölümünün elementleri
@@ -248,5 +267,6 @@ public class HomePage {
 
     @FindBy (xpath = "//*[text()='Communication All Parties']")
     public WebElement FSdorduncuBaslik;
+
 
 }
