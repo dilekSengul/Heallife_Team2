@@ -7,10 +7,7 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import pages.AdminDashboardPage;
 import pages.LoginPage;
 import utilities.ConfigReader;
@@ -193,6 +190,7 @@ public class AdminDashboardStep {
 
     @Then("Her bir sütun başlığına tıklayarak listenin sıralanabildiğini doğrular")
     public void her_bir_sütun_başlığına_tıklayarak_listenin_sıralanabildiğini_doğrular() {
+
         adminDashboardPage.areWebElementTextsSorted(adminDashboardPage.nameColumnCells);
         adminDashboardPage.areWebElementTextsSorted(adminDashboardPage.codeColumnCells);
         adminDashboardPage.areWebElementTextsSorted(adminDashboardPage.phoneColumnCells);
@@ -228,44 +226,50 @@ public class AdminDashboardStep {
 
     }
 
-      @Then("Yeni kaydın TPA Yönetim Listesinde görüntülendiğini doğrular")
+    @Then("Yeni kaydın TPA Yönetim Listesinde görüntülendiğini doğrular")
     public void yeni_kaydın_tpa_yönetim_listesinde_görüntülendiğini_doğrular() {
+        ReusableMethods.wait(2);
         Assert.assertTrue(adminDashboardPage.nameColumnCells.get(0).getText().equalsIgnoreCase("Hurrem"));
     }
 
     //US_041-TC4
 
-    @Given("TPA Yönetim Listesinde {string} sütununun altındaki bir kaydı bulurum")
+    @Given("TPA Yönetim Listesinde {string} sütununun altındaki bir ismin uzerine gelirim")
     public void tpa_yönetim_listesinde_sütununun_altındaki_bir_kaydı_bulurum(String string) {
-
+        ReusableMethods.hover(adminDashboardPage.contactPersonPhoneColumnCells.get(0));
+        ReusableMethods.wait(1);
     }
 
-    @When("Düzenle işlemiyle kaydın detaylarını güncellerim")
-    public void düzenle_işlemiyle_kaydın_detaylarını_güncellerim() {
-
+    @When("Edit işlemiyle kaydın detaylarını güncellenir")
+    public void edit_işlemiyle_kaydın_detaylarını_güncellerim() {
+        adminDashboardPage.editbutton.click();
+        adminDashboardPage.editfield(adminDashboardPage.nameFieldEdit, "Yeni");
+        adminDashboardPage.editfield(adminDashboardPage.codeFieldEdit, "Yeni");
+        adminDashboardPage.editfield(adminDashboardPage.contactNoFieldEdit, "Yeni");
+        adminDashboardPage.editfield(adminDashboardPage.addressFieldEdit, "Yeni");
+        adminDashboardPage.editfield(adminDashboardPage.contactPersonNameFieldEdit, "Yeni");
+        adminDashboardPage.editfield(adminDashboardPage.contactPersonPhoneFieldEdit, "Yeni");
+        adminDashboardPage.saveButtonEdit.click();
     }
 
-    @Then("Değişikliklerin doğru şekilde güncellenmiş olduğunu doğrularım")
-    public void değişikliklerin_doğru_şekilde_güncellenmiş_olduğunu_doğrularım() {
 
-    }
-
-    @When("Silme işlemini gerçekleştiririm")
+    @When("Silme işlemi gerçekleştirilir")
     public void silme_işlemini_gerçekleştiririm() {
-
+        ReusableMethods.hover(adminDashboardPage.contactPersonPhoneColumnCells.get(0));
+        ReusableMethods.wait(3);
+        adminDashboardPage.deleteButton.click();
+        // Alert popup'ını bekleme ve kabul etme
+        Alert alert = driver.switchTo().alert();
+        alert.accept(); // Alert penceresini kabul eder
     }
 
-    @Then("Kaydın listede artık görünmediğini doğrularım")
-    public void kaydın_listede_artık_görünmediğini_doğrularım() {
+    @When("Organization butonu kontrol edilir")
+    public void organization_butonunu_kontrol_ederim() {
+        ReusableMethods.hover(adminDashboardPage.contactPersonPhoneColumnCells.get(0));
+        ReusableMethods.wait(3);
+        adminDashboardPage.organizationButton.click();
+        Assert.assertTrue(adminDashboardPage.TPAName.isDisplayed());
 
-    }
-
-    @When("Sıralama işlemi gerçekleştiririm")
-    public void sıralama_işlemi_gerçekleştiririm() {
-    }
-
-    @Then("Kayıtların yeni sırada doğru şekilde görüntülendiğini doğrularım")
-    public void kayıtların_yeni_sırada_doğru_şekilde_görüntülendiğini_doğrularım() {
     }
 
 

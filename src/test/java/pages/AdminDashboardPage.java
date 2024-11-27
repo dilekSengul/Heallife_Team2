@@ -40,50 +40,39 @@ public class AdminDashboardPage {
     @FindBy(xpath = "//i [@class='fas fa-cogs']")
     public WebElement setupIcon;
 
-    // Dashboardaki TPA Management Link
+    // ------------ Dashboardaki TPA Management Test--------------
     @FindBy(xpath = "(//*[@class='treeview '])[13]")
     public WebElement tpaManagementLink;
-
     // TPA Management Page Baslık
     @FindBy(xpath = " //*[@class='box-title titlefix']")
     public WebElement tpaManagementPageTitle;
     // Name sütunu
     @FindBy(xpath = "(//*[@class='sorting'])[1]")
     public WebElement nameButton;
-
     // Code sütunu
     @FindBy(xpath = "(//*[@class='sorting'])[2]")
     public WebElement codeButton;
-
     // Phone sütunu
     @FindBy(xpath = "(//*[@class='sorting'])[3]")
     public WebElement phoneButton;
-
     // Address sütunu
     @FindBy(xpath = "(//*[@class='sorting'])[4]")
     public WebElement addressButton;
-
     // Contact Person Name sütunu
     @FindBy(xpath = "(//*[@class='sorting'])[5]")
     public WebElement contactPersonNameButton;
-
     // Contact Person Phone sütunu
     @FindBy(xpath = "//*[@class='text-right dt-body-right sorting_disabled']")
     public WebElement contactPersonPhoneButton;
-
     // Search Box
     @FindBy(xpath = "//*[@type='search']")
     public WebElement searchBox;
-
-
     // Kayıt sayısını değiştirme seçenekleri
     @FindBy(xpath = "//*[@name='DataTables_Table_0_length']")
     public WebElement allYuzButton;
     @FindBy(xpath = "//*[@name='DataTables_Table_0_length']")
     public WebElement yuzButton;
-
     // TPA Yönetim Listesi sıralama başlıkları-Columns
-    // Her bir sütun başlığı için locator'lar
     @FindBy(xpath = "//tr/td[1]")
     public List<WebElement> nameColumnCells;  // 'Sirket' sütunu
 
@@ -109,8 +98,8 @@ public class AdminDashboardPage {
 
         Assert.assertEquals("Sıralama başarılı olmadı!", elements, sortedElements);
     }
-    // TPA Add Button Check
 
+    // TPA Add Button Check
     @FindBy(xpath = "//*[@class='box-tools pull-right box-tools-md']")
     public WebElement addButton;
 
@@ -141,8 +130,56 @@ public class AdminDashboardPage {
     @FindBy(xpath = "(//*[@type='submit'])[3]")
     public WebElement addSaveSubmit;
 
+    //Edit bolumu
+    @FindBy(xpath = "//*[@class='fa fa-pencil']")
+    public WebElement editbutton;
 
-      // -------------------------------------
+    // 'Name' giriş alanı - Edit formu
+    @FindBy(xpath = "//*[@id='ename']")
+    public WebElement nameFieldEdit;
+
+    // 'Code' giriş alanı - Edit formu
+    @FindBy(xpath = "//*[@id='ecode']")
+    public WebElement codeFieldEdit;
+
+    // 'Contact No' giriş alanı - Edit formu
+    @FindBy(xpath = "//*[@id='econtact_number']")
+    public WebElement contactNoFieldEdit;
+
+    // 'Address' giriş alanı - Edit formu
+    @FindBy(xpath = "//*[@id='eaddress']")
+    public WebElement addressFieldEdit;
+
+    // 'Contact Person Name' giriş alanı - Edit formu
+    @FindBy(xpath = "//*[@id='econtact_persion_name']")
+    public WebElement contactPersonNameFieldEdit;
+
+    // 'Contact Person Phone' giriş alanı - Edit formu
+    @FindBy(xpath = "//*[@id='econtact_persion_phone']")
+    public WebElement contactPersonPhoneFieldEdit;
+
+    // Kaydet butonu - Edit formu
+    @FindBy(xpath = "(//*[@class='fa fa-check-circle'])[2]")
+    public WebElement saveButtonEdit;
+
+    @FindBy(xpath = "(//*[@class='list-group-item listnoback'])[1]")
+    public WebElement TPAName;
+
+    public void editfield(WebElement codeFieldEdit, String editString) {
+        codeFieldEdit.click();
+        codeFieldEdit.clear();
+        codeFieldEdit.sendKeys(editString);
+        ReusableMethods.wait(1);
+    }
+    //Delete Button
+    @FindBy(xpath = "(//*[@data-toggle='tooltip'])[6]")
+    public WebElement deleteButton;
+
+    //Organization Button
+    @FindBy(xpath = "(//*[@aria-hidden='true'])[4]")
+    public WebElement organizationButton;
+
+    // -------------------------------------
 
     public void clickSidebarIconIfDashboardNotVisible() {
         driver = DriverManager.getDriver();
