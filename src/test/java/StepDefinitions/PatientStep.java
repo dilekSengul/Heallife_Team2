@@ -23,7 +23,6 @@ import java.util.Map;
 
 public class PatientStep {
     WebDriver driver = Hooks.getDriver();
-    private static final Logger logger = LogManager.getLogger(HLhomeStep.class);
     PatientPage page = new PatientPage(); // Page Object sınıfınız
     LoginPage loginPage = new LoginPage();
     Faker faker = new Faker();
@@ -33,7 +32,6 @@ public class PatientStep {
     public void kullanici_anasayfaya_gider() {
 
         driver.get(ConfigReader.getProperty("HLurl"));
-        logger.info("Kullanici Anasayafa gider");
 
     }
 
