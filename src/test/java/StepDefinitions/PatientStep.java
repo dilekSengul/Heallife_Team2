@@ -309,9 +309,6 @@ public class PatientStep {
         page.searchBar.sendKeys("RAD");
         ReusableMethods.bekle(2);
 
-//        page.SearchButton.sendKeys("Test Search Term");
-//        page.SearchButton.sendKeys(Keys.ENTER);
-//        ReusableMethods.wait(2);
     }
 
     @Then("sonuclarin girilen arama terimiyle eslesen sekilde goruntulendigini dogrular")
@@ -332,8 +329,7 @@ public class PatientStep {
     public void hasta_bir_baslık_uzerine_tiklar() {
         page.BillNo.click();
         ReusableMethods.wait(2);
-        page.BillNo.click();
-        ReusableMethods.wait(2);
+
     }
 
     @Then("liste artan sirada siralanmalidir")
@@ -344,26 +340,30 @@ public class PatientStep {
         for (WebElement element : billNoElements) {
             System.out.println("Bulunan değer: " + element.getText());
         }
+        page.BillNo.click();
+        ReusableMethods.wait(2);
     }
 
     @When("hasta aynı başlık uzerine tekrar tiklar")
     public void hasta_aynı_başlık_uzerine_tekrar_tiklar() {
+
         page.BillNo.click();
-        ReusableMethods.wait(4);
+        ReusableMethods.wait(2);
+
     }
 
     @Then("listenin azalan sirada siralandigini dogrular")
     public void listenin_azalan_sirada_siralandigini_dogrular() {
         List<WebElement> billNoElements = driver.findElements(By.xpath("//table/tbody/tr/td[1]"));
-        // Sıralama kontrolü
         Assert.assertTrue("Liste azalan sırada sıralanmadı!",
-                ReusableMethods.isSortedDescending(billNoElements));
+        ReusableMethods.isSortedDescending(billNoElements));
+        ReusableMethods.wait(4);
     }
 
     @Given("Radyology Test Reports sayfasına gider")
     public void radyology_test_reports_sayfasına_gider() {
         Assert.assertTrue("Radiology Test Reports List sayfası açılmadı!",
-                page.RadiologyTestReportText.isDisplayed());
+        page.RadiologyTestReportText.isDisplayed());
     }
 
     @Then("{string} baglantisinin her rapor icin mevcut oldugunu dogrular")
@@ -455,7 +455,11 @@ public class PatientStep {
 
     }
 
-
+    @When("hasta view reports bağlantısına tiklar")
+    public void hasta_view_reports_bağlantısına_tiklar() {
+        page.ViewReportsButton.click();
+        ReusableMethods.wait(3);
+    }
     @Given("hasta Radyology Test Reports Listesi sayfasina gider")
     public void hasta_radyology_test_reports_listesi_sayfasina_gider() {
         try {

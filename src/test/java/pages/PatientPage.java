@@ -96,16 +96,15 @@ public class PatientPage {
     public WebElement PatientDashboardRadiologyButton;
 
     // Patient Dashboard'da Ambulance Butonu
-    @FindBy(xpath = "https://qa.heallifehospital.com/patient/dashboard/ambulance'])[1]")
-    public WebElement PatientAmbulanceButton;
+//    @FindBy(xpath = "https://qa.heallifehospital.com/patient/dashboard/ambulance'])[1]")
+    @FindBy(xpath = "//*[@class='fas fa-ambulance']")
+    public WebElement PatientDashboardAmbulanceButton;
 
     // Patient Radiology Test Report Yazısı
     @FindBy(xpath = "//*[@class='box-header with-border']")
     public WebElement RadiologyTestReportText;
 
-    // Bill No Başlığı
-//    @FindBy(xpath = "*[@class='sorting'])[1]")
-//    public WebElement BillNo;
+
     @FindBy(xpath = "//*[@id='allpayments']/div/div/div[1]/h4") //View Payments Window Title (Payments)
     public WebElement viewPaymentsWindowTitle;
     @FindBy(xpath = "//i[@class='fa fa-reorder'][1]") // Show button
@@ -158,8 +157,9 @@ public class PatientPage {
     @FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[9]/a[1]") // View Payments button
     public WebElement viewPaymentsButton;
 
+
     // Action Başlığı Altında View Reports Butonu
-    @FindBy(xpath = "*[@class='btn btn-default btn-xs view_detail'])[1]")
+    @FindBy(xpath = "(//*[@class='btn btn-default btn-xs view_detail'])[1]")
     public WebElement ViewReportsButton;
 
     // Action Başlığı Altında Pay Butonu
@@ -192,6 +192,113 @@ public class PatientPage {
         return tbody;
 
     }
+
+
+
+//// Patient Ambulance Sayfası  ////
+
+ //   Ambulance Button
+    @FindBy(xpath = "//*[@class='treeview active']")
+    public WebElement patientAmbulanceButton;
+
+    // Ambulance Bill Baslığı
+    @FindBy(xpath = "//*[@class='box-header with-border']")
+    public WebElement ambulanceBillHeader;
+
+   // Bill No Baslıgı
+   @FindBy(xpath = "(//*[@class='sorting'])[1]")
+   public WebElement billNoHeaderAmbulance;
+
+   // Vehicle Number Baslıgı
+   @FindBy(xpath = "(//*[@class='sorting'])[2]")
+   public WebElement vehicleNumberHeader;
+
+   // Vehicle Model Baslıgı
+   @FindBy(xpath = "(//*[@class='sorting'])[3]")
+   public WebElement vehicleModelHeader;
+
+   //Driver Name Baslıgı
+   @FindBy(xpath = "(//*[@class='sorting'])[4]")
+   public WebElement driverNameHeader;
+
+   //Driver Contact Baslıgı
+   @FindBy(xpath = "(//*[@class='sorting'])[5]")
+   public WebElement driverContactHeader;
+
+   //Amount($) Baslıgı
+   @FindBy(xpath = "(//*[@class='text-right sorting'])[1]")
+   public WebElement amountHeaderAmbulance;
+
+   //Text(%) Baslıgı
+    @FindBy(xpath = "(//*[@class='text-right sorting'])[2]")
+    public WebElement textHeaderAmbulance;
+
+    //Net Amount($) Baslıgı
+    @FindBy(xpath = "(//*[@class='text-right sorting'])[3]")
+    public WebElement netAmountHeaderAmbulance;
+
+    //Paid Amount(%) Baslıgı
+    @FindBy(xpath = "(//*[@class='text-right sorting'])[4]")
+    public WebElement paidAmountHeaderAmbulance;
+
+    //Balance Amount(%) Baslıgı
+    @FindBy(xpath = "(//*[@class='text-right sorting'])[5]")
+    public WebElement balanceAmountHeaderAmbulance;
+
+    //Action Header
+    @FindBy(xpath = "//*[@class='text-right noExport sorting']")
+    public WebElement actionHeaderAmbulance;
+
+    //Search Alanı
+    @FindBy(xpath = "//*[@class='dataTables_filter']")
+    public WebElement searchHeaderAmbulance;
+
+    //Action'ın Altında View Payments butonu
+    @FindBy(xpath = "(//*[@title='View Payments'])[1]")
+    public WebElement viewPaymentButtonAmbulance;
+
+    //Action'ın Altında Show butonu
+    @FindBy(xpath = "(//*[@title='Show'])[1]")
+    public WebElement showButtonAmbulance;
+
+    //Action'ın Altında Pay butonu
+    @FindBy(xpath = "(//*[@class='btn btn-primary btn-xs'])[1]")
+    public WebElement payButtonAmbulance;
+
+    //View Payment penceresi print button
+    @FindBy(xpath = "(//*[@class='fa fa-print'])[2]")
+    public WebElement viewPaymentWindowPrint;
+
+    @FindBy(xpath = "//*[@id='allpayments']/div/div/div[1]/button") //View Payments Window "X" button
+    public WebElement viewPaymentsXbutton;
+
+    //Show penceresi logo
+    @FindBy(xpath = "//*[@class='img-responsive']")
+    public WebElement showWindowLogo;
+
+    //Show penceresi X butonu
+    @FindBy(xpath = "(//*[@class='close'])[1]")
+    public WebElement ShowWindowClose;
+
+    //Pay penceresi Add butonu
+    @FindBy(xpath = "//*[@id='pay_button']")
+    public WebElement payWindowAddButton;
+
+    //Pay penceresi X butonu
+    @FindBy(xpath = "((//*[@class='close'])[2]")
+    public WebElement PayWindowClose;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
