@@ -622,19 +622,21 @@ ReusableMethods {
 
     public static boolean isSortedDescending(List<WebElement> elements) {
         try {
-            List<String> actualList = elements.stream()
+            // Değerleri sadece sayısal kısma göre alın
+            List<Integer> actualList = elements.stream()
                     .map(WebElement::getText)
-                    .map(String::trim)
+                    .map(text -> Integer.parseInt(text.replaceAll("\\D", "").trim()))
                     .collect(Collectors.toList());
 
-            List<String> sortedList = new ArrayList<>(actualList);
-            sortedList.sort(Collections.reverseOrder());
+            List<Integer> sortedList = new ArrayList<>(actualList);
+            sortedList.sort(Collections.reverseOrder()); // Azalan sıraya göre sıralama
 
-            return actualList.equals(sortedList); // Azalan sırayı kontrol eder
+            return actualList.equals(sortedList); // Azalan sırayı kontrol et
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
 
 }
