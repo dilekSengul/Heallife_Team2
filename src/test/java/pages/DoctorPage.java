@@ -1,6 +1,8 @@
 package pages;
 
 import StepDefinitions.Hooks;
+import org.apache.poi.xddf.usermodel.text.XDDFBodyProperties;
+import org.apache.poi.xddf.usermodel.text.XDDFParagraphBulletProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -103,4 +105,57 @@ public class DoctorPage {
 
     @FindBy(xpath = "(//span[@class='info-box-number'])[17]")
     public WebElement nurseNumber;
+
+    //Doctor Dashboard Sidebar Messaging
+
+    @FindBy(xpath = "/html/body/div[1]/aside/div/section/ul[2]/li[14]/a")
+    public WebElement doctorSidebarMessaging;
+
+    @FindBy(xpath = "(//div[@class='box-header with-border'])[1]")
+    public WebElement messagingNoticeBoard;
+
+    @FindBy(xpath = "/html/body/div[1]/div/section/div/div/div/div[1]/div/a[1]")
+    public WebElement messagingPostNewMessage;
+
+    @FindBy(xpath = "/html/body/div[1]/div/section/div/div/div/div[1]/div/a[2]")
+    public WebElement messagingSendSMS;
+
+    @FindBy(xpath = "/html/body/div[1]/div/section/div/div/div/div[1]/div/a[3]")
+    public WebElement messagingSendEmail;
+
+    //Doctor Messaging Sayfasi New Post Message Sayfasi
+
+    @FindBy(xpath = "(//input[@class='form-control'])[1]")
+    public WebElement postNewMessageTitle;
+
+    @FindBy(xpath = "//body[@class='form-control wysihtml5-editor']")
+    public WebElement postNewMessageMesajBolumu;
+
+    @FindBy(xpath = "(//input[@class='form-control date'])[1]")
+    public WebElement postNewMessageNoticeDate;
+
+    @FindBy(xpath = "(//td[@class='day'])[20]")
+    public WebElement noticeDateGunSecimi;
+
+    @FindBy(xpath = "(//input[@class='form-control date'])[2]")
+    public WebElement postNewMessagePublishOn;
+
+    @FindBy(xpath = "(//td[@class='day'])[22]")
+    public WebElement postNewMessagePublisOnGunSecimi;
+
+    @FindBy(xpath = "(//input[@type='checkbox'])[4]")
+    public WebElement postNewMessageMessageTo;
+
+    @FindBy(xpath = "(//button[@class='btn btn-primary'])[1]")
+    public WebElement postNewMessageSend;
+
+    @FindBy(xpath = "//div[@class='alert alert-success']")
+    public WebElement newPostMessageRecordSavedSuccessfully;
+
+
+
+
+
+
+
 }
