@@ -201,4 +201,52 @@ public class HomePage {
     @FindBy (xpath = "//*[@class='evcontentfix']")
     public List<WebElement> GalleryBasliklar;
 
+
+    // [Body] - [Bilgi Boardları] bölümünün elementleri
+
+    @FindBy (xpath = "//*[@class='featurebox1']")
+    public WebElement InsurancePlans;
+
+    @FindBy (xpath = "(//*[@class='morebtn'])[1]")
+    public WebElement ReadMoreInsurancePlans;
+
+    @FindBy (xpath = "(//*[text()='Insurance Plans'])[2]")
+    public WebElement BaslikInsurancePlans;
+
+    @FindBy (xpath = "//*[@class='featurebox2']")
+    public WebElement PediatricServices;
+
+    @FindBy (xpath = "(//*[@class='morebtn'])[2]")
+    public WebElement ReadMorePediatricServices;
+
+    @FindBy (xpath = "//*[text()='Our Pediatric Services:']")
+    public WebElement BaslikPediatricServices;
+
+    @FindBy (xpath = "//*[@class='featurebox3']")
+    public WebElement LabTesting;
+
+    @FindBy (xpath = "(//*[@class='morebtn'])[3]")
+    public WebElement ReadMoreLabTesting;
+
+    @FindBy (xpath = "//*[text()='Lab Testing Services:']")
+    public WebElement BaslikLabTesting;
+
+
+    // [Body] - [Featured Services] bölümünün elementleri
+
+    @FindBy (xpath = "//*[text()='Featured Services']")
+    public WebElement FeaturedServicesYazisi;
+
+    @FindBy (xpath = "//*[text()='Nurse-to-Resident Ratio']")
+    public WebElement FSbirinciBaslik;
+
+    @FindBy (xpath = "//*[text()='Emergency Help']")
+    public WebElement FSikinciBaslik;
+
+    @FindBy (xpath = "//*[text()='Onsite Medical Staff']")
+    public WebElement FSucuncuBaslik;
+
+    @FindBy (xpath = "//*[text()='Communication All Parties']")
+    public WebElement FSdorduncuBaslik;
+
 }
