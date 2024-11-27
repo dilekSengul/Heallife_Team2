@@ -2,7 +2,7 @@
 Feature: Gallery Page Navigation
 
   Scenario: Verify gallery sections and their images
-    Given Kullanıcı projectUrl adresini ziyaret eder
+    Given Kullanıcı "HLurl" sitesine gider
     When Ana sayfada Gallery menüsüne tıklayın
     Then Kullanıcının Gallery sayfasına yönlendirildiğini doğrulayın
     When "Health & Wellness" bölümüne tıklayın ve ilgili resimlerin sayfada bulunduğunu doğrulayın
@@ -11,4 +11,4 @@ Feature: Gallery Page Navigation
     When "Recreation Centre" bölümüne tıklayın ve ilgili resimlerin sayfada bulunduğunu doğrulayın
     When "Your Health" bölümüne tıklayın ve ilgili resimlerin sayfada bulunduğunu doğrulayın
     When "Surgery" bölümüne tıklayın ve ilgili resimlerin sayfada bulunduğunu doğrulayın
-    And sayfayı kapatır
+    When Kullanıcı browser kapatır

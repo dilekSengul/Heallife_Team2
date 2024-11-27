@@ -8,15 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.DriverManager;
-import utilities.LoggerHelper;
-import utilities.ReusableMethods;
-
-import java.sql.Driver;
 
 public class LoginStep {
     WebDriver driver = Hooks.getDriver();
@@ -202,6 +196,27 @@ public class LoginStep {
         public void ana_sayfa_duzgun_bir_sekilde_goruntulenir() {
             Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"));
         }
+
+    @Then("Kullanıcı Heal Life sitesine giris yapar")
+    public void kullanıcıHealLifeSitesineGirisYapar() {
+        driver.manage().deleteAllCookies();
+        driver.get("https://qa.heallifehospital.com/site/login");
+    }
+
+    @And("Kulllanci Username bax icine admin adini giris yapar")
+    public void kulllanciUsernameBaxIcineAdminAdiniGirisYapar() {
+        loginPage.email.sendKeys(ConfigReader.getProperty("AdminMailLevent"));
+    }
+
+    @And("Kullanici password bolumune admin password girsi yapar")
+    public void kullaniciPasswordBolumuneAdminPasswordGirsiYapar() {
+        loginPage.password.sendKeys(ConfigReader.getProperty("Passwords"));
+    }
+
+    @And("Kullanici Signin Buttonu tiklar")
+    public void kullaniciSigninButtonuTiklar() {
+        loginPage.signInButton.click();
+    }
 
     //Bu stepleri farklı feature'larda userDash girişi için standard background olarak kullanabiliriz.
 
