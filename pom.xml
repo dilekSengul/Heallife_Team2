@@ -12,16 +12,16 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <maven.compiler.source>17</maven.compiler.source>
-            <maven.compiler.target>17</maven.compiler.target>
-            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <junit.version>5.9.3</junit.version>
-            <cucumber.version>7.13.0</cucumber.version>
-            <allure.version>2.20.1</allure.version>
-            <surefire.version>3.1.2</surefire.version>
-            <selenium.version>4.14.0</selenium.version>
-            <log4j.version>2.20.0</log4j.version>
-            <poi.version>5.2.3</poi.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>5.9.3</junit.version>
+        <cucumber.version>7.13.0</cucumber.version>
+        <allure.version>2.20.1</allure.version>
+        <surefire.version>3.1.2</surefire.version>
+        <selenium.version>4.14.0</selenium.version>
+        <log4j.version>2.20.0</log4j.version>
+        <poi.version>5.2.3</poi.version>
     </properties>
 
     <dependencies>
@@ -70,7 +70,6 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -113,6 +112,13 @@
             <groupId>io.cucumber</groupId>
             <artifactId>gherkin</artifactId>
             <version>26.2.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
