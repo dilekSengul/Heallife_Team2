@@ -153,8 +153,26 @@ public class DoctorPage {
     public WebElement newPostMessageRecordSavedSuccessfully;
 
 
+    //Doctor Messaging Sayfasi Send SMS Sayfasi
 
+    @FindBy(xpath = "(//textarea[@class='form-control compose-textarea'])[1]")
+    public WebElement sendSMSmessage;
 
+    @FindBy(xpath = "(//input[@value='sms'])[1]")
+    public WebElement sendSmsSendThrough;
+
+    @FindBy(xpath = "//button[@class='btn btn-primary submit_group']")
+    public WebElement sendSmsSendButton;
+
+    //Doctor Messaging Sayfası Send Email Sayfasi
+    @FindBy(xpath = "(//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders'])[1]")
+    public WebElement sendEmailMessageBolumu;
+
+    @FindBy(xpath = "//button[@class='btn btn-primary submit_group']")
+    public WebElement sendEmailSendButton;
+
+    @FindBy(xpath = "(//div[@class='checkbox'])[5]")
+    public WebElement sendEmailMessageTo;
 
 
 

@@ -58,8 +58,10 @@ public class DoctorMessagingStep {
     public void title_message_notice_date_publish_on_message_to_doldurulur() {
         doctorPage.postNewMessageTitle.sendKeys("deneme");
         ReusableMethods.bekle(1);
+        logger.info("Iframe'e geçiş yapılıyor.");
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='wysihtml5-sandbox']")));
         doctorPage.postNewMessageMesajBolumu.sendKeys("deneme1234");
+        logger.info("Iframe'den çıkılıyor.");
         driver.switchTo().defaultContent();
         doctorPage.postNewMessageNoticeDate.click();
         doctorPage.noticeDateGunSecimi.click();
@@ -81,6 +83,50 @@ public class DoctorMessagingStep {
         logger.info("mesaj geldiği doğrulandı");
 
     }
+
+    @Given("send SMS e tiklanir")
+    public void send_sms_e_tiklanir() {
+        doctorPage.messagingSendSMS.click();
+
+    }
+    @When("title, sms, message, message to doldurulur")
+    public void title_sms_message_message_to_doldurulur() {
+        doctorPage.postNewMessageTitle.sendKeys("denemetest");
+        doctorPage.sendSMSmessage.sendKeys("test ediliyor");
+        doctorPage.sendSmsSendThrough.click();
+        doctorPage.postNewMessageMessageTo.click();
+
+    }
+    @Then("send sms send tiklanir")
+    public void send_sms_send_tiklanir() {
+        doctorPage.sendSmsSendButton.click();
+    }
+
+    @Given("send email tiklanir")
+    public void send_email_tiklanir() {
+        doctorPage.messagingSendEmail.click();
+    }
+    @When("title, message, message to doldurulur")
+    public void title_message_message_to_doldurulur() {
+        doctorPage.postNewMessageTitle.sendKeys("deneme");
+        ReusableMethods.bekle(1);
+        logger.info("Iframe'e geçiş yapılıyor.");
+        driver.switchTo().frame(driver.findElement(By.xpath("(//iframe[@class='cke_wysiwyg_frame cke_reset'])[1]")));
+        doctorPage.sendEmailMessageBolumu.sendKeys("test");
+        logger.info("Iframe'den çıkılıyor.");
+        driver.switchTo().defaultContent();
+
+        doctorPage.sendEmailMessageTo.click();
+        Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+
+
+    }
+    @When("send email send tiklanir")
+    public void send_email_send_tiklanir() {
+        doctorPage.sendEmailSendButton.click();
+    }
+
 
 
 }
