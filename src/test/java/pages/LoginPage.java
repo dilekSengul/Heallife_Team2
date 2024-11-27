@@ -95,11 +95,13 @@ public class LoginPage {
         signInButton.click();
     }
 
+
     public void AdminLogin(String email, String password) {
         LoginPage loginPage = new LoginPage();
         loginPage.email.sendKeys(email);
         loginPage.password.sendKeys(password);
         loginPage.signInButton.click();
+
     }
 
 }
