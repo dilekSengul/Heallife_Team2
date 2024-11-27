@@ -5,7 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PatientPage {
 
@@ -69,56 +71,84 @@ public class PatientPage {
     @FindBy(xpath = "//*[@class='col-md-4 col-sm-4'])[2])")
     public List<String> footerElementLists;
 
-    // Patient dashboard-hurrem
 
-    @FindBy(xpath = "(//*[@class='treeview '])[2]")
-    public WebElement myAppointmentsdBoard;
+   //// Patient Radiology Sayfası  ////
 
-    @FindBy(xpath = "//*[@class='treeview active']")
-    public WebElement opdBoard;
+    // Patient Dashboard'da Radiology Butonu
+    @FindBy(xpath = "//*[@class='fas fa-microscope']")
+    public WebElement PatientDashboardRadiologyButton;
 
-    @FindBy(xpath = "(//*[@class='treeview '])[3]")
-    public WebElement ipdBoard;
+    // Patient Dashboard'da Ambulance Butonu
+    @FindBy(xpath = "https://qa.heallifehospital.com/patient/dashboard/ambulance'])[1]")
+    public WebElement PatientAmbulanceButton;
 
-    @FindBy(xpath = "(//*[@class='treeview '])[4]")
-    public WebElement pharmacyBoard;
+    // Patient Radiology Test Report Yazısı
+    @FindBy(xpath = "*[@class='box-title titlefix']")
+    public WebElement RadiologyTestReportText;
 
-    @FindBy(xpath = "(//*[@class='treeview '])[5]")
-    public WebElement pathologyBoard;
+    // Bill No Başlığı
+    @FindBy(xpath = "*[@class='sorting'])[1]")
+    public WebElement BillNo;
 
-    @FindBy(xpath = "(//*[@class='treeview '])[6]")
-    public WebElement radiologyBoard;
+    // Case ID Başlığı
+    @FindBy(xpath = "*[@class='sorting'])[2]")
+    public WebElement CaseID;
 
-    @FindBy(xpath = "(//*[@class='treeview '])[7]")
-    public WebElement ambulanceBoard;
+    // Reporting Date Baslığı
+    @FindBy(xpath = "*[@class='sorting'])[3]")
+    public WebElement ReportingDate;
 
-    @FindBy(xpath = "(//*[@class='treeview '])[8]")
-    public WebElement bloodBankBoard;
+    // Referance Doctor Başlığı
+    @FindBy(xpath = "*[@class='sorting'])[4]")
+    public WebElement ReferanceDoctor;
 
-    @FindBy(xpath = "(//*[@class='treeview '])[9]")
-    public WebElement  liveConsultation;
+    // Not Başlığı
+    @FindBy(xpath = "*[@class='sorting'])[5]")
+    public WebElement NotHeader;
 
-    // Yardımcı metod: Board ismine göre ilgili WebElement'i döndürüyor
-    public  WebElement getBoardElementByName(String boardName) {
-        switch (boardName) {
-            case "OPD":
-                return opdBoard;
-            case "IPD":
-                return ipdBoard;
-            case "Pharmacy":
-                return pharmacyBoard;
-            case "Pathology":
-                return pathologyBoard;
-            case "Radiology":
-                return radiologyBoard;
-            case "Blood Bank":
-                return bloodBankBoard;
-            case "Ambulance":
-                return ambulanceBoard;
-            case "Live Consultation":
-                return liveConsultation;
-            default:
-                throw new IllegalArgumentException("Bilinmeyen panel ismi: " + boardName);  // Geçersiz panel ismi durumunda hata verilir
-        }
-    }
+    // Amount Başlığı
+    @FindBy(xpath = "*[@class='text-right sorting'])[1]")
+    public WebElement AmountHeader;
+
+    // Paid Amounts Başlığı
+    @FindBy(xpath = "*[@class='text-right sorting'])[2] ")
+    public WebElement PaidAmountHeader;
+
+    // Balance Amounts Başlığı
+    @FindBy(xpath = "*[@class='text-right sorting'])[3] ")
+    public WebElement BalanceAmountHeader;
+
+    // Action Başlığı
+    @FindBy(xpath = "*[@class='text-right noExport sorting' ")
+    public WebElement ActionHeader;
+
+    // Action Başlığı Altında View Payments Butonu
+    @FindBy(xpath = "*[@class='fa fa-money'")
+    public WebElement ViewPaymentsButton;
+
+    // Action Başlığı Altında View Reports Butonu
+    @FindBy(xpath = "*[@class='btn btn-default btn-xs view_detail'])[1]")
+    public WebElement ViewReportsButton;
+
+    // Action Başlığı Altında Pay Butonu
+    @FindBy(xpath = "*[@class='btn btn-primary btn-xs'])[1]")
+    public WebElement PayButton;
+
+    // Action Başlığı Altında  Search Butonu
+    @FindBy(xpath = "*[@type='search']")
+    public WebElement SearchButton;
+
+    // Radyolojy Test Raport listelenen kayıt sayısı texti
+    @FindBy(xpath = "*[@class='dataTables_info']")
+    public WebElement ListelenenKAyitSayisiText;
+
+
+    // Dashboard texti
+    @FindBy(xpath = "*[text()=' Dashboard']")
+    public WebElement DashboardText;
+
+
+
+
+
 }

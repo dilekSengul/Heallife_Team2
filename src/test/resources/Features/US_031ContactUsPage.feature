@@ -5,11 +5,5 @@ Feature:Kullanici Contact Us sayfasini ziyaret ettiginde gerekli elementlerin go
 
     Given Kullanici anasayfaya gider
     When Kullanici contact_us linkine tiklar
-    Then Kullanici contact_us sayfasina yonlendirilir
-    And Kullanici Ad-Soyad textBox goruntelendigini dogrular
-    And Kullanici E-posta textBox goruntelendigini dogrular
-    And Kullanici Konu textBox goruntelendigini dogrular
-    And Kullanici Mesaj textBox goruntelendigini dogrular
-    And Kullanici Gonder butonu goruntelendigini dogrular
-    And Kullanici Contact Us sayfasinin alt kisminda hastanenin lokasyonunu gosteren bir haritayi goruntuler
-    And Kullanici sayfayi kapatir
+    Then Kullanici contact_us sayfasina acildigini dogrular
+    And  Kullanici sayfayi kapatir

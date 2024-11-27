@@ -15,43 +15,16 @@ public class Gallery_ContactUsStep {
     private static final Logger logger = LogManager.getLogger(Gallery_ContactUsStep.class);
     Gallery_ContactUsPage galleryPage = new Gallery_ContactUsPage();
 
+    @Then("Kullanici contact_us sayfasina acildigini dogrular")
+    public void kullaniciContact_usSayfasinaAcildiginiDogrular() {
+        String expectedUrl = "https://qa.heallifehospital.com/page/contact-us";
+        String actualUrl = driver.getCurrentUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+    }
     @When("Kullanici contact_us linkine tiklar")
-    public void kullanici_contact_us_linkine_tiklar() {
-
-    }
-
-    @Then("Kullanici contact_us sayfasina yonlendirilir")
-    public void kullanici_contact_us_sayfasina_yonlendirilir() {
-
-    }
-
-    @Then("Kullanici Ad-Soyad textBox goruntelendigini dogrular")
-    public void kullanici_ad_soyad_text_box_goruntelendigini_dogrular() {
-
-    }
-
-    @Then("Kullanici E-posta textBox goruntelendigini dogrular")
-    public void kullanici_e_posta_text_box_goruntelendigini_dogrular() {
-
-    }
-
-    @Then("Kullanici Konu textBox goruntelendigini dogrular")
-    public void kullanici_konu_text_box_goruntelendigini_dogrular() {
-
-    }
-
-    @Then("Kullanici Mesaj textBox goruntelendigini dogrular")
-    public void kullanici_mesaj_text_box_goruntelendigini_dogrular() {
-
-    }
-
-    @Then("Kullanici Gonder butonu goruntelendigini dogrular")
-    public void kullanici_gonder_butonu_goruntelendigini_dogrular() {
-
-    }
-
-    @Then("Kullanici Contact Us sayfasinin alt kisminda hastanenin lokasyonunu gosteren bir haritayi goruntuler")
-    public void kullanici_contact_us_sayfasinin_alt_kisminda_hastanenin_lokasyonunu_gosteren_bir_haritayi_goruntuler() {
+    public void kullaniciContact_usLinkineTiklar() {
+        galleryPage.contactUsTabElementi.click();
+        ReusableMethods.wait(2);
 
     }
 
@@ -82,4 +55,7 @@ public class Gallery_ContactUsStep {
 
         driver.navigate().back();
     }
+
+
+
 }
