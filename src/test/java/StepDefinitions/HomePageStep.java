@@ -192,6 +192,34 @@ public class HomePageStep {
     public void herBirDoktorIçinAşağıdakiBilgilerGörünürOlmalı() {
     }
 
+
+    @Given("Kullanici websitesi URL'ini kullanarak ana sayfaya gider")
+    public void kullanici_websitesi_url_ini_kullanarak_ana_sayfaya_gider() {
+
+        driver.get(ConfigReader.getProperty("HLurl"));
+
+    }
+    @When("Kullanıcı ana sayfadaki slider'i göruntuler")
+    public void kullanıcı_ana_sayfadaki_slider_i_göruntuler() {
+
+
+    }
+
+    @And("Kullanici ana sayfada slider'da otomatik olarak degisen resimleri goruntuler")
+    public void kullaniciAnaSayfadaSliderDaOtomatikOlarakDegisenResimleriGoruntuler() {
+        
+    }
+
+    @When("Kullanici ana sayfada slider gecis ikonuna tiklar")
+    public void kullaniciAnaSayfadaSliderGecisIkonunaTiklar() {
+        
+    }
+
+    @And("Kullanici bu ikona tiklayarak tum gorselleri manuel olarak degistigini gozlemler")
+    public void kullaniciBuIkonaTiklayarakTumGorselleriManuelOlarakDegistiginiGozlemler() {
+
+    }
+
     @Given("Kullanıcı {string} sitesine gider")
     public void kullanıcı_sitesine_gider(String url) {
         DriverManager.getDriver().get(ConfigReader.getProperty(url));
@@ -448,6 +476,7 @@ public class HomePageStep {
         homePage.ContactUs.click();
         String expectedUrl = ConfigReader.getProperty("ContactUsButtonUrl");
         Assert.assertEquals("Contact Us sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
+
     }
 }
 

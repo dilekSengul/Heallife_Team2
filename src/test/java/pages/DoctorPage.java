@@ -48,6 +48,59 @@ public class DoctorPage {
     @FindBy(xpath = "//input[@class='btn btn-primary submit_addevent pull-right']")
     public WebElement newEventSaveButton;
 
+    //Doktor paneli Accountant
+    @FindBy(xpath = "(//span[@class='info-box-text'])[10]")
+    public WebElement accountantText;
 
+    @FindBy(xpath = "(//span[@class='info-box-number'])[10]")
+    public WebElement accountantNumber;
 
+    //Doktor paneli Doctor
+    @FindBy(xpath = "(//span[@class='info-box-text'])[11]")
+    public WebElement doctorText;
+
+    @FindBy(xpath = "(//span[@class='info-box-number'])[11]")
+    public WebElement doctorNumber;
+
+    //Doktor paneli Pharmacist
+    @FindBy(xpath = "(//span[@class='info-box-text'])[12]")
+    public WebElement pharmacistText;
+
+    @FindBy(xpath = "(//span[@class='info-box-number'])[12]")
+    public WebElement pharmacistNumber;
+
+    //Doktor paneli Pathologist
+    @FindBy(xpath = "(//span[@class='info-box-text'])[13]")
+    public WebElement pathologistText;
+
+    @FindBy(xpath = "(//span[@class='info-box-number'])[13]")
+    public WebElement pathologistNumber;
+
+    //Doktor paneli Radiologist
+    @FindBy(xpath = "(//span[@class='info-box-text'])[14]")
+    public WebElement radiologistText;
+
+    @FindBy(xpath = "(//span[@class='info-box-number'])[14]")
+    public WebElement radiologistNumber;
+
+    //Doktor paneli SuperAdmin
+    @FindBy(xpath = "(//span[@class='info-box-text'])[15]")
+    public WebElement superAdminText;
+
+    @FindBy(xpath = "(//span[@class='info-box-number'])[15]")
+    public WebElement superAdminNumber;
+
+    //Doktor paneli Receptionist
+    @FindBy(xpath = "(//span[@class='info-box-text'])[16]")
+    public WebElement receptionistText;
+
+    @FindBy(xpath = "(//span[@class='info-box-number'])[16]")
+    public WebElement receptionistNumber;
+
+    //Doktor paneli Nurse
+    @FindBy(xpath = "(//span[@class='info-box-text'])[17]")
+    public WebElement nurseText;
+
+    @FindBy(xpath = "(//span[@class='info-box-number'])[17]")
+    public WebElement nurseNumber;
 }
