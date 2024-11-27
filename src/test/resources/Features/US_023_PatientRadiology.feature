@@ -12,9 +12,9 @@ Scenario: Radyoloji menusunun Radiology Test Reports List sayfasina yonlendirdig
   Then "Radiolagy Test Reports List" sayfasinin goruntulendigini dogrular
 
   Scenario: Radyology Test Reports List ,sayfasinda gerekli baslıkların goruntulendigi dogrulanmalidir
-    Given hasta Radyology Test Reports List sayfasına gider
+    Given kullanici sol menuden Radiology secenegine tiklar
+    When hasta Radyology Test Reports List sayfasına gider
     Then asagidaki baslıklarin gorunur oldugunu dogrular
-
       | Bill No          |
       | Case ID          |
       | Reporting Date   |
@@ -26,27 +26,25 @@ Scenario: Radyoloji menusunun Radiology Test Reports List sayfasina yonlendirdig
       | Action           |
 
   Scenario: Radyology Test Reports Listesinde arama kutusunun duzgun calistigi dogrulanmalidir
-    Given hasta Radyology Test Reports Listesi sayfasina gider
-    When hasta bir arama terimi girer
-    Then sonuclarin girilen arama terimiyle eslesen sekilde goruntulendigini dogrular
+    When kullanici sol menuden Radiology secenegine tiklar
+    Then hasta bir arama terimi girer
+    And sonuclarin girilen arama terimiyle eslesen sekilde goruntulendigini dogrular
 
   Scenario: Radyology Test Reports sayfasında siralama fonksiyonelligi dogrulanmalidir
-    Given hasta Radyology Test Reports sayfasina gider
+    Given kullanici sol menuden Radiology secenegine tiklar
+    Then hasta Radyology Test Reports sayfasina gider
     When hasta bir baslık uzerine tiklar
     Then liste artan sirada siralanmalidir
     When hasta aynı başlık uzerine tekrar tiklar
     Then listenin azalan sirada siralandigini dogrular
 
   Scenario: Islem sutunundaki islemlerin mevcut oldugunun dogrulanmasi testi
-    Given Radyology Test Reports sayfasına gider
-    Then "View Payments" baglantisinin her rapor icin mevcut oldugunu dogrular
-    When hasta "View Payments" baglantısına tıklar
-    Then bir modal pencere ödeme detaylarıyla acilir
+    When kullanici sol menuden Radiology secenegine tiklar
+    Then hasta "View Payments" baglantısına tıklar
+    When bir modal pencere ödeme detaylarıyla acilir
     And modal penceresinin "Pay" butonunu icerdigini dogrular
-
     When hasta "Pay" butonuna tiklar
     Then sistem ödeme islemini yapmali ve rapor durumu guncellenmeli veya onay mesaji göstermelidir
-
     Then "View Reports" baglantisi her rapor için mevcut olmalidir
     When hasta "View Reports" bağlantısına tiklar
     Then bir modal pencere rapor detaylarıyla açılmalidir

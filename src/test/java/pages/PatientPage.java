@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,23 @@ public class PatientPage {
     public PatientPage() {
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
+    public PatientPage(List<WebElement> tableHeaders, List<WebElement> tableItems) {
+        this.tableHeaders = tableHeaders;
+        this.tableBodies = tableItems;
+        PageFactory.initElements(DriverManager.getDriver(), this);
+    }
+    //TableHead Locator'ı
+    @FindBy(xpath = "//thead/tr/th")
+    private List<WebElement> tableHeaders; // Tüm <th> elementlerini listeler.
 
+    //Çağırma Metodu
+    public List<String> getTableHeaders() {
+        List<String> headers = new ArrayList<>();
+        for (WebElement header : tableHeaders) {
+            headers.add(header.getText().trim());
+        }
+        return headers;
+    }
 
     @FindBy(xpath = "//*[text()='Appointment']")
     public WebElement appointmentButton;
@@ -83,11 +100,26 @@ public class PatientPage {
     public WebElement PatientAmbulanceButton;
 
     // Patient Radiology Test Report Yazısı
-    @FindBy(xpath = "*[@class='box-title titlefix']")
+    @FindBy(xpath = "//*[@class='box-header with-border']")
     public WebElement RadiologyTestReportText;
 
     // Bill No Başlığı
-    @FindBy(xpath = "*[@class='sorting'])[1]")
+//    @FindBy(xpath = "*[@class='sorting'])[1]")
+//    public WebElement BillNo;
+    @FindBy(xpath = "//*[@id='allpayments']/div/div/div[1]/h4") //View Payments Window Title (Payments)
+    public WebElement viewPaymentsWindowTitle;
+    @FindBy(xpath = "//i[@class='fa fa-reorder'][1]") // Show button
+    public WebElement showButton;
+
+    @FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[9]/a[2]") //show Window Title (Payments)
+    public WebElement showWindowTitle;
+    @FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[4]/td[9]/button") // Pay button
+    public WebElement firstPayButton;
+
+    @FindBy(xpath = "//*[@id='amount_total_paid']") // Payment input field
+    public WebElement paymentInput;
+
+    @FindBy(xpath = "(//*[@class='sorting'])[1]")
     public WebElement BillNo;
 
     // Case ID Başlığı
@@ -123,8 +155,8 @@ public class PatientPage {
     public WebElement ActionHeader;
 
     // Action Başlığı Altında View Payments Butonu
-    @FindBy(xpath = "*[@class='fa fa-money'")
-    public WebElement ViewPaymentsButton;
+    @FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[9]/a[1]") // View Payments button
+    public WebElement viewPaymentsButton;
 
     // Action Başlığı Altında View Reports Butonu
     @FindBy(xpath = "*[@class='btn btn-default btn-xs view_detail'])[1]")
@@ -135,8 +167,9 @@ public class PatientPage {
     public WebElement PayButton;
 
     // Action Başlığı Altında  Search Butonu
-    @FindBy(xpath = "*[@type='search']")
-    public WebElement SearchButton;
+
+    @FindBy(xpath = "//input[@type='search']")
+    public WebElement searchBar;
 
     // Radyolojy Test Raport listelenen kayıt sayısı texti
     @FindBy(xpath = "*[@class='dataTables_info']")
@@ -144,10 +177,21 @@ public class PatientPage {
 
 
     // Dashboard texti
-    @FindBy(xpath = "*[text()=' Dashboard']")
+    @FindBy(xpath = "//*[@class='treeview active']")
     public WebElement DashboardText;
+    @FindBy(xpath = "//tbody/tr[@role='row']")
+    private List<WebElement> tableBodies; // Tüm <th> elementlerini listeler.
+    public List<String> getTableBodies() {
+        List<String> tbody = new ArrayList<>();
+        for (WebElement body : tableBodies) {
+            tbody.add(body.getText().trim());
+        }
 
+        System.out.println(tbody);
 
+        return tbody;
+
+    }
 
 
 

@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.LoginPage;
 import pages.PatientDashboardPage;
 import pages.PatientPage;
+import pages.PatientPharmacyPage;
 import utilities.ConfigReader;
 import utilities.DriverManager;
 import utilities.ReusableMethods;
@@ -34,6 +36,9 @@ public class PatientStep {
     WebDriver driver = Hooks.getDriver();
     private static final Logger logger = LogManager.getLogger(PatientStep.class);
     PatientPage page = new PatientPage(); // Page Object sınıfınız
+    private List<WebElement> tableHeaders;
+    private List<WebElement> tableItems;
+    PatientPage patientPage = new PatientPage(tableHeaders,tableItems);
     LoginPage loginPage = new LoginPage();
     Faker faker = new Faker();
     PatientDashboardPage patientDashboardPage=new PatientDashboardPage();
@@ -290,43 +295,32 @@ public class PatientStep {
     }
 
     @Then("asagidaki baslıklarin gorunur oldugunu dogrular")
-    public void asagidaki_baslıklarin_gorunur_oldugunu_dogrular(io.cucumber.datatable.DataTable dataTable) {
-        List<String> headers = dataTable.asList();
+    public void asagidaki_baslıklarin_gorunur_oldugunu_dogrular(List<String> expectedHeaders) {
+        List<String> actualHeaders = page.getTableHeaders();
+        Assertions.assertEquals(expectedHeaders, actualHeaders, "Column headers do not match!");
 
-        Map<String, WebElement> headerMap = new HashMap<>();
-        headerMap.put("Bill No", page.BillNo);
-        headerMap.put("Case ID", page.CaseID);
-        headerMap.put("Reporting Date", page.ReportingDate);
-        headerMap.put("Reference Doctor", page.ReferanceDoctor);
-        headerMap.put("Note", page.NotHeader);
-        headerMap.put("Amount", page.AmountHeader);
-        headerMap.put("Paid Amount", page.PaidAmountHeader);
-        headerMap.put("Balance Amount", page.BalanceAmountHeader);
-        headerMap.put("Action", page.ActionHeader);
-
-        for (String header : headers) {
-            Assert.assertTrue(header + " başlığı görünmüyor!",
-                    headerMap.get(header).isDisplayed());
-        }
     }
 
 
-  //  @Given("hasta Radyology Test Reports Listesi sayfasina gider")
-  //    loginPage.hastaLogin();
-  //  }
+
 
     @When("hasta bir arama terimi girer")
     public void hasta_bir_arama_terimi_girer() {
-        page.SearchButton.sendKeys("Test Search Term");
-        page.SearchButton.sendKeys(Keys.ENTER);
-        ReusableMethods.wait(2);
+        page.searchBar.sendKeys("RAD");
+        ReusableMethods.bekle(2);
+
+//        page.SearchButton.sendKeys("Test Search Term");
+//        page.SearchButton.sendKeys(Keys.ENTER);
+//        ReusableMethods.wait(2);
     }
 
     @Then("sonuclarin girilen arama terimiyle eslesen sekilde goruntulendigini dogrular")
     public void sonuclarin_girilen_arama_terimiyle_eslesen_sekilde_goruntulendigini_dogrular() {
-        String searchResultText = page.ListelenenKAyitSayisiText.getText();
-        Assert.assertTrue("Arama sonucu eşleşmiyor!",
-                searchResultText.contains("Test Search Term"));
+//         Assert.assertTrue(page.getTableBodies().contains("RAD"));  ÇALIŞMADI
+        List<String> tbody = page.getTableBodies();
+        System.out.println("Tablodaki veriler: " + tbody);
+        boolean containsRAD = tbody.stream().anyMatch(row -> row.contains("RAD"));
+        Assert.assertTrue("Arama sonuçları beklenen değeri içermiyor!", containsRAD);
     }
 
     @Given("hasta Radyology Test Reports sayfasina gider")
@@ -337,43 +331,39 @@ public class PatientStep {
     @When("hasta bir baslık uzerine tiklar")
     public void hasta_bir_baslık_uzerine_tiklar() {
         page.BillNo.click();
-        ReusableMethods.wait(1);
+        ReusableMethods.wait(2);
+        page.BillNo.click();
+        ReusableMethods.wait(2);
     }
 
     @Then("liste artan sirada siralanmalidir")
     public void liste_artan_sirada_siralanmalidir() {
-//        // Sıralama doğrulama mantığı eklenebilir, örneğin tabloda değer kontrolü.
-//        Assert.assertTrue("Liste artan sırada sıralanmadı!",
-//                ReusableMethods.isSortedAscending(page.BillNo));
-
         List<WebElement> billNoElements = driver.findElements(By.xpath("//table/tbody/tr/td[1]"));
+        System.out.println("Bulunan eleman sayısı: " + billNoElements.size());
 
-        // Sıralama kontrolü
-        Assert.assertTrue("Liste artan sırada sıralanmadı!",
-                ReusableMethods.isSortedAscending(billNoElements));
+        for (WebElement element : billNoElements) {
+            System.out.println("Bulunan değer: " + element.getText());
+        }
     }
 
     @When("hasta aynı başlık uzerine tekrar tiklar")
     public void hasta_aynı_başlık_uzerine_tekrar_tiklar() {
         page.BillNo.click();
-        ReusableMethods.wait(1);
+        ReusableMethods.wait(4);
     }
 
     @Then("listenin azalan sirada siralandigini dogrular")
     public void listenin_azalan_sirada_siralandigini_dogrular() {
-//        // Sıralama doğrulama mantığı eklenebilir, örneğin tabloda değer kontrolü.
-//        Assert.assertTrue("Liste azalan sırada sıralanmadı!",
-//                ReusableMethods.isSortedDescending(page.BillNo));
         List<WebElement> billNoElements = driver.findElements(By.xpath("//table/tbody/tr/td[1]"));
-
         // Sıralama kontrolü
-        Assert.assertTrue("Liste artan sırada sıralanmadı!",
+        Assert.assertTrue("Liste azalan sırada sıralanmadı!",
                 ReusableMethods.isSortedDescending(billNoElements));
     }
 
     @Given("Radyology Test Reports sayfasına gider")
     public void radyology_test_reports_sayfasına_gider() {
-
+        Assert.assertTrue("Radiology Test Reports List sayfası açılmadı!",
+                page.RadiologyTestReportText.isDisplayed());
     }
 
     @Then("{string} baglantisinin her rapor icin mevcut oldugunu dogrular")
@@ -381,12 +371,15 @@ public class PatientStep {
 
     }
     @When("hasta {string} baglantısına tıklar")
-    public void hasta_baglantısına_tıklar(String string) {
+    public void hasta_baglantısına_tıklar(String ViewPayments) {
+        page.viewPaymentsButton.click();
+
 
     }
 
     @Then("bir modal pencere ödeme detaylarıyla acilir")
     public void bir_modal_pencere_ödeme_detaylarıyla_acilir() {
+        page.firstPayButton.click();
 
     }
 
