@@ -152,7 +152,7 @@ public class DemoSenaryoStep {
 
     @And("Slot olarak'ta 05:12 PM girer")
     public void slotOlarakTaPMGirer() {
-        page.slot7_00.click();
+        page.slot5_12.click();
         logger.info("John Slot olarak 05:00 PM secildi.");
         ReusableMethods.wait(4);
     }

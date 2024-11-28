@@ -6,11 +6,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.DriverManager;
+import utilities.ReusableMethods;
 
 public class LoginStep {
     WebDriver driver = Hooks.getDriver();
@@ -197,6 +199,8 @@ public class LoginStep {
             Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"));
         }
 
+    //Bu stepleri farklı feature'larda userDash girişi için standard background olarak kullanabiliriz.
+
     @Then("Kullanıcı Heal Life sitesine giris yapar")
     public void kullanıcıHealLifeSitesineGirisYapar() {
         driver.manage().deleteAllCookies();
@@ -218,11 +222,24 @@ public class LoginStep {
         loginPage.signInButton.click();
     }
 
-    //Bu stepleri farklı feature'larda userDash girişi için standard background olarak kullanabiliriz.
 
 
+    @And("loginButton'una tıklayarak ve kullanııc adı ve şifre ile giriş yapar")
+    public void loginbuttonUnaTıklayarakVeKullanııcAdıVeŞifreIleGirişYapar() {
+        loginPage.email.click();
+        loginPage.email.sendKeys(ConfigReader.getProperty("pat116"));
+        loginPage.password.click();
+        loginPage.password.sendKeys(ConfigReader.getProperty("4bwui5"));
+    }
 
-
+    @And("geçerli bir email adresi \\{string} ve sifre \\{string} girer")
+    public void geçerliBirEmailAdresiStringVeSifreStringGirer() {
+        loginPage.email.click();
+        loginPage.email.sendKeys(ConfigReader.getProperty("pat116"));
+        ReusableMethods.bekle(100);
+        loginPage.password.click();
+        loginPage.password.sendKeys(ConfigReader.getProperty("4bwui5"));
+    }
 }
 
 
