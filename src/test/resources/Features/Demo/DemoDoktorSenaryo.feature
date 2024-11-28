@@ -6,7 +6,7 @@ Feature: Doktor HealLife sitesine ilaç yazımı
     When Doktor email olarak "DoctorMailIsmaill" ve password olarakda "Passwords" ile giriş yapar
     Then Doktor sitenin SideBar'ında bulunan "Pharmacy" sayfasına tıklar
     And Doktor Generate Bill Butonuna basar
-    And Hasta id'si "78" olarak seçer
+    And Hasta id'si "59" olarak seçer
     And Medicine Category olarak "Capsule" seçer
     And Medicine Name olarak "WORMSTOP" seçer
     And Batch No olarak 1520 seçer
