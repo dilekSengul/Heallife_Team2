@@ -57,5 +57,19 @@ public class Gallery_ContactUsPage {
 
     // [Contac_Us] - [Methods] buraya eklenecek
 
+    @FindBy(xpath = "//*[@id=\"name\"]")
+    public WebElement Namecontact;
+    @FindBy(xpath = "//*[@id=\"email\"]")
+    public WebElement emailContact;
+    @FindBy(xpath = "//*[@id=\"subject\"]")
+    public WebElement Subject;
+    @FindBy(xpath = "//*[@id=\"description\"]")
+    public WebElement Description;
+    @FindBy(xpath = "//*[@id=\"open\"]/div[5]/div/input")
+    public WebElement submit;
+    @FindBy(xpath = "/html/body/div[2]/div/div/div[1]")
+    public WebElement dogrulama;
+    @FindBy(xpath = "//*[@id=\"map\"]")
+    public WebElement Map;
 
 }
