@@ -7,13 +7,13 @@ Feature: Hastanın randevu alma süreci
     * John Specialist olarak "Cardiologists" girer
     * Doctor olarak "i̇smail kaya (1011)" girer
     * Shift "Morning" girer
-    * Date olarak "30.12.2024" girer
+    * Date olarak "29.11.2024" girer
     * Message olarak'ta "El uyuşma sebebiyle randevu talebi" girer
     * Slot seçimi için Slot butonuna basar
     * Slot olarak'ta 05:12 PM girer
     * Patient Name olarak "John Doe" girer
-    * Email olarak "11d1testestet@luxyss.com" girer
-    * Phone olarak "982314563222" girer
+    * Email olarak "11da1testestet@luxyss.com" girer
+    * Phone olarak "9823114563222" girer
     * John randevu talebi için Submit butonuna basar
     * John Randevu ödemesi için Pay butonuna basar
     * John ödeme için Pay with card butonuna basar
