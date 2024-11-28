@@ -7,9 +7,7 @@ HLadminUrl = https://qa.heallifehospital.com/site/login
 ContactUsUrl=https://qa.heallifehospital.com/page/contact-us#map
 AdminDasboardUrl=https://qa.heallifehospital.com/admin/admin/dashboard
 ForgotPasswordUrl=https://qa.heallifehospital.com/site/forgotpassword
-AdminAppoinmentUrl=https://qa.heallifehospital.com/admin/appointment/index
-DoctorWiseUrl=https://qa.heallifehospital.com/admin/onlineappointment/patientschedule
-QueueUrl=https://qa.heallifehospital.com/admin/onlineappointment/patientqueue
+
 Passwords = o6*d@fko3PXL1
 allure.results.directory=target/allure-results
 
@@ -226,19 +224,3 @@ NurseMailXaver = xaver.nurse@heallifehospital.com
 
 onurPatName = pat70
 onurPatPass = g5acp3
-
-!NavbarLinks
-HomeButtonUrl = https://qa.heallifehospital.com/page/heal-life-hospital-research-center
-AppointmentButtonUrl = https://qa.heallifehospital.com/form/appointment
-!eventsButtonUrl = N/A
-AboutUsButtonUrl = https://qa.heallifehospital.com/#
-GalleryButtonUrl = https://qa.heallifehospital.com/page/gallery
-ContactUsButtonUrl = https://qa.heallifehospital.com/page/contact-us
-
-Namegulnar = gulnar
-Emailgulnar =gulnar_jbr@hotmail.com
-subject= bilgilendirme
-Description= randevu ayarlarını düzenlenmesi
-
-gulnarPatName=pat116
-gulnarPatPass =4bwui5

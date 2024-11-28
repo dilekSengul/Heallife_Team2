@@ -289,6 +289,12 @@ public class PatientStep {
 
     }
 
+    @Then("asagidaki list baslıklarin gorunur oldugunu dogrular")
+    public void asagidaki_list_baslıklarin_gorunur_oldugunu_dogrular(List<String> expectedHeaders) {
+        List<String> actualHeaders = page.getHeadersFromListGroup();
+        Assertions.assertEquals(expectedHeaders, actualHeaders, "Column headers do not match!");
+
+    }
 
 
 
@@ -470,5 +476,25 @@ public class PatientStep {
             Assert.fail("Radyology Test Reports Listesi sayfası açılamadı.");
         }
     }
+
+
+    @And("kullanici dili degistırı")
+    public void kullaniciDiliDegistırı() {
+        patientDashboardPage.dilSecimi.click();
+        patientDashboardPage.turkdili.click();
+    }
+
+    @And("kullanici bildirme görür.")
+    public void kullaniciBildirmeGörür() {
+        patientDashboardPage.bildirim.click();
+
+    }
+
+    @And("kullanıcı logout olur")
+    public void kullanıcıLogoutOlur() {
+        patientDashboardPage.profillogout.click();
+    }
+
+
 }
 

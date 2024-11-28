@@ -1,0 +1,359 @@
+package StepDefinitions;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import pages.Gallery_ContactUsPage;
+import pages.HomePage;
+import utilities.ConfigReader;
+import utilities.DriverManager;
+import utilities.JSUtilities;
+import utilities.ReusableMethods;
+
+import java.sql.Driver;
+
+public class HomePageStep {
+
+    WebDriver driver = Hooks.getDriver();
+    private static final Logger logger = LogManager.getLogger(  HomePageStep.class);
+    HomePage homePage=new HomePage();
+    Gallery_ContactUsPage galleryContactUsPage=new Gallery_ContactUsPage();
+
+
+    @Given("Kullanıcı projectUrl adresini ziyaret eder")
+    public void kullanıcı_HLurl_adresini_ziyaret_eder() throws InterruptedException {
+
+        DriverManager.getDriver().get(ConfigReader.getProperty("HLurl"));
+        Thread.sleep(2000);
+
+
+    }
+    @Given("Kullanıcı ana sayfanın footer bölümüne kaydırır")
+    public void kullanıcı_ana_sayfanın_footer_bölümüne_kaydırır() {
+       ;
+    }
+    @Given("Facebook ikonuna tıklar")
+    public void facebook_ikonuna_tıklar() {
+
+    }
+    @Then("Facebook ikonunun tıklandığını doğrular")
+    public void facebook_ikonunun_tıklandığını_doğrular() {
+
+    }
+
+    @Then("Twitter ikonuna tıklar")
+    public void twitter_ikonuna_tıklar() {
+
+    }
+    @Then("Açılan sayfa doğru Twitter hesabına yönlendirilmelidir")
+    public void açılan_sayfa_doğru_twitter_hesabına_yönlendirilmelidir() {
+
+    }
+    @Then("YouTube ikonuna tıklar")
+    public void you_tube_ikonuna_tıklar() {
+
+    }
+    @Then("Açılan sayfa doğru YouTube hesabına yönlendirilmelidir")
+    public void açılan_sayfa_doğru_you_tube_hesabına_yönlendirilmelidir() {
+      ;
+    }
+    @Then("Google ikonuna tıklar")
+    public void google_ikonuna_tıklar() {
+
+    }
+    @Then("Açılan sayfa doğru Google hesabına yönlendirilmelidir")
+    public void açılan_sayfa_doğru_google_hesabına_yönlendirilmelidir() {
+
+    }
+    @Then("LinkedIn ikonuna tıklar")
+    public void linked_ın_ikonuna_tıklar() {
+       ;
+    }
+    @Then("Açılan sayfa doğru LinkedIn hesabına yönlendirilmelidir")
+    public void açılan_sayfa_doğru_linked_ın_hesabına_yönlendirilmelidir() {
+
+    }
+    @Then("Kullanıcı Instagram ikonuna tıklar")
+    public void kullanıcı_ınstagram_ikonuna_tıklar() {
+
+    }
+    @Then("Açılan sayfa doğru Instagram hesabına yönlendirilmelidir")
+    public void açılan_sayfa_doğru_ınstagram_hesabına_yönlendirilmelidir() {
+
+    }
+    @Then("Kullanıcı Pinterest ikonuna tıklar")
+    public void kullanıcı_pinterest_ikonuna_tıklar() {
+
+    }
+    @Then("Açılan sayfa doğru Pinterest hesabına yönlendirilmelidir")
+    public void açılan_sayfa_doğru_pinterest_hesabına_yönlendirilmelidir() {
+
+    }
+    @Then("sayfayı kapatır")
+    public void sayfayı_kapatır() {
+ ;
+    }
+
+
+
+
+
+
+    @Given("Kullanıcı HealLife sitesine erişir")
+    public void kullanıcı_heal_life_sitesine_erişir() {
+        driver.get("https://www.youtube.com");
+
+    }
+    @Given("Url {string} girer")
+    public void urlGirer(String url) {
+        driver.get(ConfigReader.getProperty(url));
+    }
+
+    @Then("Anasayfa alt barinda Contact, Email ve Adress gorunurlugunu dogrular.")
+    public void anasayfa_alt_barinda_contact_email_ve_adress_gorunurlugunu_dogrular () {
+
+        JSUtilities.scrollToElement(driver,homePage.Contact);
+        ReusableMethods.wait(3);
+        Assert.assertTrue(homePage.Contact.isDisplayed());
+        Assert.assertTrue(homePage.Email.isDisplayed());
+        Assert.assertTrue(homePage.Adress.isDisplayed());
+    }
+    @Then("Sayfayi Kapatir")
+    public void sayfayı_kapatir () {
+        driver.quit();
+    }
+    @When("Anasayfa alt Barinda Contact'a tiklar")
+    public void ansayfa_alt_barinda_contact_a_tiklar() {
+        JSUtilities.scrollToElement(driver,homePage.Contact);
+        ReusableMethods.wait(3);
+        homePage.Contact.click();
+    }
+    @Then("Contact Us sayfasina yonlendirildigini dogrular")
+    public void contact_us_sayfasina_yonlendirildigini_dogrular() {
+        String expectedUrl=ConfigReader.getProperty("ContactUsUrl");
+        String actualUrl=driver.getCurrentUrl();
+        Assert.assertEquals(expectedUrl,actualUrl);
+    }
+
+    @When("Anasayfa alt Barinda Mail'e tiklar")
+    public void anasayfa_alt_barinda_mail_e_tiklar() {
+        JSUtilities.scrollToElement(driver,homePage.Email);
+        ReusableMethods.wait(3);
+        homePage.Email.click();
+    }
+    @Then("Mail'e tiklanabildigini dogrular")
+    public void mail_e_tiklanabildigini_dogrular() {
+        Assert.assertTrue(homePage.Adress.isEnabled());
+    }
+    @When("Anasayfa alt Barinda Adress'e tiklar")
+    public void anasayfa_alt_barinda_adress_e_tiklar() {
+        JSUtilities.scrollToElement(driver,homePage.Adress);
+        ReusableMethods.wait(3);
+        homePage.Adress.click();
+    }
+    @Then("Yonlendirilen sayfada hatitanın goruntulendigini dogrular")
+    public void yonlendirilen_sayfada_hatitanın_goruntulendigini_dogrular() {
+        ReusableMethods.switchWindowByUrl(driver, ConfigReader.getProperty("ContactUsUrl"));
+        // driver.switchTo().frame(galleryContactUsPage.MapIframe);
+
+        Assert.assertTrue(galleryContactUsPage.MapText.isDisplayed());
+
+    }
+
+
+
+    @And("Kullanıcı ana sayfaya yönlendirilir")
+    public void kullanıcıAnaSayfayaYönlendirilir() {
+    }
+
+    @When("Kullanıcı sayfada {string} başlığını görür")
+    public void kullanıcıSayfadaBaşlığınıGörür(String arg0) {
+
+    }
+
+    @And("Her bir doktor için aşağıdaki bilgiler görünür olmalı:")
+    public void herBirDoktorIçinAşağıdakiBilgilerGörünürOlmalı() {
+    }
+
+    @Given("Kullanıcı {string} sitesine gider")
+    public void kullanıcı_sitesine_gider(String url) {
+        DriverManager.getDriver().get(ConfigReader.getProperty(url));
+        logger.info("Kullanıcı sitesine gidiyor: " + url);
+    }
+
+    @When("Kullanıcı bulunduğu URL ile belirlenmiş URL'yi doğrular")
+    public void kullanıcı_bulunduğu_url_ile_belirlenmiş_url_yi_doğrular() {
+        String expectedUrl = ConfigReader.getProperty("HLurl");
+        String currentUrl = DriverManager.getDriver().getCurrentUrl();
+
+        if (expectedUrl.equals(currentUrl)) {
+            logger.info("Kullanıcı bulunduğu URL ile belirlenmiş URL doğru.");
+        } else {
+            logger.error("Kullanıcı bulunduğu URL ile belirlenmiş URL değil.");
+        }
+    }
+
+    @Then("Kullanıcı site başlığının {string} olduğunu doğrular")
+    public void kullanıcı_site_başlığının_olduğunu_doğrular(String title) {
+        String actualTitle = DriverManager.getDriver().getTitle();
+
+        if (title.equals(actualTitle)) {
+            logger.info("Site başlığı beklenen ile aynı");
+        } else {
+            logger.error("Site başlığı yanlış!");
+        }
+    }
+
+    @Then("Kullanıcı Heal Life sitesinin logosunu görebilmelidir")
+    public void kullanıcı_heal_life_sitesinin_logosunu_görebilmelidir() {
+        Assert.assertTrue(homePage.HLlogo.isDisplayed());
+        Assert.assertTrue(homePage.HLlogo.isDisplayed());
+    }
+
+    @When("Kullanıcı browser kapatır")
+    public void kullanıcı_browser_kapatır() {
+        DriverManager.quitDriver();
+        logger.info("Browser kapatıldı.");
+    }
+
+    @And("Kullanıcı bir hata mesajı görmelidir")
+    public void kullanıcıBirHataMesajıGörmelidir() {
+        Assert.assertTrue(homePage.errorMessage.isDisplayed());
+        logger.info("Kullanıcı bir hata mesajı gördu ):");
+    }
+
+    @When("Kullanıcı Header Bölümünden {string} sayfasına gider")
+    public void kullanıcı_header_bölümünden_sayfasına_gider(String sayfa) {
+        ReusableMethods.HeaderAccessibility(sayfa, logger);
+    }
+
+    @Then("Kullanıcı URL'in {string} sayfasında olduğunu doğrular")
+    public void kullanıcı_url_in_sayfasında_olduğunu_doğrular(String url) {
+        String URL = "https://qa.heallifehospital.com/page/" + url;
+        Assert.assertEquals(URL, DriverManager.getDriver().getCurrentUrl());
+        logger.info("Kullanıcı +" + url + " sayfasına ulaştı.");
+    }
+
+    @Then("Kullanıcı site içerisinde {string} yazısını görebilmelidir")
+    public void kullanıcı_site_içerisinde_yazısını_görebilmelidir(String string) {
+        if (homePage.GalleryTitle.getText().contains(string)) {
+            logger.info("Kullanıcı site içerisinde " + string + " yazısını gordu.");
+        } else {
+            logger.error("Kullanıcı site içerisinde " + string + " bulunamadı!");
+        }
+    }
+
+    @When("Kullanıcı Footer Bölümünden {string} sayfasına gider")
+    public void kullanıcı_footer_bölümünden_sayfasına_gider(String sayfa) {
+        ReusableMethods.FooterAccessibility(sayfa, logger);
+    }
+
+    @Then("Kullanıcı site içerisinde Resimlerin ve Başlıklarının olmasını istiyorum")
+    public void kullanıcı_site_içerisinde_resimlerin_ve_başlıklarının_olmasını_istiyorum() {
+        for (int i = 0; i < homePage.GalleryResimler.size(); i++) {
+            Assert.assertTrue(homePage.GalleryResimler.get(i).isDisplayed());
+        }
+        logger.info("Gallery Resimler göründü.");
+
+        for (int i = 0; i < homePage.GalleryBasliklar.size(); i++) {
+            Assert.assertTrue(homePage.GalleryBasliklar.get(i).isDisplayed());
+        }
+        logger.info("Gallery Basliklar görünüyor.");
+    }
+
+    @Then("Kullanıcı Gallery sayfasında {string} adet içerik bulunmalıdır")
+    public void kullanıcı_gallery_sayfasında_adet_içerik_bulunmalıdır(String sayi) {
+        WaitHelper.wait(3);
+
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("window.scrollBy(0, 300);");
+
+        WaitHelper.wait(3);
+
+        if (homePage.GalleryResimler.size() == Integer.parseInt(sayi)) {
+            logger.info("Kullanıcı Gallery sayfasında " + sayi + " adet içerik bulundu.");
+        } else {
+            logger.error("Kullanıcı Gallery sayfasında " + sayi + " adet içerik bulunamadı!");
+        }
+    }
+
+    @Then("Kullanıcı Gallery sayfasının URL, Title ve içeriğinin doğru olduğunu doğrular")
+    public void kullanıcıGallerySayfasınınURLTitleVeIçeriğininDoğruOlduğunuDoğrular() {
+        for (int i = 0; i < 6; i++) {
+
+            if (i == 0) {
+                homePage.GalleryResimler.get(i).click();
+                logger.info("Kullanıcı Health Wellness sayfasına gider.");
+                Assert.assertEquals("https://qa.heallifehospital.com/read/health-wellness", DriverManager.getDriver().getCurrentUrl());
+                logger.info("Kullanıcı Health Wellness sayfasına ulaştı.");
+                Assert.assertEquals(DriverManager.getDriver().getTitle(), homePage.GallerySubTitle1.getText());
+                logger.info("Kullanıcı Gallery sayfasının Title'i " + homePage.GallerySubTitle1.getText() + " oldu.");
+                DriverManager.getDriver().navigate().back();
+            }
+
+            if (i == 1) {
+                homePage.GalleryResimler.get(i).click();
+                logger.info("Kullanıcı Hospitals and Directions sayfasına gider.");
+                Assert.assertEquals("https://qa.heallifehospital.com/read/hospitals-and-directions", DriverManager.getDriver().getCurrentUrl());
+                logger.info("Kullanıcı Hospitals and Directions sayfasına ulaştı.");
+                Assert.assertEquals(DriverManager.getDriver().getTitle(), homePage.GallerySubTitle2.getText());
+                logger.info("Kullanıcı Gallery sayfasının Title'i " + homePage.GallerySubTitle2.getText() + " oldu.");
+                DriverManager.getDriver().navigate().back();
+            }
+
+            if (i == 2) {
+                homePage.GalleryResimler.get(i).click();
+                logger.info("Kullanıcı Health Specialities sayfasına gider.");
+                Assert.assertEquals("https://qa.heallifehospital.com/read/specialities", DriverManager.getDriver().getCurrentUrl());
+                logger.info("Kullanıcı Health Specialities sayfasına ulaştı.");
+                Assert.assertEquals(DriverManager.getDriver().getTitle(), homePage.GallerySubTitle3.getText());
+                logger.info("Kullanıcı Gallery sayfasının Title'i " + homePage.GallerySubTitle3.getText() + " oldu.");
+                WaitHelper.wait(2);
+                DriverManager.getDriver().navigate().back();
+            }
+
+            if (i == 3) {
+                JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+                js.executeScript("window.scrollBy(0, 200);");
+                homePage.GalleryResimler.get(i).click();
+                logger.info("Kullanıcı Recreation Centre sayfasına gider.");
+                Assert.assertEquals("https://qa.heallifehospital.com/read/recreation-centre", DriverManager.getDriver().getCurrentUrl());
+                logger.info("Kullanıcı Recreation Centre sayfasına ulaştı.");
+                Assert.assertEquals(DriverManager.getDriver().getTitle(), homePage.GallerySubTitle4.getText());
+                logger.info("Kullanıcı Gallery sayfasının Title'i " + homePage.GallerySubTitle4.getText() + " oldu.");
+                DriverManager.getDriver().navigate().back();
+            }
+
+            if (i == 4) {
+                homePage.GalleryResimler.get(i).click();
+                logger.info("Kullanıcı Your Health sayfasına gider.");
+                Assert.assertEquals("https://qa.heallifehospital.com/read/your-health", DriverManager.getDriver().getCurrentUrl());
+                logger.info("Kullanıcı Your Health sayfasına ulaştı.");
+                Assert.assertEquals(DriverManager.getDriver().getTitle(), homePage.GallerySubTitle5.getText());
+                logger.info("Kullanıcı Gallery sayfasının Title'i " + homePage.GallerySubTitle5.getText() + " oldu.");
+                DriverManager.getDriver().navigate().back();
+            }
+
+            if (i == 5) {
+                homePage.GalleryResimler.get(i).click();
+                logger.info("Kullanıcı Surgery sayfasına gider.");
+                Assert.assertEquals("https://qa.heallifehospital.com/read/surgery", DriverManager.getDriver().getCurrentUrl());
+                logger.info("Kullanıcı Surgery sayfasına ulaştı.");
+                Assert.assertEquals(DriverManager.getDriver().getTitle(), homePage.GallerySubTitle6.getText());
+                logger.info("Kullanıcı Gallery sayfasının Title'i " + homePage.GallerySubTitle6.getText() + " oldu.");
+                DriverManager.getDriver().navigate().back();
+            }
+
+        }
+    }
+
+}

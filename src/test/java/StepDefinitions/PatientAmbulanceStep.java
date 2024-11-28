@@ -7,23 +7,17 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.LoginPage;
 import pages.PatientDashboardPage;
 import pages.PatientPage;
-import utilities.ConfigReader;
-import utilities.DriverManager;
 import utilities.ReusableMethods;
 
-import java.time.Duration;
 import java.util.List;
 
-public class PatientAmbulanceSteps {
+public class PatientAmbulanceStep {
 
     WebDriver driver = Hooks.getDriver();
     private static final Logger logger = LogManager.getLogger(PatientStep.class);
@@ -68,7 +62,24 @@ public class PatientAmbulanceSteps {
         Assert.assertTrue("Arama sonuçları beklenen değeri içermiyor!", containsRAD);
     }
 
+    @Then("component liste artan sirada siralanmalidir")
+    public void component_liste_artan_sirada_siralanmalidir() {
+        List<WebElement> billNoElements = driver.findElements(By.xpath("//table/tbody/tr/td[1]"));
+        System.out.println("Bulunan eleman sayısı: " + billNoElements.size());
 
+        for (WebElement element : billNoElements) {
+            System.out.println("Bulunan değer: " + element.getText());
+        }
+        page.billNoComponentIssue.click();
+        ReusableMethods.wait(2);
+    }
+    @When("component listede hasta aynı başlık uzerine tekrar tiklar")
+    public void component_listede_hasta_aynı_başlık_uzerine_tekrar_tiklar() {
+
+        page.billNoComponentIssue.click();
+        ReusableMethods.wait(2);
+
+    }
     @When("ambulans listesinde hasta bir baslık uzerine tiklar")
     public void ambulans_listesinde_hasta_bir_baslık_uzerine_tiklar() {
         page.vehicleNumberHeader.click();
