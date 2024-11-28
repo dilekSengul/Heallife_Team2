@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,14 +26,40 @@ public class PatientPage {
     private List<WebElement> tableHeaders; // Tüm <th> elementlerini listeler.
 
     //Çağırma Metodu
-    public List<String> getTableHeaders() {
+    public List<String> getTableHeadersOld() {
         List<String> headers = new ArrayList<>();
         for (WebElement header : tableHeaders) {
             headers.add(header.getText().trim());
         }
         return headers;
     }
+    public List<String> getTableHeaders() {
+        List<String> headers = new ArrayList<>();
+        for (WebElement header : tableHeaders) {
+            String headerText = header.getText().trim();
+            if (!headerText.isEmpty()) { // Boş başlıkları filtrele
+                headers.add(headerText);
+            }
+        }
+        return headers;
+    }
 
+    public List<String> getHeadersFromListGroup() {
+        List<String> headers = new ArrayList<>();
+
+        // HTML içindeki <b> etiketlerini bul
+        List<WebElement> headerElements = DriverManager.getDriver().findElements(By.cssSelector(".list-group-item b"));
+
+        for (WebElement header : headerElements) {
+            String headerText = header.getText().trim();
+            System.out.println("Header found: " + headerText); // Log ekleyin
+            if (!headerText.isEmpty()) {
+                headers.add(headerText); // Boş olmayan başlıkları listeye ekle
+            }
+        }
+
+        return headers;
+    }
     @FindBy(xpath = "//*[text()='Appointment']")
     public WebElement appointmentButton;
 
@@ -290,16 +317,202 @@ public class PatientPage {
 
 
 
+//// Patient Blood BAnk Sayfası  ////
+
+    //Hasta Bilgileri//
+
+//Hasta Adı Texti
+
+@FindBy(xpath = "//*[@class='profile-username text-center']")
+public WebElement patienNameTextBloodBank;
+
+
+// Patient ID
+@FindBy(xpath = "//b[text()='Patient Id']")
+public WebElement patientIdBloodBank;
+
+// Gender
+@FindBy(xpath = "//b[text()='Gender']")
+public WebElement gender;
+
+// Phone
+@FindBy(xpath = "//b[text()='MAfrital Status']")
+public WebElement maritalStatus;
+
+//Phone
+@FindBy(xpath = "//b[text()='Phone']")
+public WebElement phone;
+
+// EMAil
+@FindBy(xpath = "//b[text()='Email']")
+public WebElement email;
+
+//Address
+@FindBy(xpath = "//b[text()='Address']")
+public WebElement address;
+
+// Age
+@FindBy(xpath = "//b[text()='Age]")
+public WebElement age;
+
+//Guardian Name
+@FindBy(xpath = "//b[text()='Guardian Name']")
+public WebElement guardianName;
+
+
+// Blood Issue Sayfası //
+
+    //Blood Issue Header
+    @FindBy(xpath ="//a[@href='#bloodissue']")
+    public WebElement bloodIssueHeader;
+
+
+    // Search Alanı
+    @FindBy(xpath ="(//*[@type='search'])[1]")
+    public WebElement searchAlaniBloodIssue;
 
 
 
+    // Bill No
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Bill No')])[1]")
+    public WebElement billNoBloodIssue;
 
 
 
+    // Issue Date
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Issue Date')])[1]")
+    public WebElement issueDateBloodIssue;
 
 
+    // Recieved To
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Received To')])[1]")
+    public WebElement recievedToBloodIssue;
+
+
+    // Blood Group
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Blood Group')])[1]")
+    public WebElement bloodGroupBloodIssue;
+
+    // Gender
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Gender')])[1]")
+    public WebElement genderBloodIssue;
+
+
+    // Donor Name
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Donor Name')])[1]")
+    public WebElement donorNameBloodIssue;
+
+    // Donor Name
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Bags')])[1]")
+    public WebElement bagsBloodIssue;
+
+
+    // Amount ($)
+    @FindBy(xpath =" (//th[contains(@aria-label, 'Amount ($)')])[1]")
+    public WebElement amountBloodIssue;
+
+    // Paid Amount ($)
+    @FindBy(xpath =" (//th[contains(@aria-label, 'Paid Amount ($)')])[1]")
+    public WebElement paidAmountBloodIssue;
+
+
+    // Balance Amount ($)
+    @FindBy(xpath =" (//th[contains(@aria-label, 'Balance Amount ($)')])[1]")
+    public WebElement balanceAmountBloodIssue;
+
+    // Action
+    @FindBy(xpath =" (//th[contains(@aria-label, 'Action')])[1]")
+    public WebElement actionBloodIssue;
+
+    // Action Altında View Payments
+    @FindBy(xpath =" (//*[@title='View Payments'])[1]")
+    public WebElement viewPaymentsBloodIssue;
+
+
+
+// Component Issue Sayfası //
+
+    //Component Issue Button
+    @FindBy(xpath ="//a[contains(text(), 'Component Issue')]")
+    public WebElement componentIssueButton;
+
+
+    //Component Issue Header
+    @FindBy(xpath ="//*[text()='Component Issue']")
+    public WebElement componentIssueHeader;
+
+
+    // Search Alanı
+    @FindBy(xpath ="(//*[@type='search'])[2]")
+    public WebElement searchAlaniComponentIssue;
+
+
+
+    // Bill No
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Bill No')])[2]")
+    public WebElement billNoComponentIssue;
+
+
+
+    // Issue Date
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Issue Date')])[2]")
+    public WebElement issueDateComponentIssue;
+
+
+    // Recieved To
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Received To')])[2]")
+    public WebElement recievedToComponentIssue;
+
+
+    // Blood Group
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Blood Group')])[2]")
+    public WebElement bloodGroupComponentIssue;
+
+
+    // Component
+    @FindBy(xpath ="//th[contains(@aria-label, 'Component')]")
+    public WebElement ComponentComponentIssue;
+
+
+
+    // Gender
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Gender')])[2]")
+    public WebElement genderComponentIssue;
+
+
+    // Donor Name
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Donor Name')])[2]")
+    public WebElement donorNameComponentIssue;
+
+    // Donor Name
+    @FindBy(xpath ="(//th[contains(@aria-label, 'Bags')])[2]")
+    public WebElement bagsComponentIssue;
+
+
+    // Amount ($)
+    @FindBy(xpath =" (//th[contains(@aria-label, 'Amount ($)')])[4]")
+    public WebElement amountComponentIssue;
+
+    // Paid Amount ($)
+    @FindBy(xpath =" (//th[contains(@aria-label, 'Amount ($)')])[5]")
+    public WebElement paidAmountComponentIssue;
+
+
+    // Balance Amount ($)
+    @FindBy(xpath =" (//th[contains(@aria-label, 'Amount ($)')])[6]")
+    public WebElement balanceAmountComponentIssue;
+
+    // Action
+    @FindBy(xpath =" (//th[contains(@aria-label, 'Action')])[2]")
+    public WebElement actionComponentIssue;
 
 
 
 
 }
+
+
+
+
+
+

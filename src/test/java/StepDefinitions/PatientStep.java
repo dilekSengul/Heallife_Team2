@@ -301,6 +301,12 @@ public class PatientStep {
 
     }
 
+    @Then("asagidaki list baslıklarin gorunur oldugunu dogrular")
+    public void asagidaki_list_baslıklarin_gorunur_oldugunu_dogrular(List<String> expectedHeaders) {
+        List<String> actualHeaders = page.getHeadersFromListGroup();
+        Assertions.assertEquals(expectedHeaders, actualHeaders, "Column headers do not match!");
+
+    }
 
 
 
