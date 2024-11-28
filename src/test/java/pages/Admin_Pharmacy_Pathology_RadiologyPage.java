@@ -35,7 +35,7 @@ public class Admin_Pharmacy_Pathology_RadiologyPage {
     @FindBy(xpath = "(//span[@class='select2-selection__rendered'])[5]")
     public WebElement hospitalDoctorBox;
 
-    @FindBy(xpath = "//li[@class='select2-results__option select2-results__option--highlighted']")
+    @FindBy(xpath = "//li[text()='i̇smail kaya (1011)']")
     public WebElement chosenDoctor;
 
     @FindBy(xpath = "//button[@class='btn btn-info']")
