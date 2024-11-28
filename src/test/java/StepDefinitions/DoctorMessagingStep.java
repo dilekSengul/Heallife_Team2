@@ -119,11 +119,10 @@ public class DoctorMessagingStep {
         doctorPage.sendEmailMessageTo.click();
         Actions actions=new Actions(driver);
         actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-
     }
     @When("send email send tiklanir")
     public void send_email_send_tiklanir() {
+
         doctorPage.sendEmailSendButton.click();
     }
 

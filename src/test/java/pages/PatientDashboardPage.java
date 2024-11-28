@@ -125,4 +125,28 @@ public class PatientDashboardPage {
     @FindBy(xpath = "(//div[@class='box-body'])[3]")
     public WebElement semptomlarGrafik;
 
+
+    //dil değişimi.
+    @FindBy(xpath = "//*[@id=\"alert\"]/nav/div[2]/div/div/div/div/button")
+    public WebElement dilSecimi;
+
+    @FindBy(xpath = "//*[@id=\"alert\"]/nav/div[2]/div/div/div/div/div/ul/li[2]/a/span")
+    public WebElement turkdili;
+    @FindBy(xpath = "//*[@id=\"alert\"]/nav/div[2]/div/div/div/div/button/span[1]/span")
+    public WebElement turcegoruntuleme;
+
+
+    @FindBy(xpath = "//*[@id=\"alert\"]/nav/div[2]/div/div/ul/li[1]/a")
+    public WebElement bildirim;
+
+    @FindBy(xpath = "/html/body/div[1]/div[1]/section/div/div/div/div[1]/div/button/i")
+    public WebElement bildirimsilmek;
+
+    @FindBy(className = "topuser-image")
+    public WebElement profilresmivebilgı;
+
+    @FindBy (xpath = "//*[@id=\"alert\"]/nav/div[2]/div/div/ul/li[2]/ul/li/div/div[4]/a[2]")
+    public WebElement profillogout;
+
+
 }
