@@ -69,7 +69,7 @@ public class DemoSenaryoStep {
     }
     @Then("John Randevu ödemesi için Pay butonuna basar")
     public void john_randevu_ödemesi_için_pay_butonuna_basar() {
-        ReusableMethods.wait(2);
+        ReusableMethods.wait(5);
         page.payButton.click();
         logger.info("John Pay butonuna basildi.");
     }
@@ -127,7 +127,7 @@ public class DemoSenaryoStep {
     }
     @Then("John Approved yazısını görüp randevunun onaylandığını teyit eder")
     public void john_approved_yazısını_görüp_randevunun_onaylandığını_teyit_eder() {
-        ReusableMethods.wait(3);
+        ReusableMethods.wait(5);
         if (page.approved.isDisplayed()) {
             logger.info("John Approved yazısı görüldü.");
         }else {
