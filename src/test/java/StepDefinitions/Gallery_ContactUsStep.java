@@ -73,7 +73,7 @@ public class Gallery_ContactUsStep {
 
     @And("Kullanıcı email adresini girer")
     public void kullanıcıEmailAdresiniGirer() {
-        galleryPage.emailContact.sendKeys(ConfigReader.getProperty("Emailgulnar"));
+        galleryPage.emailContact.sendKeys(ConfigReader.getProperty("gulnarPatName"));
     }
 
     @And("Kullanıcı subject alanını doldurur")

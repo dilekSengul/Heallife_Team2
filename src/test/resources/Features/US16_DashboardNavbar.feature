@@ -3,9 +3,9 @@ Feature: Dashboard sayfasındakı navbar
 
   Scenario: Logoya tıklayıınca anasayfaya yonlendırme
 
-    Given kullanici URL'i acar
-    And Kullanıcı email adresini girer
-    And password bolumune dogru password girilir
+    Given kullanici "HLuserUrl" adresine gider
+    And geçerli bir email adresi "gulnarPatName" ve sifre "gulnarPatPass" girer
+    And Sign In butonuna tıklar
     And kullanici dili degistırı
     And kullanici bildirme görür.
     And kullanıcı logout olur

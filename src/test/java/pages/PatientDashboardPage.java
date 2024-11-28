@@ -129,8 +129,6 @@ public class PatientDashboardPage {
     //dil değişimi.
     @FindBy(xpath = "//*[@id=\"alert\"]/nav/div[2]/div/div/div/div/button")
     public WebElement dilSecimi;
-    @FindBy(className = "flag-icon flag-icon-us")
-    public WebElement dilseç;
 
     @FindBy(xpath = "//*[@id=\"alert\"]/nav/div[2]/div/div/div/div/div/ul/li[2]/a/span")
     public WebElement turkdili;
@@ -147,7 +145,8 @@ public class PatientDashboardPage {
     @FindBy(className = "topuser-image")
     public WebElement profilresmivebilgı;
 
-    @FindBy (className = "fa fa-sign-out fa-fw")
-    public WebElement profillogout;
+    //@FindBy (className = "fa fa-sign-out fa-fw")
+    //public WebElement profillogout;
+
 
 }

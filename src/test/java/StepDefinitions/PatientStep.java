@@ -484,9 +484,9 @@ public class PatientStep {
 
     }
 
-    @And("kullanıcı logout olur")
-    public void kullanıcıLogoutOlur() {
-        patientDashboardPage.profillogout.click();
-    }
+    //@And("kullanıcı logout olur")
+    //public void kullanıcıLogoutOlur() {
+    //    patientDashboardPage.profillogout.click();
+    //}
 }
 
