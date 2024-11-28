@@ -470,5 +470,37 @@ public class PatientStep {
             Assert.fail("Radyology Test Reports Listesi sayfası açılamadı.");
         }
     }
+
+    @Given("Kullanici Anasayfa adresine gider")
+    public void kullaniciAnasayfaAdresineGider() {
+    }
+
+    @When("Hasta giriş düğmesine tıklar")
+    public void hastaGirişDüğmesineTıklar() {
+    }
+
+    @And("Hasta, hasta paneline giriş yapar")
+    public void hastaHastaPanelineGirişYapar() {
+    }
+
+    @Then("Hasta, {string} sekmesine tıklar")
+    public void hastaSekmesineTıklar(String arg0) {
+    }
+
+    @Then("Hasta bilgilerini kontrol eder")
+    public void hastaBilgileriniKontrolEder() {
+    }
+
+    @Then("Yeni bir Appointment oluşturur")
+    public void yeniBirAppointmentOluşturur() {
+    }
+
+    @Then("Show, pay butonuna tıklar")
+    public void showPayButonunaTıklar() {
+    }
+
+    @Then("Appointment arasında arama yapar")
+    public void appointmentArasındaAramaYapar() {
+    }
 }
 
