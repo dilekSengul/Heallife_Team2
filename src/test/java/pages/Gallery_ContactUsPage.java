@@ -44,12 +44,11 @@ public class Gallery_ContactUsPage {
 
     // [Footer] - [Communication] bölümünün elementleri
 
-    @FindBy(xpath = "//div[@class='place-card place-card-large']")
+    @FindBy(xpath = "//div[@class='gm-style']")
     public WebElement MapPhoto;
-    @FindBy(xpath = "(//iframe)[2]")//html/body/div[2]//iframe
-    public WebElement MapIframe;
-    @FindBy(xpath = "//h2[@id='map']")
-    public WebElement MapText;
+   @FindBy(xpath = "//iframe[contains(@src, 'https://www.google.com/maps/embed')]")
+   public WebElement iframeElement;
+
 
     // [Footer] - [Social Media] bölümünün elementleri
 

@@ -204,19 +204,6 @@ public class PatientStep {
         patientDashboardPage.medicalHistoryGraph.isDisplayed();
     }
 
-    @Then("Aşağıdaki değerlerin grafikte yer aldığını kontrol eder:")
-    public void aşağıdaki_değerlerin_grafikte_yer_aldığını_kontrol_eder(io.cucumber.datatable.DataTable dataTable) {
-        // Değerleri liste olarak al
-        List<String> expectedValues = dataTable.asList();
-
-        for (String value : expectedValues) {
-            WebElement valueElement = getValueElementByName(value);  // Helper method to return the correct element based on value
-            Assert.assertTrue(value + " değeri grafikte yer almıyor.", valueElement.isDisplayed());
-
-
-        }
-    }
-
     // Yardımcı metod, doğru elementi seçer
     public WebElement getValueElementByName(String value) {
         switch (value) {

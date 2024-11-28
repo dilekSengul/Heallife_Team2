@@ -223,6 +223,7 @@ public class LoginStep {
     }
 
 
+
     @And("loginButton'una tıklayarak ve kullanııc adı ve şifre ile giriş yapar")
     public void loginbuttonUnaTıklayarakVeKullanııcAdıVeŞifreIleGirişYapar() {
         loginPage.email.click();
@@ -230,8 +231,6 @@ public class LoginStep {
         loginPage.password.click();
         loginPage.password.sendKeys(ConfigReader.getProperty("4bwui5"));
     }
-
-
 
     @And("geçerli bir email adresi \\{string} ve sifre \\{string} girer")
     public void geçerliBirEmailAdresiStringVeSifreStringGirer() {
