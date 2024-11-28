@@ -18,9 +18,7 @@ import org.openqa.selenium.WebElement;
 import pages.AdminDashboardPage;
 import utilities.JSUtilities;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 
@@ -163,7 +161,7 @@ public class DoctorStep {
         }
 
         dashboardPage.SetupMenu.click();
-        ReusableMethods.wait(3);
+        ReusableMethods.wait(2);
         JSUtilities.scrollToElement(DriverManager.getDriver(), dashboardPage.SetupAppointmentMenu);
 
         List<WebElement> SetupMenus = Arrays.asList(
@@ -204,7 +202,7 @@ public class DoctorStep {
         }
 
         dashboardPage.LiveConsultationMenu.click();
-        ReusableMethods.wait(3);
+        ReusableMethods.wait(2);
 
         if (dashboardPage.LiveConsultationMenu2.isDisplayed() && dashboardPage.LiveConsultationMenu2.isEnabled()) {
             logger.info("Doktor sayfasında Live Consultation SideBar'da menüleri görünür ve aktif oldu.");
@@ -219,7 +217,7 @@ public class DoctorStep {
         }
 
         dashboardPage.BirthDeathRecordMenu.click();
-        ReusableMethods.wait(3);
+        ReusableMethods.wait(2);
 
         if (dashboardPage.BirthRecordMenu.isDisplayed() && dashboardPage.BirthRecordMenu.isEnabled()) {
             logger.info("Doktor sayfasında Birth Record SideBar'da menüleri görünür ve aktif oldu.");
@@ -243,6 +241,110 @@ public class DoctorStep {
 
     @Then("Doktor sayfasında Dashboard SideBar'daki menüler dogru sayfaya ulmaşmalı")
     public void doktor_sayfasında_dashboard_side_bar_daki_menüler_dogru_sayfaya_ulmaşmalı() {
+        ReusableMethods.navigateAndAssert("Dashboard", dashboardPage.DashboardMenu, "https://qa.heallifehospital.com/admin/admin/dashboard", logger);
+        ReusableMethods.navigateAndAssert("Billing", dashboardPage.BillingMenu, "https://qa.heallifehospital.com/admin/bill/dashboard", logger);
+        ReusableMethods.navigateAndAssert("Appointment", dashboardPage.AppointmentMenu, "https://qa.heallifehospital.com/admin/appointment/index", logger);
+        ReusableMethods.navigateAndAssert("OPD", dashboardPage.OPDMenu, "https://qa.heallifehospital.com/admin/patient/search", logger);
+        ReusableMethods.navigateAndAssert("IPD", dashboardPage.IPDMenu, "https://qa.heallifehospital.com/admin/patient/ipdsearch", logger);
+        ReusableMethods.navigateAndAssert("Pharmacy", dashboardPage.PharmacyMenu, "https://qa.heallifehospital.com/admin/pharmacy/bill", logger);
+        ReusableMethods.navigateAndAssert("Pathology", dashboardPage.PathologyMenu, "https://qa.heallifehospital.com/admin/pathology/gettestreportbatch", logger);
+        ReusableMethods.navigateAndAssert("Radiology", dashboardPage.RadiologyMenu, "https://qa.heallifehospital.com/admin/radio/gettestreportbatch", logger);
+        ReusableMethods.navigateAndAssert("Blood Bank", dashboardPage.BloodBankMenu, "https://qa.heallifehospital.com/admin/bloodbankstatus/", logger);
+        ReusableMethods.navigateAndAssert("Ambulance", dashboardPage.AmbulanceMenu, "https://qa.heallifehospital.com/admin/vehicle/getcallambulance", logger);
+        ReusableMethods.navigateAndAssert("Human Resource", dashboardPage.HumanResourceMenu, "https://qa.heallifehospital.com/admin/staff", logger);
+        ReusableMethods.navigateAndAssert("TPA Management", dashboardPage.TPAManagementMenu, "https://qa.heallifehospital.com/admin/tpamanagement", logger);
+        ReusableMethods.navigateAndAssert("Messaging", dashboardPage.MessagingMenu, "https://qa.heallifehospital.com/admin/notification", logger);
+        JSUtilities.scrollToElement(DriverManager.getDriver(), dashboardPage.BirthDeathRecordMenu);
+        dashboardPage.BirthDeathRecordMenu.click();
+        JSUtilities.scrollToElement(DriverManager.getDriver(), dashboardPage.BirthRecordMenu);
+        ReusableMethods.navigateAndAssert("Birth Record", dashboardPage.BirthRecordMenu, "https://qa.heallifehospital.com/admin/birthordeath", logger);
+        ReusableMethods.navigateAndAssert("Death Record", dashboardPage.DeathRecordMenu, "https://qa.heallifehospital.com/admin/birthordeath/death", logger);
+        JSUtilities.scrollToElement(DriverManager.getDriver(), dashboardPage.LiveConsultationMenu);
+        dashboardPage.LiveConsultationMenu.click();
+        JSUtilities.scrollToElement(DriverManager.getDriver(), dashboardPage.LiveConsultationMenu2);
+        ReusableMethods.navigateAndAssert("Live Consultation", dashboardPage.LiveConsultationMenu2, "https://qa.heallifehospital.com/admin/zoom_conference/consult", logger);
+        ReusableMethods.navigateAndAssert("Live Meeting", dashboardPage.LiveMeetingMenu, "https://qa.heallifehospital.com/admin/zoom_conference/meeting", logger);
+        JSUtilities.scrollToElement(DriverManager.getDriver(), dashboardPage.SetupMenu);
+        dashboardPage.SetupMenu.click();
+        JSUtilities.scrollToElement(DriverManager.getDriver(), dashboardPage.SetupAppointmentMenu);
+        ReusableMethods.navigateAndAssert("Setup Patient", dashboardPage.SetupPatientMenu, "https://qa.heallifehospital.com/admin/admin/search", logger);
+        ReusableMethods.navigateAndAssert("Setup Hospital Charges", dashboardPage.SetupHospitalChargesMenu, "https://qa.heallifehospital.com/admin/charges", logger);
+        ReusableMethods.navigateAndAssert("Setup Bed", dashboardPage.SetupBedMenu, "https://qa.heallifehospital.com/admin/setup/bed/status", logger);
+        ReusableMethods.navigateAndAssert("Setup Print Header/Footer", dashboardPage.SetupPrintHeaderFooterMenu, "https://qa.heallifehospital.com/admin/printing", logger);
+        ReusableMethods.navigateAndAssert("Setup Pharmacy", dashboardPage.SetupPharmacyMenu, "https://qa.heallifehospital.com/admin/medicinecategory/medicine", logger);
+        ReusableMethods.navigateAndAssert("Setup Pathology", dashboardPage.SetupPathologyMenu, "https://qa.heallifehospital.com/admin/pathologycategory/addcategory", logger);
+        ReusableMethods.navigateAndAssert("Setup Radiology", dashboardPage.SetupRadiologyMenu, "https://qa.heallifehospital.com/admin/lab/addlab", logger);
+        ReusableMethods.navigateAndAssert("Setup Blood Bank", dashboardPage.SetupBloodBankMenu, "https://qa.heallifehospital.com/admin/bloodbank/products", logger);
+        ReusableMethods.navigateAndAssert("Setup Symptoms", dashboardPage.SetupSymptomsMenu, "https://qa.heallifehospital.com/admin/symptoms", logger);
+        ReusableMethods.navigateAndAssert("Setup Appointment", dashboardPage.SetupAppointmentMenu, "https://qa.heallifehospital.com/admin/onlineappointment/", logger);
+    }
+
+    @Then("Doktor sayfasında Hamburger menüye tıklayıp SideBar'ı kapatır")
+    public void doktor_sayfasında_hamburger_menüye_tıklayıp_side_bar_ı_kapatır() {
+        dashboardPage.HamburgerMenu.click();
+    }
+    @Then("Doktor sayfasında Dashboard SideBar'ı kapalı oldugunda iconlar gorunur olmalı")
+    public void doktor_sayfasında_dashboard_side_bar_ı_kapalı_oldugunda_iconlar_gorunur_olmalı() {
+        List<WebElement> menus = Arrays.asList(
+                dashboardPage.DashboardIcon,
+                dashboardPage.BillingIcon,
+                dashboardPage.AppointmentIcon,
+                dashboardPage.OPDIcon,
+                dashboardPage.IPDIcon,
+                dashboardPage.PharmacyIcon,
+                dashboardPage.PathologyIcon,
+                dashboardPage.RadiologyIcon,
+                dashboardPage.BloodBankIcon,
+                dashboardPage.AmbulanceIcon,
+                dashboardPage.BirthDeathRecordIcon,
+                dashboardPage.HumanResourceIcon,
+                dashboardPage.TPAManagementIcon,
+                dashboardPage.MessagingIcon,
+                dashboardPage.LiveConsultationIcon,
+                dashboardPage.SetupMenu
+
+        );
+
+        List<String> menuNames = Arrays.asList(
+                "Dashboard",
+                "Billing",
+                "Appointment",
+                "OPD",
+                "IPD",
+                "Pharmacy",
+                "Pathology",
+                "Radiology",
+                "BloodBank",
+                "Ambulance",
+                "BirthDeathRecord",
+                "HumanResource",
+                "TPAManagement",
+                "Messaging",
+                "LiveConsultation",
+                "Setup"
+        );
+
+        for (int i = 0; i < menus.size(); i++) {
+            WebElement menu = menus.get(i);
+            String menuName = menuNames.get(i);
+
+            if (menu.isDisplayed() && menu.isEnabled()) {
+                logger.info("Doktor sayfasında " + menuName + " SideBar'da iconu görünür ve aktif oldu.");
+            }
+
+            if (!menu.isDisplayed() && !menu.isEnabled()) {
+                JSUtilities.scrollToElement(DriverManager.getDriver(), menu);
+                ReusableMethods.wait(2); // 2 saniye bekleme (elementin yüklenmesi için)
+                if (menu.isDisplayed() && menu.isEnabled()){
+                    logger.info("Doktor sayfasında " + menuName + " SideBar'da iconu görünür ve aktif oldu.");
+                }else{
+                    logger.error("Doktor sayfasında " + menuName + " SideBar'da iconu görünür ve aktif değil!!");
+                }
+            }
+
+
+        }
+
 
     }
 
