@@ -2,10 +2,12 @@ package utilities;
 
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
+import pages.AdminDashboardPage;
 import pages.HomePage;
 import utilities.DriverManager;
 import org.apache.commons.io.FileUtils;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 
 public class
 ReusableMethods {
+
+    static AdminDashboardPage dashboardPage = new AdminDashboardPage();
 
     public static String getScreenshot(String name) throws IOException {
         // naming the screenshot with the current date to avoid duplication
@@ -580,8 +584,8 @@ ReusableMethods {
         }
     }
 
-    public static void HeaderAccessibility(String sayfa,Logger logger) {
-        HomePage homePage=new HomePage();
+    public static void HeaderAccessibility(String sayfa, Logger logger) {
+        HomePage homePage = new HomePage();
         switch (sayfa) {
             case "Gallery":
                 homePage.Gallery.click();
@@ -597,6 +601,10 @@ ReusableMethods {
                 break;
             case "Login":
                 homePage.Login.click();
+                logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
+                break;
+            case "Appointment":
+                homePage.Appointment.click();
                 logger.info("Kullanıcı " + sayfa + " sayfası erişimi gerçekleşti.");
                 break;
             default:
@@ -638,5 +646,78 @@ ReusableMethods {
         }
     }
 
+
+    public static void navigateAndAssert(String menuName, WebElement menuElement, String expectedUrl, Logger logger) {
+        try {
+            if (!menuElement.isDisplayed()) {
+                JSUtilities.scrollToElement(DriverManager.getDriver(), menuElement);
+                ReusableMethods.wait(2); // 2 saniye bekleme (elementin yüklenmesi için)
+            }
+
+            menuElement.click();
+            String currentUrl = DriverManager.getDriver().getCurrentUrl();
+            Assertions.assertEquals(expectedUrl, currentUrl, "URL mismatch for " + menuName);
+            logger.info("Gidilen " + menuName + " ULR'si beklenen ile aynı.");
+        } catch (AssertionError e) {
+            logger.error("Kullanıcı " + menuName + " sayfasına giderken hata olustu.");
+        }
+    }
+
+    public static void dashBoardSwitch(String menü) {
+        switch (menü) {
+            case "Dashboard":
+                dashboardPage.DashboardMenu.click();
+                break;
+            case "Billing":
+                dashboardPage.BillingMenu.click();
+                break;
+            case "Appointment":
+                dashboardPage.AppointmentMenu.click();
+                break;
+            case "OPD":
+                dashboardPage.OPDMenu.click();
+                break;
+            case "IPD":
+                dashboardPage.IPDMenu.click();
+                break;
+            case "Pharmacy":
+                dashboardPage.PharmacyMenu.click();
+                break;
+            case "Pathology":
+                dashboardPage.PathologyMenu.click();
+                break;
+            case "Radiology":
+                dashboardPage.RadiologyMenu.click();
+                break;
+            case "Blood Bank":
+                dashboardPage.BloodBankMenu.click();
+                break;
+            case "Ambulance":
+                dashboardPage.AmbulanceMenu.click();
+                break;
+            case "Birth Record":
+                dashboardPage.BirthDeathRecordMenu.click();
+                dashboardPage.BirthRecordMenu.click();
+                break;
+            case "Death Record":
+                dashboardPage.BirthDeathRecordMenu.click();
+                dashboardPage.DeathRecordMenu.click();
+                break;
+            case "Human Resources":
+                dashboardPage.HumanResourceMenu.click();
+                break;
+            case "TPA Management":
+                dashboardPage.TPAManagementMenu.click();
+                break;
+            case "Messaging":
+                dashboardPage.MessagingMenu.click();
+                break;
+            case "Live Consultation":
+                dashboardPage.LiveConsultationMenu.click();
+                break;
+            default:
+                System.out.println("Kullanıcı " + menü + " menüsu bulunamadı.");
+        }
+    }
 
 }

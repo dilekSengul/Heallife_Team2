@@ -115,6 +115,35 @@ public class PatientPage {
     @FindBy(xpath = "//*[@class='col-md-4 col-sm-4'])[2])")
     public List<String> footerElementLists;
 
+    @FindBy(xpath = "//a[@class='btn btn-info btn-xs']")
+    public WebElement payButton;
+
+    @FindBy(xpath = "//span[text()='Pay with Card']")
+    public WebElement payWithCard;
+
+    @FindBy(xpath = "/html/body/div[3]/form/div[2]/div/div[4]/div/div[1]/div/input")
+    public WebElement emailBox;
+
+    @FindBy(xpath = "//span[@class='iconTick']")
+    public WebElement payButtton;
+
+    @FindBy(xpath = "//p[text()='Your Online Appointment Fees Is Successfully Submitted.']")
+    public WebElement successMessage;
+
+    @FindBy(xpath = "//a[@class='btn btn-primary mt20']")
+    public WebElement goToHomeButton;
+
+    @FindBy(xpath = "//small[@class='label label-success']")
+    public WebElement approved;
+
+    @FindBy (xpath = "//span[@id='slot_6']")
+    public WebElement slot5_12;
+
+    @FindBy (xpath = "//a[@class='dropdown-toggle']")
+    public WebElement profileButton;
+
+    @FindBy (xpath = "//a[normalize-space()='Logout']")
+    public WebElement logoutButton;
 
    //// Patient Radiology Sayfası  ////
 

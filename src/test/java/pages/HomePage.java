@@ -120,6 +120,39 @@ public class HomePage {
     @FindBy(xpath = "//div[@class='team-member']/h4")
     public List<WebElement> teamMembers;
 
+    @FindBy(xpath = "//div[@class='team-member']/p")
+    public List<WebElement> unvanlar;
+
+    @FindBy (xpath = "//h2[normalize-space()='Our Doctors']")
+    public WebElement ourDoctorsText;
+
+    @FindBy (xpath = "//ul[@class='f1-list']/li/a")
+    public List<WebElement> homapagealtBar;
+
+    public List<String> getHomePageAltBar(){
+        List<String>homePageBar=new ArrayList<>();
+        for(WebElement altbar : homapagealtBar){
+            homePageBar.add(altbar.getText());
+        }
+        return homePageBar;
+    }
+
+    public String doctorstextsgets() {
+        String doctortexts = ourDoctorsText.getText();
+    return doctortexts;
+}
+
+    public List<String> getDoctorUnvans() {
+        List<String> doctorUnvans = new ArrayList<>();
+        for (WebElement member : unvanlar) {
+            doctorUnvans.add(member.getText());
+        }
+
+        return doctorUnvans;
+
+    }
+
+
 
     public List<String> getDoctorNames() {
         List<String> doctorNames = new ArrayList<>();
@@ -143,7 +176,6 @@ public class HomePage {
         Assert.assertEquals("Kullanıcı ana sayfada değil!", expectedUrl, actualUrl);
 
     }
-
     public void setOurDoctors() {
         Assert.assertTrue(OurDoctors.isDisplayed());
     }
@@ -162,6 +194,7 @@ public class HomePage {
 
         }
     }
+
 
 
     // [Header] - [Gallery] bölümünün elementleri
@@ -270,3 +303,4 @@ public class HomePage {
 
 
 }
+

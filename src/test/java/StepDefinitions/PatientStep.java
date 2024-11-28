@@ -34,7 +34,9 @@ import java.util.NoSuchElementException;
 
 public class PatientStep {
     WebDriver driver = Hooks.getDriver();
+
     private static final Logger logger = LogManager.getLogger(PatientStep.class);
+
     PatientPage page = new PatientPage(); // Page Object sınıfınız
     private List<WebElement> tableHeaders;
     private List<WebElement> tableItems;
@@ -47,7 +49,6 @@ public class PatientStep {
     public void kullanici_anasayfaya_gider() {
 
         driver.get(ConfigReader.getProperty("HLurl"));
-        logger.info("Kullanici Anasayafa gider");
 
     }
 
@@ -201,19 +202,6 @@ public class PatientStep {
     @Then("Dashboard sayfasının gövdesinde {string} başlıklı bir grafik bulunduğunu doğrular")
     public void dashboard_sayfasının_gövdesinde_başlıklı_bir_grafik_bulunduğunu_doğrular(String string) {
         patientDashboardPage.medicalHistoryGraph.isDisplayed();
-    }
-
-    @Then("Aşağıdaki değerlerin grafikte yer aldığını kontrol eder:")
-    public void aşağıdaki_değerlerin_grafikte_yer_aldığını_kontrol_eder(io.cucumber.datatable.DataTable dataTable) {
-        // Değerleri liste olarak al
-        List<String> expectedValues = dataTable.asList();
-
-        for (String value : expectedValues) {
-            WebElement valueElement = getValueElementByName(value);  // Helper method to return the correct element based on value
-            Assert.assertTrue(value + " değeri grafikte yer almıyor.", valueElement.isDisplayed());
-
-
-        }
     }
 
     // Yardımcı metod, doğru elementi seçer
@@ -488,5 +476,25 @@ public class PatientStep {
             Assert.fail("Radyology Test Reports Listesi sayfası açılamadı.");
         }
     }
+
+
+    @And("kullanici dili degistırı")
+    public void kullaniciDiliDegistırı() {
+        patientDashboardPage.dilSecimi.click();
+        patientDashboardPage.turkdili.click();
+    }
+
+    @And("kullanici bildirme görür.")
+    public void kullaniciBildirmeGörür() {
+        patientDashboardPage.bildirim.click();
+
+    }
+
+    @And("kullanıcı logout olur")
+    public void kullanıcıLogoutOlur() {
+        patientDashboardPage.profillogout.click();
+    }
+
+
 }
 

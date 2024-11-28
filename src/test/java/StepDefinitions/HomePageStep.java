@@ -22,6 +22,8 @@ import utilities.JSUtilities;
 import utilities.ReusableMethods;
 
 import java.sql.Driver;
+import java.util.Arrays;
+import java.util.List;
 import java.util.List;
 
 
@@ -175,9 +177,9 @@ public class HomePageStep {
     @Then("Yonlendirilen sayfada hatitanın goruntulendigini dogrular")
     public void yonlendirilen_sayfada_hatitanın_goruntulendigini_dogrular() {
         ReusableMethods.switchWindowByUrl(driver, ConfigReader.getProperty("ContactUsUrl"));
-        // driver.switchTo().frame(galleryContactUsPage.MapIframe);
+        driver.switchTo().frame(galleryContactUsPage.iframeElement);
 
-        Assert.assertTrue(galleryContactUsPage.MapText.isDisplayed());
+        Assert.assertTrue(galleryContactUsPage.MapPhoto.isDisplayed());
 
     }
 
@@ -187,11 +189,49 @@ public class HomePageStep {
 
     @When("Kullanıcı sayfada {string} başlığını görür")
     public void kullanıcıSayfadaBaşlığınıGörür(String arg0) {
-
+        String actualTexts= homePage.doctorstextsgets();
+        Assert.assertEquals(arg0,actualTexts);
     }
 
-    @And("Her bir doktor için aşağıdaki bilgiler görünür olmalı:")
-    public void herBirDoktorIçinAşağıdakiBilgilerGörünürOlmalı() {
+    @And("Doktor isimlerini kontrol eder")
+    public void doktorIsimleriniKontrolEder() {
+            // Beklenen isimler
+            List<String> expectedNames = Arrays.asList(
+                    "Heidi Prather",
+                    "Alexander C. Simotas",
+                    "Kristina Marie Quirolgico",
+                    "Christopher Lutz",
+                    "Joel M. Press",
+                    "Dena Barsoum"
+
+            );
+            Assert.assertEquals(expectedNames,homePage.getDoctorNames());
+    }
+
+    @And("Kullanıcı ünvalnarı kontrol eder")
+    public void kullanıcıÜnvanlarıKontrolEder() {
+        List<String> expectedUnvans = Arrays.asList(
+                "Professor",
+                "Professor",
+                "Professor",
+                "Professor",
+                "Professor",
+                "Professor"
+
+        );
+        Assert.assertEquals(expectedUnvans,homePage.getDoctorUnvans());
+    }
+
+    @And("Kullanıcı sayfada alt barı kontrol eder")
+    public void kullanıcıSayfadaAltBarıKontrolEder() {
+            List<String> expectedbars = Arrays.asList(
+                    "Home",
+                    "Academics",
+                    "Gallery",
+                    "About",
+                    "Contact US",
+                    "Event");
+            Assert.assertEquals(expectedbars,homePage.getHomePageAltBar());
     }
 
 
@@ -587,15 +627,5 @@ public class HomePageStep {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
