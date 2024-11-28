@@ -60,4 +60,18 @@ public class TPAManagementSteps {
     public void kullanici_details_sayfasina_yonlendirildigini_dogrular() {
         Assert.assertTrue(tpaManagementPage.detailsPageHeader.isDisplayed());
     }
+
+    @When("kullanici {string} altındaki {string} butonuna tıklar")
+    public void kullaniciAltındakiButonunaTıklar(String arg0, String arg1) {
+        
+    }
+
+    @When("kullanici sol menuden {string} butonuna tiklar")
+    public void kullaniciSolMenudenButonunaTiklar(String arg0) {
+        
+    }
+
+    @Then("kullanici TPA Management sayfasina yonlendirildigini dogrular")
+    public void kullaniciTPAManagementSayfasinaYonlendirildiginiDogrular() {
+    }
 }

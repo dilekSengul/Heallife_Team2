@@ -12,8 +12,8 @@ Feature: Hasta John ve Heallife Sitesi Yardımı
     And Slot seçimi için Slot butonuna basar
     And Slot olarak'ta 05:12 PM girer
     And Patient Name olarak "John Doe" girer
-    And Email olarak "nepariy3635@luxyss.com" girer
-    And Phone olarak "9824562222" girer
+    And Email olarak "nepariy36f35@luxyss.com" girer
+    And Phone olarak "982456f2222" girer
     And John randevu talebi için Submit butonuna basar
     And John Randevu ödemesi için Pay butonuna basar
     And John ödeme için Pay with card butonuna basar
