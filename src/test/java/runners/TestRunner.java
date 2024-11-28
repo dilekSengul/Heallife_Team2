@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 
 
 
-		tags =" @test"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+		tags ="@US21"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
 
 	                         // Yalnızca belirtilen etiketli senaryolar çalıştırılır
 
