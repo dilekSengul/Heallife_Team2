@@ -72,4 +72,6 @@ public class Gallery_ContactUsPage {
     @FindBy(xpath = "//*[@id=\"map\"]")
     public WebElement Map;
 
+
+
 }
