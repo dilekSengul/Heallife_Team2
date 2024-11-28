@@ -586,6 +586,8 @@ public class HomePageStep {
         Assert.assertEquals("Contact Us sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
 
     }
+
+
 }
 
 
