@@ -197,8 +197,6 @@ public class LoginStep {
             Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"));
         }
 
-    //Bu stepleri farklı feature'larda userDash girişi için standard background olarak kullanabiliriz.
-
     @Then("Kullanıcı Heal Life sitesine giris yapar")
     public void kullanıcıHealLifeSitesineGirisYapar() {
         driver.manage().deleteAllCookies();
@@ -220,7 +218,7 @@ public class LoginStep {
         loginPage.signInButton.click();
     }
 
-
+    //Bu stepleri farklı feature'larda userDash girişi için standard background olarak kullanabiliriz.
 
 
 

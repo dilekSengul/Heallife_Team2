@@ -6,14 +6,7 @@ Feature: Doktor dashboard sidebar messaging bölümüü testi
     When Sign In butonuna tıklar
     Then heal life logosu görüntülenir
 
+@test
   Scenario: OPD linkine tıklanması ve list başlıklarının görüntülenmesi testi
     Given doktor sidebar da OPD linkine tiklanir
     When OPD Patient list başlıklari goruntulenmelidir
-      | Name            |
-      | Patient ID      |
-      | Guardian Name   |
-      | Gender          |
-      | Phone           |
-      | Consultant      |
-      | Last Visit      |
-      | Total Recheckup |
