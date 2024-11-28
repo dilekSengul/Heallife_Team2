@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -21,6 +22,8 @@ import utilities.JSUtilities;
 import utilities.ReusableMethods;
 
 import java.sql.Driver;
+import java.util.Arrays;
+import java.util.List;
 import java.util.List;
 
 
@@ -31,6 +34,7 @@ public class HomePageStep {
 
     HomePage homePage = new HomePage();
     Gallery_ContactUsPage galleryContactUsPage = new Gallery_ContactUsPage();
+
 
 
 
@@ -185,11 +189,49 @@ public class HomePageStep {
 
     @When("Kullanıcı sayfada {string} başlığını görür")
     public void kullanıcıSayfadaBaşlığınıGörür(String arg0) {
-
+        String actualTexts= homePage.doctorstextsgets();
+        Assert.assertEquals(arg0,actualTexts);
     }
 
-    @And("Her bir doktor için aşağıdaki bilgiler görünür olmalı:")
-    public void herBirDoktorIçinAşağıdakiBilgilerGörünürOlmalı() {
+    @And("Doktor isimlerini kontrol eder")
+    public void doktorIsimleriniKontrolEder() {
+            // Beklenen isimler
+            List<String> expectedNames = Arrays.asList(
+                    "Heidi Prather",
+                    "Alexander C. Simotas",
+                    "Kristina Marie Quirolgico",
+                    "Christopher Lutz",
+                    "Joel M. Press",
+                    "Dena Barsoum"
+
+            );
+            Assert.assertEquals(expectedNames,homePage.getDoctorNames());
+    }
+
+    @And("Kullanıcı ünvalnarı kontrol eder")
+    public void kullanıcıÜnvanlarıKontrolEder() {
+        List<String> expectedUnvans = Arrays.asList(
+                "Professor",
+                "Professor",
+                "Professor",
+                "Professor",
+                "Professor",
+                "Professor"
+
+        );
+        Assert.assertEquals(expectedUnvans,homePage.getDoctorUnvans());
+    }
+
+    @And("Kullanıcı sayfada alt barı kontrol eder")
+    public void kullanıcıSayfadaAltBarıKontrolEder() {
+            List<String> expectedbars = Arrays.asList(
+                    "Home",
+                    "Academics",
+                    "Gallery",
+                    "About",
+                    "Contact US",
+                    "Event");
+            Assert.assertEquals(expectedbars,homePage.getHomePageAltBar());
     }
 
 
@@ -392,6 +434,110 @@ public class HomePageStep {
     }
 
 
+
+    @Given("Browser aç ve HLurl adersine git")
+    public void browser_aç_ve_h_lurl_adersine_git() {
+        DriverManager.getDriver().get(ConfigReader.getProperty("HLurl"));
+
+    }
+    @When("Sayfayı kaydır")
+    public void sayfayı_kaydır() {
+        JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView({block: 'center'});",homePage.InsurancePlans);
+
+    }
+    @When("Insurance Plans görünür olduğunu doğrula")
+    public void ınsurance_plans_görünür_olduğunu_doğrula() {
+        Assert.assertTrue(homePage.InsurancePlans.isDisplayed());
+
+    }
+    @When("Pediatric Services görünür olduğunu doğrula")
+    public void pediatric_services_görünür_olduğunu_doğrula() {
+        Assert.assertTrue(homePage.PediatricServices.isDisplayed());
+
+    }
+    @Then("Lab Testing görünür olduğunu doğrula")
+    public void lab_testing_görünür_olduğunu_doğrula() {
+        Assert.assertTrue(homePage.LabTesting.isDisplayed());
+
+    }
+    @Then("Sayfayı kapat")
+    public void sayfayı_kapat() {
+        DriverManager.quitDriver();
+    }
+
+    @When("Insurance Plans altında read more butonuna tıkla")
+    public void ınsurance_plans_altında_read_more_butonuna_tıkla() {
+        homePage.ReadMoreInsurancePlans.click();
+        ReusableMethods.bekle(2);
+
+    }
+    @When("Açılan sayfada Insurance Plans text'i görünür olduğunu doğrula")
+    public void açılan_sayfada_ınsurance_plans_text_i_görünür_olduğunu_doğrula() {
+        Assert.assertTrue(homePage.BaslikInsurancePlans.isDisplayed());
+
+    }
+    @Then("Geri git")
+    public void geri_git() {
+        DriverManager.getDriver().navigate().back();
+        ReusableMethods.bekle(2);
+
+    }
+    @Then("Pediatric Services altında read more butonuna tıkla")
+    public void pediatric_services_altında_read_more_butonuna_tıkla() {
+        homePage.ReadMorePediatricServices.click();
+        ReusableMethods.bekle(1);
+
+    }
+    @Then("Our Pediatric Services: text'i görünür olduğunu doğrula")
+    public void our_pediatric_services_text_i_görünür_olduğunu_doğrula() {
+        Assert.assertTrue(homePage.BaslikPediatricServices.isDisplayed());
+
+    }
+    @Then("Lab Texting altında read more butonuna tıkla")
+    public void lab_texting_altında_read_more_butonuna_tıkla() {
+        homePage.ReadMoreLabTesting.click();
+        ReusableMethods.bekle(1);
+
+    }
+    @Then("Lab Texting Services text'i görünür olduğunu doğrula")
+    public void lab_texting_services_text_i_görünür_olduğunu_doğrula() {
+        Assert.assertTrue(homePage.BaslikLabTesting.isDisplayed());
+
+    }
+
+    @Then("Featured Services görünür olduğunu doğrula")
+    public void featured_services_görünür_olduğunu_doğrula() {
+      Assert.assertTrue(homePage.FeaturedServicesYazisi.isDisplayed());
+    }
+    @Then("Medical Treatment görünür olduğunu doğrula")
+    public void medical_treatment_görünür_olduğunu_doğrula() {
+        String expectedBaslik = "Medical Treatment";
+        String actualBaslik = homePage.FSbirinciBaslik.getText();
+        Assert.assertEquals(expectedBaslik,actualBaslik);
+
+    }
+    @Then("Emergency Help görünür olduğunu doğrula")
+    public void emergency_help_görünür_olduğunu_doğrula() {
+        String expectedBaslik = "Emergency Help";
+        String actualBaslik = homePage.FSikinciBaslik.getText();
+        Assert.assertEquals(expectedBaslik,actualBaslik);
+
+    }
+    @Then("Qualified Doctors görünür olduğunu doğrula")
+    public void qualified_doctors_görünür_olduğunu_doğrula() {
+        String expectedBaslik = "Qualified Doctors";
+        String actualBaslik = homePage.FSucuncuBaslik.getText();
+        Assert.assertEquals(expectedBaslik,actualBaslik);
+
+    }
+    @Then("Medical professionals görünür olduğunu doğrula")
+    public void medical_professionals_görünür_olduğunu_doğrula() {
+        String expectedBaslik = "Medical professionals";
+        String actualBaslik = homePage.FSdorduncuBaslik.getText();
+        Assert.assertEquals(expectedBaslik, actualBaslik);
+    }
+
     @Then("Latest News bilgisinin ust barda kayan bir yazi olarak gorunur oldugunu dogrular")
     public void latest_news_kayan_yazi_oldugunu_dogrular() {
         WebElement latestNewsElement = homePage.lastestNewsKayanYaziIcerik;
@@ -444,7 +590,9 @@ public class HomePageStep {
         homePage.Appointment.click();
         String expectedUrl = ConfigReader.getProperty("AppointmentButtonUrl");
         Assert.assertEquals("Appointment sayfa URL eşleşmiyor!", expectedUrl, driver.getCurrentUrl());
+
     }
+
 
 
 
@@ -479,14 +627,5 @@ public class HomePageStep {
 
     }
 }
-
-
-
-
-
-
-
-
-
 
 
