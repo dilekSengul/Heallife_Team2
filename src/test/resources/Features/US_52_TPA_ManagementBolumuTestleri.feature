@@ -7,7 +7,7 @@ Feature: TPA Management Sayfası Temel Özellikleri ve İşlevselliği
     And geçerli bir email adresi "DoctorMailOnur" ve sifre "Passwords" girer
     When Sign In butonuna tıklar
     Then dashboard duzgun bir şekilde goruntulenir
-    When kullanici sol menuden "TBA Management" butonuna tiklar
+    When kullanici sol menuden "TPA Management" butonuna tiklar
     Then kullanici TPA Management sayfasina yonlendirildigini dogrular
 
   @TC01
