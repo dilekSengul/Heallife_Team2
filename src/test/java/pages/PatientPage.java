@@ -110,7 +110,7 @@ public class PatientPage {
     public WebElement approved;
 
     @FindBy (xpath = "//span[@id='slot_6']")
-    public WebElement slot5_12;
+    public WebElement slot7_00;
 
     @FindBy (xpath = "//a[@class='dropdown-toggle']")
     public WebElement profileButton;

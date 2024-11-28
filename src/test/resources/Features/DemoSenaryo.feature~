@@ -6,7 +6,7 @@ Feature: Hasta John ve Heallife Sitesi Yardımı
     When John "Appointment" sayfasına gider
     Then John Specialist olarak "Cardiologists" girer
     And Doctor olarak "i̇smail kaya (1011)" girer
-    And Shift "Morning" girer
+    And Shift "Evening" girer
     And Date olarak "29.12.2024" girer
     And Message olarak'ta "El uyuşma sebebiyle randevu talebi" girer
     And Slot seçimi için Slot butonuna basar
