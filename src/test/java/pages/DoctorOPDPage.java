@@ -1,6 +1,7 @@
 package pages;
 
 import StepDefinitions.Hooks;
+import org.apache.poi.xddf.usermodel.text.XDDFParagraphBulletProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,8 +45,48 @@ public class DoctorOPDPage {
     @FindBy(xpath = "(//th[@class='sorting'])[7]")
     public WebElement OpdLastVisit;
 
-    @FindBy(xpath = "//th[@class='ftext-right dt-body-right sorting_disabled']")
+    @FindBy(xpath = "/html/body/div[1]/div[1]/section/div/div/div/div[2]/div[2]/div[4]/table/thead/tr/th[8]")
     public WebElement OpdTotalRecheckup;
+
+
+    //Doctor Opd Ptient
+    @FindBy (xpath = "//input[@type='search']")
+    public WebElement OpdPatientSearchBox;
+
+    @FindBy(xpath = "/html/body/div[1]/div[1]/section/div/div/div/div[2]/div[2]/div[4]/table/tbody/tr")
+    public WebElement OpdBulunanHasta;
+
+    @FindBy(xpath = "/html/body/div[1]/div[1]/section/div/div/div/div[2]/div[2]/div[4]/table/tbody/tr[1]")
+    public WebElement patientIdBulunanHasta;
+
+    @FindBy(xpath = "//div[@class='dataTables_length']")
+    public WebElement OpdGoruntulenecekHastaSayisi;
+
+    @FindBy(xpath = "//select[@name='DataTables_Table_0_length']//option[text()='All']")
+    public WebElement allHastaSayisi;
+
+    @FindBy(xpath = "/html/body/div[1]/div[1]/section/div/div/div/div[2]/div[2]/div[4]/table/tbody/tr[1]/td[1]/div/a/i")
+    public WebElement OpdPatientShowButton;
+
+    //Doctor OPD Overview
+    @FindBy(xpath = "//div[@class='scrtabs-tabs-movable-container']")
+    public WebElement doctorOpdOverviewNav;
+
+    @FindBy(xpath = "/html/body/div[1]/div[1]/section/div/div/div/div[1]/div[2]/div/ul/li[2]/a")
+    public WebElement doctorOpdVisitButton;
+
+    //Doctor OPD Visits Sayfasi
+    @FindBy(xpath = "(//div[@class='box-tab-header'])[1]")
+    public WebElement visitTextBox;
+
+    @FindBy(xpath = "//a[@class='btn btn-primary btn-sm revisitpatient']")
+    public WebElement newVisitsButton;
+
+    //Doctor Opd Lab Investigation
+
+
+
+
 
 
 }
