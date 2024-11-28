@@ -28,7 +28,7 @@ Feature: Doktor olarak hastane sisteminde  hastalarima ait islemleri yurutebilec
     Then email alanina dogru data girilir
     Then submit butonuna tiklanir
     And textbox a girilen mail adresine sifre geldigi ustteki bilgi kutucugu ile dogrulanir
-  @test
+
   Scenario: TC05 Admin login linkinden login anasayfaya geri dönüş testi
     Given Kullanıcı Heal Life sitesine giriş yapar
     Then forgot password linkine tiklanir
