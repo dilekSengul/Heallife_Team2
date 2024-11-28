@@ -93,14 +93,17 @@ public class DoctorStep {
     @Given("Doktor {string} sitesine gider")
     public void doktor_sitesine_gider(String url) {
         DriverManager.getDriver().get(ConfigReader.getProperty(url));
+        ReusableMethods.wait(2);
     }
 
     @When("Doktor email olarak {string} ve password olarakda {string} ile giriş yapar")
     public void doktor_email_olarak_ve_password_olarakda_ile_giriş_yapar(String email, String password) {
         loginPage.email.sendKeys(ConfigReader.getProperty(email));
         loginPage.password.sendKeys(ConfigReader.getProperty(password));
+        ReusableMethods.wait(2);
         loginPage.signInButton.click();
         logger.info("Doktor email olarak " + email + " ve password olarakda " + password + " ile giriş yapar.");
+
     }
 
     @Then("Doktor sayfasında Dashboard SideBar'da menüleri görünür ve aktif olmalı")

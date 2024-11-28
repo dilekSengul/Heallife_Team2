@@ -15,21 +15,20 @@ import org.junit.runner.RunWith;
 				"pretty",                         // Konsolda okunabilir loglar
 				"html:target/cucumber-reports/cucumber.html", // Cucumber HTML raporu
 				"json:target/cucumber-reports/cucumber.json", // JSON raporu (Cucumber HTML için gerekli)
-				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" // Allure raporları için plugin
+
 		},
 
 
-                                    // Konsol çıktısını daha okunabilir hale getirir
-		                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
 
 
 		monochrome =false, //BUNA DOKUNMA!!//                        // Konsol çıktısını daha okunabilir hale getirir
 
 
 
-		tags ="@US21"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+		tags ="@us03"                           // Yalnızca belirtilen etiketli senaryolar çalıştırılır
 
-	                         // Yalnızca belirtilen etiketli senaryolar çalıştırılır
+
 
 )
 public class TestRunner {

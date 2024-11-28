@@ -105,6 +105,7 @@ public class DemoSenaryoStep {
     }
     @Then("John ödemeyi tamamlamak için Pay butonuna basar")
     public void john_ödemeyi_tamamlamak_için_pay_butonuna_basar() {
+        ReusableMethods.wait(2);
         actions.sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
         logger.info("John Pay butonuna basildi.");
     }
@@ -116,16 +117,17 @@ public class DemoSenaryoStep {
         }else {
             logger.info("John Success mesajı görülmüyor.");
         }
+        ReusableMethods.wait(3);
     }
-    @Then("John Go To Home butonuna basarak anasayfaya yönlendirilir")
+    @Then("John Go To Home butonuna basarak dashboard'a geri döner")
     public void john_go_to_home_butonuna_basarak_anasayfaya_yönlendirilir() {
-        ReusableMethods.wait(2);
+
         page.goToHomeButton.click();
         logger.info("John Go To Home butonuna basıldı.");
     }
     @Then("John Approved yazısını görüp randevunun onaylandığını teyit eder")
     public void john_approved_yazısını_görüp_randevunun_onaylandığını_teyit_eder() {
-        ReusableMethods.wait(2);
+        ReusableMethods.wait(3);
         if (page.approved.isDisplayed()) {
             logger.info("John Approved yazısı görüldü.");
         }else {
@@ -190,6 +192,7 @@ public class DemoSenaryoStep {
     public void johnRandevuTalebiIçinSubmitButonunaBasar() {
         page.SubmitButtonElementi.click();
         logger.info("John Submit butonuna basildi.");
+        ReusableMethods.wait(3);
     }
 
     @And("Zip Code olarak'ta {string} girer")
