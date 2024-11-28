@@ -76,7 +76,7 @@
       Then Queue butonuna tiklar
       And Queue randevu sayfasina yonlendirildigini dogrular
       Then Sayfayi Kapatir
-    @kubra
+
     Scenario:
       Given Sidbarda "Appoinment" a tiklar
       Then Queue butonuna tiklar

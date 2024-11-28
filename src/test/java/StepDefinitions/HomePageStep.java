@@ -173,9 +173,9 @@ public class HomePageStep {
     @Then("Yonlendirilen sayfada hatitanın goruntulendigini dogrular")
     public void yonlendirilen_sayfada_hatitanın_goruntulendigini_dogrular() {
         ReusableMethods.switchWindowByUrl(driver, ConfigReader.getProperty("ContactUsUrl"));
-        // driver.switchTo().frame(galleryContactUsPage.MapIframe);
+        driver.switchTo().frame(galleryContactUsPage.iframeElement);
 
-        Assert.assertTrue(galleryContactUsPage.MapText.isDisplayed());
+        Assert.assertTrue(galleryContactUsPage.MapPhoto.isDisplayed());
 
     }
 

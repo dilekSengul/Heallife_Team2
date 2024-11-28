@@ -18,8 +18,8 @@ Feature: US009 Kullanici ana sayfa alt barinda iletisim bilgilerini gorur
       Then Mail'e tiklanabildigini dogrular
       Then Contact Us sayfasina yonlendirildigini dogrular
       And Sayfayi Kapatir
-
-  Scenario: TC03 Ana sayfa alt bar Address'in görünürlüğü ve islevselliği
+  @kubra
+  Scenario: TC04 Ana sayfa alt bar Address'in görünürlüğü ve islevselliği
     Given Url "HLurl" girer
     When Anasayfa alt Barinda Adress'e tiklar
     Then Yonlendirilen sayfada hatitanın goruntulendigini dogrular
