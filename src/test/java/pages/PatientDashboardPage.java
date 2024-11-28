@@ -145,8 +145,8 @@ public class PatientDashboardPage {
     @FindBy(className = "topuser-image")
     public WebElement profilresmivebilgı;
 
-    //@FindBy (className = "fa fa-sign-out fa-fw")
-    //public WebElement profillogout;
+    @FindBy (xpath = "//*[@id=\"alert\"]/nav/div[2]/div/div/ul/li[2]/ul/li/div/div[4]/a[2]")
+    public WebElement profillogout;
 
 
 }
