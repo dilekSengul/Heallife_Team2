@@ -105,7 +105,7 @@ public class AboutUsStep {
 
     @When("Kullanıcı Departments başlığına tıkladığında ilgili sayfaya yönlendirildiğini doğrular")
     public void kullanıcı_departments_başlığına_tıkladığında_ilgili_sayfaya_yönlendirildiğini_doğrular() {
-        // İlk olarak Home sayfasına tıklanır
+        // İlk olarak Home sayfasına tıklanır...
         page.Home.click();
 
         // About Us dropdown menüsüne tıklanır
