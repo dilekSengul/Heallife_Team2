@@ -23,7 +23,7 @@ public class AppointmentStep {
 
     @Then("Doktor sitenin SideBar'ında bulunan {string} sayfasına tıklar")
     public void doktor_sitenin_side_bar_ında_bulunan_sayfasına_tıklar(String menü) {
-        ReusableMethods.wait(3);
+        ReusableMethods.wait(4);
         ReusableMethods.dashBoardSwitch(menü);
     }
 

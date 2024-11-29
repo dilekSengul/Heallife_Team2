@@ -136,7 +136,7 @@ public class PatientPage {
     @FindBy(xpath = "//small[@class='label label-success']")
     public WebElement approved;
 
-    @FindBy (xpath = "//span[@id='slot_8']")
+    @FindBy (xpath = "//span[@id='slot_11']")
     public WebElement slot7_00;
 
     @FindBy (xpath = "//a[@class='dropdown-toggle']")
